@@ -378,21 +378,22 @@ add_filter('template_include', 'template_chooser');
 **********************/
 function reorder_admin_menu( $__return_true ) {
     return array(
-'index.php', // Dashboard
-'edit.php?post_type=itinerary', // Itineraries
-'edit.php?post_type=safari', // Safaries
-'separator1', // --Space--
-'edit.php?post_type=page', // Pages 
-'separator2', // --Space--
-'upload.php', // Media
-'separator2', // --Space--
-'themes.php', // Appearance
-'plugins.php', // Plugins
-'users.php', // Users
-'tools.php', // Tools
-'options-general.php', // Settings
-'separator3', // --Space--
-'wpcf7', // Contact Form 7 
+'index.php',                     // Dashboard
+'edit.php?post_type=itinerary',  // Itineraries
+'edit.php?post_type=safari',     // Safaries
+'edit.php?post_type=agents',     // Agent
+'separator1',                    // --Space--
+'edit.php?post_type=page',       // Pages 
+'separator2',                    // --Space--
+'upload.php',                    // Media
+'separator2',                    // --Space--
+'themes.php',                    // Appearance
+'plugins.php',                   // Plugins
+'users.php',                     // Users
+'tools.php',                     // Tools
+'options-general.php',           // Settings
+'separator3',                    // --Space--
+'wpcf7',                         // Contact Form 7 
 
    );
 }

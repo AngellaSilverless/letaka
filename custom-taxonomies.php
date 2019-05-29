@@ -1,37 +1,39 @@
 <?php
 /*
-// ========= Safari Custom Taxonomies (itinerary, location, style, guides) ============
+// ========= Custom Taxonomies - Location, Style, Type, Country ============
 */
 
-add_action( 'init', 'location_cpt_taxonomy', 0 );
+add_action( 'init', 'destination_cpt_taxonomy', 0 );
 add_action( 'init', 'style_cpt_taxonomy', 0 );
 add_action( 'init', 'guide_cpt_taxonomy', 0 );
+add_action( 'init', 'type_cpt_taxonomy', 0 );
+add_action( 'init', 'country_cpt_taxonomy', 0 );
 
 
-// ====== Location
-function location_cpt_taxonomy() {
+// ====== Destination
+function destination_cpt_taxonomy() {
  
 	$labels = array(
-		'name' 				=> _x( 'Location', 'taxonomy general name' ),
-		'singular_name' 	=> _x( 'Location', 'taxonomy singular name' ),
-		'search_items' 		=> __( 'Search Location'   ),
-		'all_items'			=> __( 'All Locations'     ),
-		'parent_item' 		=> __( 'Parent Location'   ),
-		'parent_item_colon' => __( 'Parent Location:'  ),
-		'edit_item' 		=> __( 'Edit Location'     ), 
-		'update_item' 		=> __( 'Update Location'   ),
-		'add_new_item' 		=> __( 'Add New Location'  ),
-		'new_item_name' 	=> __( 'New Location Name' ),
-		'menu_name' 		=> __( 'Locations'         )
+		'name' 				=> _x( 'Destination', 'taxonomy general name' ),
+		'singular_name' 	=> _x( 'Destination', 'taxonomy singular name' ),
+		'search_items' 		=> __( 'Search Destination'   ),
+		'all_items'			=> __( 'All Destinations'     ),
+		'parent_item' 		=> __( 'Parent Destination'   ),
+		'parent_item_colon' => __( 'Parent Destination:'  ),
+		'edit_item' 		=> __( 'Edit Destination'     ), 
+		'update_item' 		=> __( 'Update Destination'   ),
+		'add_new_item' 		=> __( 'Add New Destination'  ),
+		'new_item_name' 	=> __( 'New Destination Name' ),
+		'menu_name' 		=> __( 'Destinations'         )
 	); 	
 	
-	register_taxonomy( 'location', array( 'itinerary' ), array(
+	register_taxonomy( 'destinations', array( 'itinerary' ), array(
 		'hierarchical' 		=> true,
 		'labels' 			=> $labels,
 		'show_ui' 			=> true,
 		'show_admin_column' => true,
 		'query_var' 		=> true,
-		'rewrite' 			=> array( 'slug' => 'location', 'hierarchical' => true )
+		'rewrite' 			=> array( 'slug' => 'destinations', 'hierarchical' => true )
 	));
 }
 
@@ -62,7 +64,6 @@ function style_cpt_taxonomy() {
 	));
 }
 
-
 // ====== Guides
 function guide_cpt_taxonomy() {
  
@@ -90,5 +91,56 @@ function guide_cpt_taxonomy() {
 	));
 }
 
+// ====== Type
+function type_cpt_taxonomy() {
+ 
+	$labels = array(
+		'name' 				=> _x( 'Types', 'taxonomy general name'  ),
+		'singular_name' 	=> _x( 'Type',  'taxonomy singular name' ),
+		'search_items' 		=> __( 'Search Type'   ),
+		'all_items'			=> __( 'All Types'     ),
+		'parent_item' 		=> __( 'Parent Type'   ),
+		'parent_item_colon' => __( 'Parent Type:'  ),
+		'edit_item' 		=> __( 'Edit Type'     ), 
+		'update_item' 		=> __( 'Update Type'   ),
+		'add_new_item' 		=> __( 'Add New Type'  ),
+		'new_item_name' 	=> __( 'New Type Name' ),
+		'menu_name' 		=> __( 'Types'         )
+	); 	
+	
+	register_taxonomy( 'type', array( 'agents' ), array(
+		'hierarchical' 		=> true,
+		'labels' 			=> $labels,
+		'show_ui' 			=> true,
+		'show_admin_column' => true,
+		'query_var' 		=> true,
+		'rewrite' 			=> array( 'slug' => 'type', 'hierarchical' => true )
+	));
+}
 
-
+// ====== Country
+function country_cpt_taxonomy() {
+ 
+	$labels = array(
+		'name' 				=> _x( 'Countries', 'taxonomy general name'  ),
+		'singular_name' 	=> _x( 'Country',   'taxonomy singular name' ),
+		'search_items' 		=> __( 'Search Country'   ),
+		'all_items'			=> __( 'All Countries'    ),
+		'parent_item' 		=> __( 'Parent Country'   ),
+		'parent_item_colon' => __( 'Parent Country:'  ),
+		'edit_item' 		=> __( 'Edit Country'     ), 
+		'update_item' 		=> __( 'Update Country'   ),
+		'add_new_item' 		=> __( 'Add New Country'  ),
+		'new_item_name' 	=> __( 'New Country Name' ),
+		'menu_name' 		=> __( 'Countries'        )
+	); 	
+	
+	register_taxonomy( 'country', array( 'agents' ), array(
+		'hierarchical' 		=> true,
+		'labels' 			=> $labels,
+		'show_ui' 			=> true,
+		'show_admin_column' => true,
+		'query_var' 		=> true,
+		'rewrite' 			=> array( 'slug' => 'country', 'hierarchical' => true )
+	));
+}

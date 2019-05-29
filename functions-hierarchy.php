@@ -54,6 +54,22 @@ add_action( 'restrict_manage_posts', 'fh_add_filter_column' );
 */
 add_filter( 'parse_query', 'fh_post_fiter' );
 
+/*
+* Remove column Date from posts
+*/
+add_action( 'manage_posts_columns', 'fh_manage_columns' );
+
+/*
+* Add data to custom column in Agents
+*/
+add_action( 'manage_agents_posts_custom_column' , 'fh_custom_agent_column', 10, 2 );
+
+/*
+* Add custom column to Agents page
+*/
+add_filter( 'manage_agents_posts_columns', 'fh_add_columns_agent' );
+
+
 
 
 /****************************************************************/
@@ -193,5 +209,40 @@ function fh_custom_itinerary_column( $column, $post_id ) {
 		$link = get_admin_url() . "edit.php?s&post_status=all&post_type=safari&action=-1&m=0&f_itinerary={$post_id}&filter_action=Filter&paged=1&action2=-1";
 		
         echo "<a href='{$link}'>View Safaris</a>";
+	}
+}
+
+function fh_manage_columns( $columns ) {
+	unset($columns['date']);
+	return $columns;
+}
+
+function fh_add_columns_agent($columns) {
+	
+	$columns = array(
+		'cb'               => '&lt;input type="checkbox" />',
+		'title'            => __( 'Name' ),
+		'telephone'        => __( 'Telephone' ),
+		'email'            => __( 'Email' ),
+		'taxonomy-type'    => __( 'Type' ),
+		'taxonomy-country' => __( 'Country' )
+	);
+
+    return $columns;
+}
+
+function fh_custom_agent_column( $column, $post_id ) {
+	
+	if($column == "telephone") {
+		
+		$phone = get_post_meta( $post_id, 'telephone', true );
+		
+		printf( __( '%s' ), $phone );
+		
+	} else if($column == "email") {
+		
+		$email = get_post_meta( $post_id, 'email', true );
+		
+		printf( __( '%s' ), $email );
 	}
 }
