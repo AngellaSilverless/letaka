@@ -177,6 +177,7 @@ add_filter('upload_mimes', 'cc_mime_types');
 
 add_action( 'after_setup_theme', function() {
 	add_theme_support( 'woocommerce' );
+	add_theme_support( 'post-thumbnails' );
 } );
 
 /**= WooCommerce - Custom Quantity Fields =**/
