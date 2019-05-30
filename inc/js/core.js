@@ -67,6 +67,10 @@ jQuery(document).ready(function( $ ) {
       	$('.toggle.active').removeClass("active"); 
         $(this).addClass("active");   
     });
+    
+    $(".search i").click(function() {
+	    $(".search div").toggleClass("visible");
+    });
 
 // GLOBAL OWL CAROUSEL SETTINGS
 
@@ -128,21 +132,29 @@ $.fn.isOnScreen = function(){
     
 };
 
-  $('.slide-up').each(function() {
-    if ($(this).isOnScreen()) {
-      $(this).addClass('active');    
-    } 
-  });   
-    $('.slide-right').each(function() {
-    if ($(this).isOnScreen()) {
-      $(this).addClass('active');    
-    } 
-  });  
-    $('.slow-fade').each(function() {
-    if ($(this).isOnScreen()) {
-      $(this).addClass('active');    
-    } 
-  });  
+	$('.slide-up').each(function() {
+		if ($(this).isOnScreen()) {
+			$(this).addClass('active');    
+		} 
+	});
+	
+	$('.slide-down').each(function() {
+		if ($(this).isOnScreen()) {
+			$(this).addClass('active');    
+		} 
+	});
+	
+	$('.slide-right').each(function() {
+		if ($(this).isOnScreen()) {
+			$(this).addClass('active');    
+		}
+	});
+	
+	$('.slow-fade').each(function() {
+		if ($(this).isOnScreen()) {
+			$(this).addClass('active');    
+		}
+	});
 
 // ========== Add class on entering viewport
 
@@ -155,26 +167,35 @@ return elementBottom > viewportTop && elementTop < viewportBottom;
 };
 
 $(window).on('resize scroll', function() {
-  $('.experience-level').each(function() {
-    if ($(this).isInViewport()) {
-      $(this).addClass('active');
-    } 
-  });
-  $('.slide-up').each(function() {
-    if ($(this).isInViewport()) {
-      $(this).addClass('active');    
-    } 
-  });   
-    $('.slide-right').each(function() {
-    if ($(this).isInViewport()) {
-      $(this).addClass('active');    
-    } 
-  });  
-    $('.slow-fade').each(function() {
-    if ($(this).isInViewport()) {
-      $(this).addClass('active');    
-    } 
-  });    
+	$('.experience-level').each(function() {
+		if ($(this).isInViewport()) {
+			$(this).addClass('active');
+		}
+	});
+	
+	$('.slide-up').each(function() {
+		if ($(this).isInViewport()) {
+			$(this).addClass('active');    
+		} 
+	});
+	
+	$('.slide-down').each(function() {
+		if ($(this).isInViewport()) {
+			$(this).addClass('active');    
+		} 
+	});
+	 
+	$('.slide-right').each(function() {
+		if ($(this).isInViewport()) {
+			$(this).addClass('active');    
+		} 
+	});
+	
+	$('.slow-fade').each(function() {
+		if ($(this).isInViewport()) {
+			$(this).addClass('active');    
+		}
+	});
     
 });
 

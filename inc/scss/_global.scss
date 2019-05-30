@@ -32,12 +32,12 @@ p {
 a {
     display: inline-block;
     line-height: 1.2em;
-    color: $brand-secondary;
+    color: $brand-primary;
     transition:color 0.3s ease;
 
     &:hover {
         text-decoration: none;
-        color: $brand-secondary;
+        color: $brand-tertiary;
     }  
     
     i {
@@ -70,8 +70,7 @@ h5 {
 
 .heading {
     font-family: $brand-font;
-    text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 400;
     
     &__light {
         color: white;
@@ -87,7 +86,7 @@ h5 {
     
     &__tertiary-color {
       color: $brand-tertiary;
-    }    
+    }
     
     &__xl {
         font-size: 5em;
@@ -143,7 +142,6 @@ header {
         a {
             display: block;
             height: 4em;
-            margin-top: 1em;
             text-align: center;
             transition: height 0.5s ease;
             
@@ -157,7 +155,29 @@ header {
 }
 
 nav {
-        background:$brand-dark-grey;
+    background: $brand-primary;
+    display: grid;
+    grid-template-columns: 30% 50% 20%;
+    padding: 1em;
+    
+    .actions-nav .button {
+		color: $brand-primary;
+		padding: 0.5em;
+		display: block;
+		margin-left: 1em;
+		margin-right: 1em;
+		width: 180px;
+		font-size: 0.9em;
+		
+		&:first-of-type {
+			margin-bottom: 1em;
+			text-transform: none;
+			background: transparent;
+			border: 1px solid white;
+			color: white;
+			font-weight: 100;
+		}
+    }
 }
 
 .home-link {
@@ -166,27 +186,93 @@ nav {
 }
 
 .nav-menu {
-    display: inline-block;
-    width:90%;
+	margin-right: 4em;
+	opacity: 0.7;
     
-    ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(0px,1fr));  
+    ul {  
         height: 100%;
         margin: 0;
         padding: 0;
         list-style: none;
-        
-        li {
-            @include gridCenter;
-            height:100%;
-            text-transform: uppercase;
-            font-size: 1em;
-            
-            a {
-                padding: 1.5em 0.1em;
-            }
-        }
+    }
+    
+    .top-menu {
+	    display: grid;
+	    grid-template-columns: 35% 65%;
+	    
+	    .search {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			
+			div {
+				flex-grow: 1;
+				display: flex;
+				max-width: 0;
+				overflow: hidden;
+				transition: $fastEffect; 
+				
+				&.visible {
+					max-width: 400px;
+				}
+			}
+			
+		    input {
+			    outline: none;
+			    font-size: 0.8em;
+			    flex-grow: 1;
+				margin-left: 0.5em;
+		    }
+		    
+		    button {
+				font-size: 0.8em;
+				border: 1px solid white;
+				margin-left: 0.5em;
+				outline: none;
+				text-transform: uppercase;
+				background: transparent;
+				color: white;
+				cursor: pointer;
+		    }
+		    
+		    i {
+			    cursor: pointer;
+		    }
+	    }
+    }
+    
+    .mainMenu-top {
+	    
+	    ul {
+		    text-align: right;
+		    
+		    li {
+				display: inline-block;
+				font-size: 0.8em;
+				padding: 0.5em 0 0.5em 4em;
+			}
+	    }
+	    
+    }
+    
+    .mainMenu-bottom {
+	    border-top: 2px dashed white;
+	    
+	    ul {
+		    display: flex;
+			justify-content: space-between;
+			
+			li {
+				@include gridCenter;
+	            height:100%;
+	            text-transform: uppercase;
+	            font-size: 1em;
+	            
+	            a {
+	                padding-top: 1.5em;
+	            }
+			}
+	    }
     }
 }
 

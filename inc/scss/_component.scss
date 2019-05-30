@@ -1,7 +1,7 @@
 /*! == COMPONENTS == */
 
 .button {
-    background: $brand-secondary;
+    background: white;
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
@@ -11,13 +11,14 @@
     font-family: $supporting-font;  
     // Using inset box-shadow instead of border for sizing simplicity
     box-shadow: inset 0 0 0 2px transparent;
-    color: white;
+    color: $brand-primary;
     font-size: inherit;
     // Required, since we're setting absolute on pseudo-elements
     position: relative;
     vertical-align: middle;
     -webkit-appearance: none;
     transition: color 0.25s;
+    font-weight: 700;
     
     &__ghost {
         background:transparent;

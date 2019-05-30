@@ -28,9 +28,9 @@ add_action( 'wp_enqueue_scripts', 'letaka_scripts' );
 function sl_custom_menu() {
   register_nav_menus(
     array(
-        'main-menu' => __( 'Main Menu' ),
-        'footer-menu1' => __( 'Footer Menu 1' ),
-        'footer-menu2' => __( 'Footer Menu 2' )
+        'main-menu-t' => __( 'Main Menu - Top' ),
+        'main-menu-b' => __( 'Main Menu - Bottom' ),
+        'footer'      => __( 'Footer Menu' )
     )
   );
 }

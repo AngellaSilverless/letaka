@@ -39,32 +39,48 @@
             <header>
                 
                 <nav>
+	                
+	                <div class="brand">
+        
+						<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
+						
+							<img src="<?php echo get_field("logo", "options")["url"]; ?>">
+						
+						</a>
+					
+					</div>
                 
-                <div class="container">
-                    
-                    <div class="row">
-
-                        <div class="col-7">
-                
-                            <div class="nav-menu">
-                            
-                                <?php
-                                wp_nav_menu( array(
-                                'theme_location' => 'main-menu',
-                                'container_class' => 'mainMenu' ) );
-                                ?>
-                            
-                            </div>            
-                            
-                        </div><!--col-->
-
-                        <div class="col-5">
-                        
-                        </div>
-                
-                    </div><!--r-->
-                
-                </div><!--c-->
+	                <div class="nav-menu">
+	                
+	                	<div class="top-menu">
+		                	
+		                	<div class="search">
+			                	<i class="fas fa-search"></i>
+			                	<div>
+				                	<input/>
+									<button>Go</button>
+			                	</div>
+			                </div>
+		                	
+		                    <?php wp_nav_menu( array(
+			                    'theme_location' => 'main-menu-t',
+			                    'container_class' => 'mainMenu-top' ) );
+	                    	?>
+	                	</div>
+	                    
+	                    <?php wp_nav_menu( array(
+		                    'theme_location' => 'main-menu-b',
+		                    'container_class' => 'mainMenu-bottom' ) );
+	                    ?>
+	                
+	                </div>
+	                
+	                <div class="actions-nav">
+	                
+	                    <a class="button">Online Payment</a>
+	                    <a class="button">Enquire Now</a>
+	                
+	                </div>
 
                 </nav>
                 

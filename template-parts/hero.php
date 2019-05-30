@@ -1,4 +1,5 @@
 <?php 
+	
     if( get_field('hero_type') == 'image' ): 
         $heroImage = get_field('hero_background_image');
     elseif ( get_field('hero_type') == 'color' ): 
@@ -10,35 +11,59 @@
     if( get_field('hero_type') !== 'slider'):
 ?>
 
-    <div class="hero <?php the_field( 'hero_height' );?>" style="background-image: url(<?php echo $heroImage['url']; ?>); background-color: <?php echo $heroColor; ?>;">
+    <div class="hero <?php the_field( 'hero_height' ); if(is_front_page()) echo ' hero__home'; ?>" style="background-image: url(<?php echo $heroImage['url']; ?>); background-color: <?php echo $heroColor; ?>;">
 
     <div class="container">
     
         <div class="row">
-                
-            <div class="hero__content">       
-
-        				    <?php $brandImage = get_field('logo', 'options');?>	
-        				
-    						<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>" class="logo">
-        						
-        						<?php get_template_part('template-parts/logo');?>
-        						
-    						</a>
-
-                <h1 class="heading heading__xl heading__light center slow-fade"><?php the_field( 'hero_heading' );?></h1>
-
-                <?php if ( is_front_page() ) {?>
-                
-	<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="search-form mt3 mb3">
-		<input type="text" class="field" name="s" id="s" placeholder="<?php esc_attr_e( 'Job Title / Job Keywords', 'letaka' ); ?>" />
-		<input type="hidden" name="post_type" value="job" />
-		<input type="submit" class="submit" name="submit" id="searchsubmit" value="<?php esc_attr_e( 'Search Jobs', 'letaka' ); ?>" />
-	</form>
-
-                <?php }?>
+	        
+            <?php if ( is_front_page() ): ?>
+				
+			<div class="hero__content">
+				
+				<div>
+				
+					<img class="slide-right" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">
+					
+					<h1 class="heading heading__xl heading__light center slide-down"><?php the_field( 'hero_heading' );?></h1>
+				
+				</div>
+				
+				<div>
+				
+					<div class="video-icon mt1 mb1 slow-fade"><i class="fas fa-video"></i></div>
+					
+					<div class="heading heading__light center slow-fade hero__copy mb2"><?php the_field( 'hero_copy' );?></div>
+					
+					<?php if( have_rows('button') ): ?>
+	
+					<div class="action_buttons">
+				
+						<?php while( have_rows('button') ): the_row(); ?>
+							
+						<a class="button slide-up" href="<?php the_permalink(get_sub_field("button_target")); ?>"><?php the_sub_field("button_text"); ?></a>
+					
+						<?php endwhile; ?>
+				
+					</div>
+				
+					<?php endif; ?>
+					
+				</div>
            
-            </div>       
+            </div>
+				
+	        <?php else: ?>
+	        
+	        <div class="hero__content">
+				
+				<h1 class="heading heading__xl heading__light center slide-up"><?php the_field( 'hero_heading' );?></h1>
+				
+				<div class="heading heading__sm heading__light center slow-fade hero__copy"><?php the_field( 'hero_copy' );?></div>
+           
+            </div>
+	        
+	        <?php endif; ?>       
                 
         </div>
     
