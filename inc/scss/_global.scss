@@ -93,7 +93,7 @@ h5 {
     }
     
     &__lg {      
-        font-size: 2em;
+        font-size: 2.5em;
     }  
     
     &__md {
@@ -110,9 +110,14 @@ h5 {
 
 }
 
- input {
-     border-radius: 0;
- }
+input {
+	border-radius: 0;
+}
+ 
+.brand-line {
+	padding-bottom: 0.5em;
+	border-bottom: 2px dashed rgba($brand-primary, 0.5);
+}
  
 /*===========HEADER==========*/
 
@@ -138,10 +143,13 @@ header {
     }
     
     .brand {
+		display: flex;
+		align-items: center;
+		justify-content: center;
         
         a {
             display: block;
-            height: 4em;
+            height: 4.5em;
             text-align: center;
             transition: height 0.5s ease;
             

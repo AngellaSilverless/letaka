@@ -19,41 +19,31 @@ get_header();?>
 <!-- ******************* Hero Content END ******************* -->
 
     <div class="container">
-    
-        <div class="row">
-            
-            <div class="col-6 pt3">
-                
-                <?php if( get_field('text_block_text') ): ?>
-
-                <div class="">
-                    <?php get_template_part('template-parts/text-block');?>
-                </div>
-
-                <?php endif;?>
-                
-                <div class="mt1 mb5">
-                    <?php the_field('body_content');?>
-                </div>                               
-
-                <?php get_template_part('template-parts/testimonial');?>
-                
-            </div><!--col-->
-            
-            <div class="col-5 offset-1 sticky-sidebar">
-                
-                <?php get_template_part('template-parts/sub', 'menu');?>
-
-                <div class="sidebar-wrapper">
-                    
-                    <?php get_template_part('template-parts/sidebar');?>
-                
-                </div>
-                
-            </div><!--col-->            
-
-        </div>
-      
+		
+		<div class="block">
+			
+			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Our Safaris</h2>
+			
+			<?php var_dump(get_field("our_safaris")); ?>
+			
+		</div>
+		
+		<div class="block h25">
+			
+			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Why Letaka</h2>
+			
+			<div>BLOCK</div>
+			
+		</div>
+		
+		<div class="block h25">
+			
+			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Latest</h2>
+			
+			<div>BLOCK</div>
+			
+		</div>
+		
     </div><!--c-->
 
 </div><!--content-->
