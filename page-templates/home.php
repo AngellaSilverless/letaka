@@ -50,23 +50,52 @@ get_header();?>
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Why Letaka</h2>
 			
-			<div class="wrapper-actions mt4">
+			<div class="wrapper-selectors mt4">
 				
 				<?php $actions = get_field("why_letaka")["action"];
+					
+				$count = 0;
+					
+				foreach ($actions as $action): ?>
 				
-				foreach ($actions as $action): $backgroundImage = $action["background_image"]; ?>
+				<div class="selector <?php if($count == 0) echo " active"; ?>" name="div-<?php echo $count; ?>">
+					
+					<div class="circle-red"></div>
+					
+					<div class="heading heading__primary-color heading__md center arrow"><?php echo $action["label"]; ?></div>
+					
+				</div>
 				
-				<div style="background: url(<?php echo $backgroundImage["url"]; ?>);">
+				<?php $count++; endforeach; ?>
+			
+			</div>
+			
+			<div class="wrapper-actions mt2">
+				
+				<?php
+				
+				$count = 0;
 					
-					<div class="circle"></div>
+				foreach ($actions as $action):
+				
+				$backgroundImage = $action["background_image"]; ?>
+				
+				<div class="action div-<?php echo $count; if($count == 0) echo " active"; ?>">
 					
-					<h3 class="heading heading__light size3 center"><?php echo $action["title"]; ?></h3>
+					<div class="img" style="background: url(<?php echo $backgroundImage["url"]; ?>);"></div>
 					
-					<div class="wrapper-buttons"><a class="button" href="<?php echo $action["button_target"]; ?>"><?php echo $action["button_text"]; ?></a></div>
+					<div class="content">
+						
+						<h3 class="heading heading__light size2 brand-line-light"><?php echo $action["title"]; ?></h3>
+					
+						<div class="description pt1 pb2"><?php echo $action["description"]; ?></div>
+						
+						<div class="wrapper-buttons"><a class="button" href="<?php echo $action["button_target"]; ?>"><?php echo $action["button_text"]; ?></a></div>
+					</div>
 					
 				</div>
 						
-				<?php endforeach; ?>
+				<?php $count++; endforeach; ?>
 			
 			</div>
 			

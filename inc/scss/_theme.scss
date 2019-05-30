@@ -40,15 +40,99 @@
 					width: 70%;
 				}
 			}
+		}
+	}
+}
+
+.why-letaka {
+	
+	.wrapper-selectors, .wrapper-actions {
+		margin-right: 4em;
+		margin-left: 4em;
+	}
+	
+	.wrapper-selectors {
+		display: grid;
+		grid-template-columns: 25% 25% 25% 25%;
+		
+		.selector {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			position: relative;
+			cursor: pointer;
 			
-			.circle {
-				width: 50px;
-				height: 50px;
-				background: white;
-				margin: 0 auto 2em auto;
+			.arrow {
+				position: relative;
+				padding-bottom: 2em;
+			
+				&::before {
+					content: "\f078";
+					font-family: 'Font Awesome 5 Free';
+					font-weight: 600;
+					font-size: 1.5em;
+					color: $brand-mid-grey;
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					transform: translate(-50%, 0);
+					transition: $fastEffect;
+				}
+			}
+			
+			&:hover .arrow::before, &.active .arrow::before {
+				transform: translate(-50%, 0.5em);
+				color: $brand-secondary;
 			}
 		}
 	}
+	
+	.wrapper-actions {
+		
+		.action {
+			display: none;
+			opacity: 0;
+			grid-template-columns: 40% 60%;
+			background: $brand-primary;
+			color: white;
+			
+			&.active {
+				display: grid;
+				opacity: 1;
+			}
+			
+			.content {
+				padding: 2em;
+			}
+			
+			.description {
+				text-align: justify;
+				line-height: 1.8;
+			}
+			
+			.img {
+				@include backgroundCover;
+			}
+		}
+	}
+
+}
+
+.circle {
+	width: 50px;
+	height: 50px;
+	background: white;
+	margin: 0 auto 2em auto;
+	border-radius: 100%;
+}
+
+.circle-red {
+	width: 50px;
+	height: 50px;
+	background: $brand-secondary;
+	margin: 0.5em;
+	border-radius: 100%;
 }
 
 /*===========FOOTER==========*/

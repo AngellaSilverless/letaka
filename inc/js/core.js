@@ -71,6 +71,14 @@ jQuery(document).ready(function( $ ) {
     $(".search i").click(function() {
 	    $(".search div").toggleClass("visible");
     });
+    
+    $(".selector").click(function() {
+	    $(".action").removeClass("active");
+	    $(".action." + $(this).attr("name")).addClass("active");
+	    
+	    $(this).siblings().removeClass("active");
+	    $(this).addClass("active");
+    });
 
 // GLOBAL OWL CAROUSEL SETTINGS
 

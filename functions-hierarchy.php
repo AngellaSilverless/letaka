@@ -213,7 +213,11 @@ function fh_custom_itinerary_column( $column, $post_id ) {
 }
 
 function fh_manage_columns( $columns ) {
-	unset($columns['date']);
+	global $typenow;
+	
+	if($typenow == "itinerary" || $typenow == "agent" || $typenow == "safari")
+		unset($columns['date']);
+	
 	return $columns;
 }
 
