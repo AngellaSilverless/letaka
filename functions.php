@@ -26,13 +26,14 @@ add_action( 'wp_enqueue_scripts', 'letaka_scripts' );
 /**= Add Menus =**/
 
 function sl_custom_menu() {
-  register_nav_menus(
-    array(
-        'main-menu-t' => __( 'Main Menu - Top' ),
-        'main-menu-b' => __( 'Main Menu - Bottom' ),
-        'footer'      => __( 'Footer Menu' )
-    )
-  );
+	register_nav_menus(
+		array(
+		    'main-menu-t'      => __( 'Main Menu - Top' ),
+		    'main-menu-b'      => __( 'Main Menu - Bottom' ),
+		    'footer-countries' => __( 'Footer - Countries' ),
+		    'footer-pages'     => __( 'Footer - Pages' )
+		)
+	);
 }
 add_action( 'init', 'sl_custom_menu' );
 

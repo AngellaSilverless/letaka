@@ -126,7 +126,7 @@ a.next-section {
     margin-top: -10px;
  
     #logo {
-        width:80px;
+        width: 100px;
         height:30px;
     }
 
@@ -135,7 +135,7 @@ a.next-section {
         transition:opacity 0.5s ease-in-out;
     
         path {
-            fill:$brand-secondary;
+            fill: white;
         }
     }
 
@@ -145,7 +145,7 @@ a.next-section {
         transition: 1s transform ease, 2s opacity ease;
 
         path {
-            fill:$brand-secondary;
+            fill: white;
         }
     }
 

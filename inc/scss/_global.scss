@@ -24,6 +24,10 @@ main {
     min-height: 100vh;
 }
 
+.container {
+	max-width: 85%;
+}
+
 p {
     font-size: 1.2em;
     font-weight: 200;  
@@ -287,11 +291,24 @@ nav {
 
 /*===========FOOTER==========*/
 footer {
-    background: $brand-dark-grey;
     color: white;
 }
 
+.pre-socket {
+    background: $brand-primary;
+    
+    .container {
+	    display: grid;
+	    grid-template-columns: 70% 30%;
+	    
+	    h3 {
+		    font-size: 1.5em;
+	    }
+    }
+}
+
 .socket {
+	background: darken($brand-primary, 5%);
     width:100%;
     padding: 2em;
     font-size: 0.75em;

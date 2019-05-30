@@ -9,85 +9,56 @@
 
     <footer class="footer">
 
-<div class="quick-contact">
+		<div class="pre-socket">
+		    
+		    <div class="container">
+		    
+		        <div class="quick-contact pt3 pb3">
+		            
+		            <h3 class="heading mb1">Quick Contact</h3>
+		            
+		            <div class="content">
+			            
+		                <p><?php the_field('main_telephone', 'options');?>fdfdfd</p>
+		                <p><?php the_field('main_email', 'options');?>fdfddfd</p>
+		            
+		            </div>
+		            
+		            <div>
+		            
+		                <?php echo do_shortcode('[contact-form-7 id="2352" title="Quick Contact" html_class="form quick-contact-form"]');?>
+		            
+		            </div>
+		
+		        </div><!--r-->
+		        
+		        <div class="quick-links pt3 pb3">
+		                
+		            <h3 class="heading mb1">Quick Links</h3>
+		            
+		            <div class="content">
+			            
+		            </div>
+					
+		        </div><!--r-->
+		    
+		    </div><!--c-->
+		
+		</div>
     
-    <div class="container">
-    
-        <div class="row pt3 pb3">            
-            
-            <div class="col-3">            
-                
-                <h3 class="heading heading__sm font400">QUICK CONTACT</h3>
-                <p class="font400 mt2 mb0"><?php the_field('permanent_number', 'options');?></p>
-                <p class="font400"><?php the_field('email_address', 'options');?></p>
-            
-            </div>            
-            
-            <div class="col-9">            
-            
-                <?php echo do_shortcode('[contact-form-7 id="1900"]');?>
-            
-            </div>                  
-
-        </div><!--r-->
-    
-    </div><!--c-->    
-
-</div>
-
-        <div class="pre-socket">
-
-        <div class="container">
-     
-                <div class="row pt2 pb2">
-
-                    <div class="col-4">
-                        
-                        <p class="font700">Get job alerts to your inbox</p>
-                        
-                        <?php echo do_shortcode('[contact-form-7 id="1899" title="Subscribe Form"]');?>
-    
-                    </div><!--col-->
-                    
-                    <div class="col-2 offset-4">
-    
-                        <?php
-                            wp_nav_menu( array(
-                            'theme_location' => 'footer-menu1',
-                            'container_class' => 'footer' ) );
-                        ?>
-    
-                    </div><!--col-->                    
-
-                    <div class="col-2">
-                    
-                        <?php
-                            wp_nav_menu( array(
-                            'theme_location' => 'footer-menu2',
-                            'container_class' => 'footer' ) );
-                        ?>
-
-                    </div><!--col-->       
-
-                </div><!--row-->
-        
-        </div><!--container-->
-
-</div>
-
-        <div class="container">
-    
-            <div class="socket">
+        <div class="socket">
+	            
+	        <div class="container">
      
                 <div class="row">
 
                     <div class="col-4 socket__colophon">
                         
-                        &copy; First Press <?php echo date ('Y');?>
+                        &copy; Letaka <?php echo date ('Y');?>
     
                         <a href="<?php echo home_url() . '/terms-conditions'; ?>">Terms</a>
     
-                        <a href="<?php echo home_url() . '/gdpr-policy'; ?>">GDPR</a>    
+                        <a href="<?php echo home_url() . '/gdpr-policy'; ?>">Privacy</a>
     
                     </div>
 

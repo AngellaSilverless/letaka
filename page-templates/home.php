@@ -20,19 +20,55 @@ get_header();?>
 
     <div class="container">
 		
-		<div class="block">
+		<div class="our-safaris">
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Our Safaris</h2>
 			
-			<?php var_dump(get_field("our_safaris")); ?>
+			<div class="wrapper-actions mt4">
+				
+				<?php $actions = get_field("our_safaris")["action"];
+				
+				foreach ($actions as $action): $backgroundImage = $action["background_image"]; ?>
+				
+				<div style="background: url(<?php echo $backgroundImage["url"]; ?>);">
+					
+					<div class="circle"></div>
+					
+					<h3 class="heading heading__light size3 center"><?php echo $action["title"]; ?></h3>
+					
+					<div class="wrapper-buttons"><a class="button" href="<?php echo $action["button_target"]; ?>"><?php echo $action["button_text"]; ?></a></div>
+					
+				</div>
+						
+				<?php endforeach; ?>
+			
+			</div>
 			
 		</div>
 		
-		<div class="block h25">
+		<div class="why-letaka">
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Why Letaka</h2>
 			
-			<div>BLOCK</div>
+			<div class="wrapper-actions mt4">
+				
+				<?php $actions = get_field("why_letaka")["action"];
+				
+				foreach ($actions as $action): $backgroundImage = $action["background_image"]; ?>
+				
+				<div style="background: url(<?php echo $backgroundImage["url"]; ?>);">
+					
+					<div class="circle"></div>
+					
+					<h3 class="heading heading__light size3 center"><?php echo $action["title"]; ?></h3>
+					
+					<div class="wrapper-buttons"><a class="button" href="<?php echo $action["button_target"]; ?>"><?php echo $action["button_text"]; ?></a></div>
+					
+				</div>
+						
+				<?php endforeach; ?>
+			
+			</div>
 			
 		</div>
 		
