@@ -19,8 +19,14 @@
 		            
 		            <div class="content">
 			            
-		                <p><?php the_field('main_telephone', 'options');?>fdfdfd</p>
-		                <p><?php the_field('main_email', 'options');?>fdfddfd</p>
+		                <p><?php the_field('main_telephone', 'options');?></p>
+		                <p><?php the_field('main_email', 'options');?></p>
+		                
+		                <?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
+    
+                        <a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
+    
+                        <?php endwhile; endif; ?>
 		            
 		            </div>
 		            
@@ -37,6 +43,16 @@
 		            <h3 class="heading mb1">Quick Links</h3>
 		            
 		            <div class="content">
+			            
+			            <?php wp_nav_menu( array(
+		                    'theme_location' => 'footer-countries',
+		                    'container_class' => 'menu-footer-countries' ) );
+                    	?>
+                    	
+                    	<?php wp_nav_menu( array(
+		                    'theme_location' => 'footer-pages',
+		                    'container_class' => 'menu-footer-pages' ) );
+                    	?>
 			            
 		            </div>
 					

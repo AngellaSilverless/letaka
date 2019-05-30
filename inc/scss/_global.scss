@@ -41,7 +41,7 @@ a {
 
     &:hover {
         text-decoration: none;
-        color: $brand-tertiary;
+        color: $brand-secondary;
     }  
     
     i {
@@ -298,8 +298,6 @@ footer {
     background: $brand-primary;
     
     .container {
-	    display: grid;
-	    grid-template-columns: 70% 30%;
 	    
 	    h3 {
 		    font-size: 1.5em;

@@ -19,6 +19,7 @@
     -webkit-appearance: none;
     transition: color 0.25s;
     font-weight: 700;
+    cursor: pointer;
     
     &__ghost {
         background:transparent;
@@ -163,3 +164,17 @@ a.next-section {
     }
 }
 
+.quick-contact-form {
+	
+	span.wpcf7-not-valid-tip {
+		color: rgba(white, 0.6);
+	}
+	
+	div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
+		background: rgba(white, 0.4);
+		border: none;
+		padding: 0.5em;
+		margin: 0.5em 0;
+	}
+}
+	
