@@ -4,6 +4,7 @@
     @include backgroundCover; 
     position: relative; 
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: 100%;
     justify-content: center;
     align-items: center;
@@ -16,6 +17,11 @@
         background:black;
         opacity:0.1;
         z-index: -1
+    }
+    
+    & > .container__bottom {
+        align-self: flex-end;
+        margin-bottom: 2em;
     }
     
     &__home {
@@ -32,6 +38,7 @@
     }
 
     &__content {
+	    height: 100%;
         position: relative;
         z-index: 10;
         text-align: center;
@@ -76,6 +83,10 @@
 	    font-size: 1.3em;
 		width: 70%;
 		display: inline-block;
+    }
+    
+    .row {
+	    height: 100%;
     }
 }
 
