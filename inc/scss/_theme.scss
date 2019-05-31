@@ -5,6 +5,12 @@
 
 /*===========BODY==========*/
 
+.small-container {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .our-safaris {
 	
 	.wrapper-actions {
@@ -150,10 +156,237 @@
 	}
 }
 
-.small-container {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
+.find-safari {
+	display: grid;
+	grid-template-columns: calc(25% - 1em) calc(75% - 1em);
+	grid-column-gap: 2em;
+	
+	.filter {
+		
+		.title {
+			text-transform: uppercase;
+			background: $brand-primary;
+			color: white;
+			font-size: 1.4em;
+			font-weight: 400;
+			letter-spacing: 0.05em;
+			height: 3rem;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding-left: 1rem;
+		}
+		
+		.label {
+			margin-top: 0.5em;
+			text-transform: uppercase;
+			background: $brand-mid-grey;
+			color: $brand-primary;
+			font-size: 1.1em;
+			font-weight: 600;
+			height: 3rem;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding-left: 3em;
+			position: relative;
+			cursor: pointer;
+			
+			&.closed {
+				display: none;
+			}
+			
+			i {
+				transition: transform 0.5s ease;
+				position: absolute;
+				right: 2rem;
+				font-size: 1.2em;
+				
+				&.closed {
+					transform: rotate(-90deg);
+				}
+			}
+		}
+		
+		.wrapper-chekbox {
+			background: $brand-light-grey;
+			padding: 1.5em;
+			
+			& > div {
+				padding-top: 1.5em;
+				
+				&:first-of-type {
+					padding-top: 0;
+				}
+			}
+			
+			&.dates {
+				display: grid;
+				grid-template-columns: auto auto auto;
+				
+				& > div {
+					
+					&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3) {
+						padding-top: 0em;
+					}
+				}
+			}
+		}
+		
+		.checkbox {
+			display: inline-block;
+			position: relative;
+			cursor: pointer;
+			
+			input[type="checkbox"] {
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				cursor: pointer;
+				margin: 0;
+				opacity: 0;
+				z-index: 1;
+				
+				&:checked ~ label:after {
+					opacity: 1;
+				}
+			}
+			
+			label {
+				display: inline-block;
+				vertical-align: top;
+				text-align: left;
+				padding-left: 2.5em;
+				line-height: 2em;
+				margin-bottom: 0;
+				font-weight: 400;
+				color: $brand-primary;
+				
+				&:before {
+					content: '';
+					display: block;
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 2em;
+					height: 2em;
+					margin-right: 10px;
+					background: white;
+					border-radius: 10px;
+				}
+				
+				&:after {
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0.3em;
+					left: 0.3em;
+					width: 1.3em;
+					height: 1.3em;
+					border-radius: 7px;
+					background: $brand-secondary;
+					opacity: 0;
+					pointer-events: none;
+				}
+			}
+		}
+	}
+	
+	.results {
+		
+		.wrapper-itinerary:not(:first-child) {
+			margin-top: 3em;
+		}
+		
+		.itinerary-header {
+			display: grid;
+			grid-template-columns: 45% 55%;
+			
+			.info {
+				background: grey;
+				color: white;
+				padding: 1em 2em;
+				text-transform: uppercase;
+				
+				.location {
+					font-size: 0.8em;
+				}
+				
+				.title {
+					letter-spacing: 0.05em;
+				}
+				
+				.details {
+					font-size: 0.9em;
+					
+					& > div {
+						display: inline-block;
+						
+						&:not(:first-child) {
+							padding-left: 1em;
+						}
+						
+						&:not(:last-child) {
+							padding-right: 1em;
+						}
+					}
+				
+					.duration {
+						i {
+							font-size: 1.8em;
+							margin-right: 0.2em;
+						}
+					}
+					
+					.price {
+						border-left: 2px dashed hsla(0, 0%, 100%, 0.65);
+						border-right: 2px dashed hsla(0, 0%, 100%, 0.65);
+
+						span {
+							display: block;
+							font-size: 0.7em;
+						}
+					}
+				}
+			}
+			
+			.img {
+				@include backgroundCover;
+				
+				.see-tours {
+					height: 100%;
+					background: hsla(0, 0%, 100%, 0.8);
+					width: 30%;
+					float: right;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					text-transform: uppercase;
+					font-size: 0.9em;
+					letter-spacing: 0.05em;
+					font-weight: 700;
+					color: $brand-primary;
+					
+					i {
+						font-size: 2em;
+						margin-top: 0.5em;
+					}
+				}
+			}
+		}
+		
+		.tours {
+			
+			.wrapper-tour {
+				display: grid;
+				grid-template-columns: 1% 39% 20% 20% 20%;
+			}
+		}
+	}
 }
 
 .circle {
