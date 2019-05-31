@@ -105,7 +105,7 @@ get_header();?>
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Latest</h2>
 			
-			<div class="wrapper-news small-container pt2 pb8">
+			<div class="wrapper-news small-container pt2 pb6">
 				<?php
 					
 				$news = get_posts(
@@ -148,6 +148,25 @@ get_header();?>
 		</div>
 		
     </div><!--c-->
+    
+    <div class="home-gallery gallery pt2 mb0">
+
+	<?php 
+		
+	$images = get_field('gallery');
+	
+	if( $images ): ?>
+	
+	    <?php foreach( $images as $image ): $url = $image['url']; ?>
+	    
+	    <a href="<?php echo $image['url']; ?>" style='background-image: url(<?php echo $url; ?>)'></a>
+	    
+	    <?php endforeach; ?>
+	    
+	    
+	<?php endif; ?>
+	
+	</div>
 
 </div><!--content-->
  
