@@ -39,11 +39,13 @@
 	
 					<div class="action_buttons">
 				
-						<?php while( have_rows('button') ): the_row(); ?>
+						<?php $count = 0;
 							
-						<a class="button slide-up" href="<?php the_permalink(get_sub_field("button_target")); ?>"><?php the_sub_field("button_text"); ?></a>
+						while( have_rows('button') ): the_row(); ?>
+							
+						<a class="button slide-up <?php if($count > 0) echo "button__transparent-light"; ?>" href="<?php the_permalink(get_sub_field("button_target")); ?>"><?php the_sub_field("button_text"); ?></a>
 					
-						<?php endwhile; ?>
+						<?php $count++; endwhile; ?>
 				
 					</div>
 				

@@ -77,7 +77,7 @@
 	                
 	                <div class="actions-nav">
 	                
-	                    <a class="button">Online Payment</a>
+	                    <a class="button button__transparent-light">Online Payment</a>
 	                    <a class="button">Enquire Now</a>
 	                
 	                </div>

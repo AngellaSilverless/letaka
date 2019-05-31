@@ -50,7 +50,7 @@ get_header();?>
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Why Letaka</h2>
 			
-			<div class="wrapper-selectors mt4">
+			<div class="wrapper-selectors small-container mt4">
 				
 				<?php $actions = get_field("why_letaka")["action"];
 					
@@ -70,7 +70,7 @@ get_header();?>
 			
 			</div>
 			
-			<div class="wrapper-actions mt2">
+			<div class="wrapper-actions small-container mt2">
 				
 				<?php
 				
@@ -101,11 +101,49 @@ get_header();?>
 			
 		</div>
 		
-		<div class="block h25">
+		<div class="latest-news">
 			
 			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Latest</h2>
 			
-			<div>BLOCK</div>
+			<div class="wrapper-news small-container pt2 pb8">
+				<?php
+					
+				$news = get_posts(
+		        	array(
+		            	'post_type'      => 'post',
+		            	'posts_per_page' => 1,
+		            	'orderby'        => 'date',
+		                'order'          => 'DESC'
+					)
+				);
+				
+				if($news): foreach($news as $post): setup_postdata($post); ?>
+				
+				<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), "large"); ?>
+				
+				<div class="img" style="background: url(<?php echo $image[0]; ?>)"></div>
+				
+				<div class="content">
+				
+					<span class="font700 heading__secondary-color"><?php the_date("d.m.Y"); ?></span>
+					
+					<h3 class="heading heading__primary-color size2 brand-line"><?php the_title(); ?></h3>
+					
+					<div class="description mt1 mb1"><?php echo substr(wp_strip_all_tags(get_the_content()), 0, 300) . "..."; ?></div>
+					
+					<div class="action-buttons">
+						
+						<div><a class="button button__transparent" href="<?php the_permalink(); ?>">Read More</a></div>
+						
+						<div><a class="button button__secondary-color" href="<?php the_permalink(); ?>">Newsletter Sign Up</a></div>
+						
+					</div>
+					
+					<?php endforeach; wp_reset_postdata(); endif; ?>
+				
+				</div>
+				
+			</div>
 			
 		</div>
 		

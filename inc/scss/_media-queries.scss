@@ -1,5 +1,28 @@
 /*! == MEDIA QUERIES == */
 
+/*===========EXTRA LARGE (1600px)==========*/
+
+@media only screen and (max-width: 1600px) {
+/*body:before {
+  content: 'LARGE';
+  position: fixed;
+  z-index: 9999;
+  top:0;
+}*/
+ /*---GLOBALS---*/ 
+ 
+ .small-container {
+	width: 80%;
+ }
+
+/*---HEADER---*/ 
+
+/*---CONTENT---*/
+
+/*---FOOTER---*/
+
+}/*---end large mq---*/
+
 /*===========LARGE (1200px)==========*/
 
 @media only screen and (max-width: 1200px) {
@@ -10,6 +33,10 @@
   top:0;
 }*/
  /*---GLOBALS---*/ 
+ 
+ .small-container {
+	width: 90%;
+ }
 
 /*---HEADER---*/ 
 
@@ -35,6 +62,10 @@
 body {
     font-size: 0.9em;
 }
+
+ .small-container {
+	width: 100%;
+ }
  
  /*---HEADER---*/
 

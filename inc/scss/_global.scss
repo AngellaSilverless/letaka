@@ -178,21 +178,19 @@ nav {
     padding: 1em;
     
     .actions-nav .button {
-		color: $brand-primary;
 		padding: 0.5em;
 		display: block;
 		margin-left: 1em;
 		margin-right: 1em;
 		width: 180px;
 		font-size: 0.9em;
+		color: $brand-primary;
 		
 		&:first-of-type {
 			margin-bottom: 1em;
 			text-transform: none;
-			background: transparent;
-			border: 1px solid white;
-			color: white;
 			font-weight: 100;
+			color: white;
 		}
     }
 }

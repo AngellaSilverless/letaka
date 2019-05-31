@@ -46,11 +46,6 @@
 
 .why-letaka {
 	
-	.wrapper-selectors, .wrapper-actions {
-		margin-right: 4em;
-		margin-left: 4em;
-	}
-	
 	.wrapper-selectors {
 		display: grid;
 		grid-template-columns: 25% 25% 25% 25%;
@@ -117,6 +112,48 @@
 		}
 	}
 
+}
+
+.latest-news {
+	
+	.wrapper-news {
+		display: grid;
+		grid-template-columns: calc(50% - 1em) calc(50% - 1em);
+		grid-column-gap: 2em;
+		
+		.img {
+			@include backgroundCover;
+		}
+		
+		.description {
+			text-align: justify;
+		}
+		
+		.action-buttons {
+			font-size: 0.9em;
+			display: grid;
+			grid-template-columns: calc(45% - 0.5em) calc(55% - 0.5em);
+			grid-column-gap: 1em;
+			
+			div {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.button {
+				display: block;
+				margin: 1em 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.small-container {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .circle {

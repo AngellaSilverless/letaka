@@ -44,6 +44,24 @@
         min-width: 70%;
         display: inline-block;
     }
+    
+    &__transparent {
+	    background: transparent;
+	    border: 1px solid $brand-secondary;
+	    color: $brand-secondary;
+    }
+    
+    &__transparent-light {
+	    background: transparent;
+	    border: 1px solid white;
+	    color: white;
+    }
+    
+    &__secondary-color {
+	    background: $brand-secondary;
+	    border: none;
+	    color: white;
+    }
 }
 
 .trigger-expand,
