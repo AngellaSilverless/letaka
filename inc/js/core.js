@@ -84,6 +84,10 @@ jQuery(document).ready(function( $ ) {
 		$(this).next().slideToggle();
 		$(this).find("i").toggleClass("closed");
     });
+    
+    $(".see-tours").click(function() {
+	    $(this).parents(".wrapper-itinerary").find(".tours").slideToggle();
+    });
 
 // GLOBAL OWL CAROUSEL SETTINGS
 

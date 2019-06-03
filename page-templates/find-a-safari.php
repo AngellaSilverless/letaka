@@ -192,7 +192,7 @@ get_header();?>
 						
 						<div class="date"><i class="far fa-calendar-alt"></i><?php the_field("date_from", $ID_safari); echo " - " ; the_field("date_to", $ID_safari) ?></div>
 						
-						<div class="availability"><i class="fas fa-users"></i><?php echo ($full ? "Fully Booked" : $availability); ?></div>
+						<div class="availability"><i class="fas fa-users"></i><span><?php echo ($full ? "Fully Booked" : $availability); ?></span></div>
 						
 						<div class="price"><i class="fas fa-credit-card"></i><?php echo "USD " . number_format(get_field("cost", $ID_safari), 2); ?></div>
 						

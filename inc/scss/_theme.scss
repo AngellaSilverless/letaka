@@ -297,8 +297,18 @@
 	
 	.results {
 		
-		.wrapper-itinerary:not(:first-child) {
-			margin-top: 3em;
+		.wrapper-itinerary {
+			
+			&:not(:first-child) {
+				
+				.tours {
+					display: none;
+				}
+			}
+			
+			&:not(:last-child) {
+				margin-bottom: 3em;
+			}
 		}
 		
 		.itinerary-header {
@@ -358,7 +368,7 @@
 				
 				.see-tours {
 					height: 100%;
-					background: hsla(0, 0%, 100%, 0.8);
+					background: hsla(0, 0%, 100%, 0.7);
 					width: 30%;
 					float: right;
 					display: flex;
@@ -370,6 +380,7 @@
 					letter-spacing: 0.05em;
 					font-weight: 700;
 					color: $brand-primary;
+					cursor: pointer;
 					
 					i {
 						font-size: 2em;
@@ -383,7 +394,46 @@
 			
 			.wrapper-tour {
 				display: grid;
-				grid-template-columns: 1% 39% 20% 20% 20%;
+				grid-template-columns: 1% 39% 21.75% 21.75% 16.5%;
+				background: $brand-mid-grey;
+				margin-top: 0.3em;
+				font-weight: 400;
+				
+				.bar, .book {
+					background: $brand-green;
+				}
+				
+				.date, .availability, .price, .book {
+					padding: 1em;
+					border-left: 0.1em solid hsl(0, 0%, 96%);
+				}
+				
+				.book {
+					text-align: center;
+					text-transform: uppercase;
+					font-weight: bold;
+					color: white;
+					cursor: pointer;
+				}
+				
+				i {
+					padding-right: 0.5em;
+					font-size: 1.2em;
+				}
+				
+				&.full {
+					.bar, .book {
+						background: grey;
+					}
+					
+					.book {
+						cursor: default;
+					}
+					
+					.availability span {
+						color: $brand-red;
+					}
+				}
 			}
 		}
 	}
