@@ -208,7 +208,7 @@
 			}
 		}
 		
-		.wrapper-chekbox {
+		.wrapper-checkbox {
 			background: $brand-light-grey;
 			padding: 1.5em;
 			
@@ -298,6 +298,7 @@
 	.results {
 		
 		.wrapper-itinerary {
+			display: block;
 			
 			&:not(:first-child) {
 				
@@ -409,7 +410,9 @@
 				}
 				
 				.book {
-					text-align: center;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					text-transform: uppercase;
 					font-weight: bold;
 					color: white;

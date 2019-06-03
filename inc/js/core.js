@@ -89,7 +89,7 @@ jQuery(document).ready(function( $ ) {
 	    $(this).parents(".wrapper-itinerary").find(".tours").slideToggle();
     });
 
-// GLOBAL OWL CAROUSEL SETTINGS
+/* GLOBAL OWL CAROUSEL SETTINGS */
 
     $('.carousel').owlCarousel({
         animateOut: 'fadeOut',
@@ -126,7 +126,95 @@ jQuery(document).ready(function( $ ) {
                 items:1
             }
         }
-    })
+    });
+
+/* FILTER SAFARIS */
+
+	$(".filter .checkbox input").change(function() {
+		
+		// Destination
+		
+		var destinations = $(".filter .wrapper-checkbox.destination input:checked").map(function() {
+			return $(this).val();
+		}).toArray();
+		
+		var styles = $(".filter .wrapper-checkbox.style input:checked").map(function() {
+			return $(this).val();
+		}).toArray();
+		
+		var months = $(".filter .wrapper-checkbox.dates input:checked").map(function() {
+			return $(this).val();
+		}).toArray();
+		
+		$(".wrapper-itinerary").each(function() {
+			var itinerary     = $(this);
+			var isDestination = false;
+			var isStyle       = false;
+			
+			var show = false;
+			
+			// Destination
+			if(destinations.length > 0) {
+				for(var i = 0; i < destinations.length; i++)
+					if(itinerary.hasClass(destinations[i]))
+						isDestination = true;
+			} else {
+				isDestination = true;
+			}
+			
+			// Style			
+			if(styles.length > 0) {
+				for(var i = 0; i < styles.length; i++)
+					if(itinerary.hasClass(styles[i]))
+						isStyle = true;
+			} else {
+				isStyle = true;
+			}
+			
+			if(isDestination && isStyle) {
+				
+				itinerary.find(".wrapper-tour").each(function() {
+					var tour = $(this);
+					var isMonth = false;
+					
+					// Month
+					if(months.length > 0) {
+						var date_from = tour.attr("date-from");
+						var date_to   = tour.attr("date-to");
+						
+						for(var i = 0; i < months.length; i++)
+							if(date_from == months[i] || date_to == months[i])
+								isMonth = true;
+					} else {
+						isMonth = true;
+					}
+					
+					
+					if(isMonth) {
+						
+						if(itinerary.css("display") == "none") {
+							tour.css("display", "grid");
+						} else {
+							tour.slideDown();
+						}
+						
+						show = true;
+							
+					} else {
+						tour.slideUp();
+					}
+				});
+				
+			} else {
+				show = false;
+			}
+			
+			if(show)
+				itinerary.slideDown();
+			else
+				itinerary.slideUp();
+		});
+	});
 
 // ========== Add class if in viewport on page load
 
@@ -215,8 +303,6 @@ $(window).on('resize scroll', function() {
 	});
     
 });
-
-
 
 });//Don't remove ---- end of jQuery wrapper
 

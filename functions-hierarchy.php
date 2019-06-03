@@ -125,8 +125,15 @@ function fh_load_admin_scripts( $hook ) {
 }
 
 function fh_add_columns_safari($columns) {
-	
-    $columns['itinerary'] = __( 'Itinerary', 'itinerary' );
+    
+    $columns = array(
+		'cb'               => '&lt;input type="checkbox" />',
+		'title'            => __( 'Title' ),
+		'itinerary'        => __( 'Itinerary' ),
+		'date-from'        => __( 'Start Date' ),
+		'date-to'          => __( 'End Date' ),
+		'taxonomy-guide'   => __( 'Guides' )
+	);
 
     return $columns;
 }
@@ -137,6 +144,12 @@ function fh_custom_safari_column( $column, $post_id ) {
 		$parent = wp_get_post_parent_id( $post_id );
 		
         echo "<a href=". get_edit_post_link( $parent ) .">" . get_the_title( $parent ) . "</a>";
+	} else if($column == "date-from") {
+		$date_from = new DateTime(get_field("date_from", $post_id));
+		echo $date_from->format("d F Y");
+	} else if($column == "date-to") {
+		$date_to = new DateTime(get_field("date_to", $post_id));
+		echo $date_to->format("d F Y");
 	}
 }
 
@@ -208,7 +221,7 @@ function fh_custom_itinerary_column( $column, $post_id ) {
 		
 		$link = get_admin_url() . "edit.php?s&post_status=all&post_type=safari&action=-1&m=0&f_itinerary={$post_id}&filter_action=Filter&paged=1&action2=-1";
 		
-        echo "<a href='{$link}'>View Safaris</a>";
+        echo "<a href='{$link}'><i class='fa fa-eye' aria-hidden='true' style='font-size: 1.2em'></i></i> View Safaris</a>";
 	}
 }
 
