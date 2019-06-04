@@ -18,7 +18,7 @@ get_header();?>
 
 <!-- ******************* Hero Content END ******************* -->
 
-    <div class="container find-safari pt4 pb4">
+    <div class="container find-safari pt4 pb8">
     
         <div class="sidebar">
 	        
@@ -115,21 +115,34 @@ get_header();?>
 			        <div class="label">By Availability<i class="fas fa-chevron-down closed"></i></div>
 			        
 			        <div class="wrapper-checkbox availability" style="display:none">
-				        
-				        <?php
-					        
-					    $values = ["At least 2 places", "3 - 5 places", "6 - 8 places", "More than 8 places"];
-					    
-					    foreach($values as $value): ?>
 					    
 				        <div>
 					        <div class="checkbox">
-						        <input type="checkbox" value=".<?php echo $value; ?>"/>
-								<label><?php echo $value; ?></label>
+						        <input type="checkbox" min-avail="1" max-avail="2"/>
+								<label>1 - 2 spaces</label>
 					        </div>
 				        </div>
 				        
-				        <?php endforeach; ?>
+				        <div>
+					        <div class="checkbox">
+						        <input type="checkbox" min-avail="3" max-avail="5"/>
+								<label>3 - 5 spaces</label>
+					        </div>
+				        </div>
+				        
+				        <div>
+					        <div class="checkbox">
+						        <input type="checkbox" min-avail="6" max-avail="8"/>
+								<label>6 - 8 spaces</label>
+					        </div>
+				        </div>
+				        
+				        <div>
+					        <div class="checkbox">
+						        <input type="checkbox" min-avail="8"/>
+								<label>More than 8 spaces</label>
+					        </div>
+				        </div>
 			        </div>
 			        
 		        </fieldset>
@@ -140,20 +153,62 @@ get_header();?>
 			        
 			        <div class="wrapper-checkbox price" style="display:none">
 				        
-				        <?php
-					        
-					    $values = ["Less than $2,000", "$2,000 - 4,000", "$4,000 - $6,000", "More than $6,000"];
+				        <?php 
 					    
-					    foreach($values as $value): ?>
+				        if(have_rows("filter_by_price_option", "options")):
+				        
+				        while(have_rows("filter_by_price_option", "options")):
+				        
+				        the_row();
+				        
+				        function formatPrice($price) {
+					        return "$" . number_format($price, 2);
+				        }
+					        
+					    ?>
 					    
 				        <div>
 					        <div class="checkbox">
-						        <input type="checkbox" value=".<?php echo $value; ?>"/>
-								<label><?php echo $value; ?></label>
+						        <input type="checkbox" max-price="<?php echo get_sub_field("less_than"); ?>"/>
+								<label>Less than <?php echo formatPrice(get_sub_field("less_than")); ?></label>
 					        </div>
 				        </div>
 				        
-				        <?php endforeach; ?>
+				        <div>
+					        <div class="checkbox">
+						        <?php
+							        
+						        $minPrice = get_sub_field("low_range")["from"];
+						        $maxPrice = get_sub_field("low_range")["to"];
+						        
+							    ?>
+						        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
+								<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
+					        </div>
+				        </div>
+				        
+				        <div>
+					        <div class="checkbox">
+						        <?php
+							        
+						        $minPrice = get_sub_field("mid_range")["from"];
+						        $maxPrice = get_sub_field("mid_range")["to"];
+						        
+							    ?>
+						        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
+								<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
+					        </div>
+				        </div>
+				        
+				        <div>
+					        <div class="checkbox">
+						        <input type="checkbox" min-price="<?php echo get_sub_field("more_than"); ?>"/>
+								<label>More than <?php echo formatPrice(get_sub_field("more_than")); ?></label>
+					        </div>
+				        </div>
+				        
+				        <?php endwhile; endif; ?>
+				        
 			        </div>
 			        
 		        </fieldset>
@@ -163,6 +218,8 @@ get_header();?>
         </div>
         
         <div class="results">
+	        
+	        <div class="your-search pb0"></div>
         
 	        <?php
 		    
@@ -222,6 +279,18 @@ get_header();?>
 			
 			foreach($styles as $style)
 				$classes .= " " . $style->slug;
+				
+			$cost = $wpdb->get_var(
+				"SELECT meta_value
+				FROM {$wpdb->prefix}posts p
+				JOIN {$wpdb->prefix}postmeta pm ON p.ID = pm.post_id
+				WHERE post_parent = {$ID}
+				  AND post_type = 'safari'
+				  AND meta_key = 'cost'
+				  AND post_status = 'publish'
+				ORDER BY CAST(meta_value AS unsigned)
+				LIMIT 1"
+			);
 		    
 		    ?>
 	        
@@ -232,12 +301,17 @@ get_header();?>
 				    <div class="info">
 					    
 				        <div class="location mb1"><?php echo $destination_visible; ?></div>
+				        
 				        <div class="title heading heading__md mb2"><?php echo get_the_title($ID); ?></div>
 				        
 				        <div class="details">
-					        <div class="duration"><i class="fas fa-moon"></i>999</div>
-					        <div class="price"><span>From</span>USD 2,000</div>
+					        
+					        <div class="duration"><i class="fas fa-moon"></i><?php echo get_field("overview", $ID)["number_of_nights"]; ?></div>
+					        
+					        <div class="price"><span>From</span>USD <?php echo number_format($cost); ?></div>
+					        
 					        <div class="quantity"><?php echo sizeof($safaris) . ((sizeof($safaris) > 1) ? " tours" : " tour"); ?></div>
+					        
 				        </div>
 				    
 				    </div>
@@ -247,8 +321,11 @@ get_header();?>
 				    <div class="img" style="background: url(<?php echo $image["url"]; ?>)">
 					    
 					    <div class="see-tours">
+						    
 						    <div>See Tours</div>
+						    
 						    <i class="fas fa-chevron-down"></i>
+						    
 						</div>
 					    
 				    </div>
@@ -268,23 +345,32 @@ get_header();?>
 					if($availability && $availability > 0)
 						$full = false;
 						
-					$availability = ($availability > 1) ? $availability . " spaces" : $availability . " space";
+					$availability_text = ($availability > 1) ? $availability . " spaces" : $availability . " space";
+					
+					$cost = get_field("cost", $ID_safari);
 					
 					$date_from = new DateTime(get_field("date_from", $ID_safari));
 					$date_to   = new DateTime(get_field("date_to",   $ID_safari));
 					
+					$data = array(
+						"date_from"    => $date_from->format("n"),
+						"date_to"      => $date_to->format("n"),
+						"availability" => (int)$availability,
+						"cost"         => (int)$cost
+					);
+					
 					?>
 					
-					<div class="wrapper-tour <?php if($full) echo "full"; ?>" date-from="<?php echo $date_from->format("n"); ?>" date-to="<?php echo $date_to->format("n"); ?>">
+					<div class="wrapper-tour <?php if($full) echo "full"; ?>" data-attr='<?php echo json_encode($data, JSON_PRETTY_PRINT); ?>'>
 						
 						<div class="bar"></div>
 						
 						<div class="date">
 							<i class="far fa-calendar-alt"></i><?php echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y") ?></div>
 						
-						<div class="availability"><i class="fas fa-users"></i><span><?php echo ($full ? "Fully Booked" : $availability); ?></span></div>
+						<div class="availability"><i class="fas fa-users"></i><span><?php echo ($full ? "Fully Booked" : $availability_text); ?></span></div>
 						
-						<div class="price"><i class="fas fa-credit-card"></i><?php echo "USD " . number_format(get_field("cost", $ID_safari), 2); ?></div>
+						<div class="price"><i class="fas fa-credit-card"></i><?php echo "USD " . number_format($cost, 2); ?></div>
 						
 						<a class="book" <?php if(!$full) echo "href=" . get_permalink($ID_safari); ?>><?php echo ($full ? "Full" : "Book Tour"); ?></a>
 					

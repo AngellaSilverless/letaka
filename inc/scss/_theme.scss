@@ -297,6 +297,52 @@
 	
 	.results {
 		
+		.your-search {
+			transition: padding 0.5s ease;
+			
+			.search-block {
+				max-width: 130px;
+				position: relative;
+				display: inline-block;
+				text-transform: uppercase;
+				background: $brand-mid-grey;
+				color: white;
+				padding: 1em 2.8em 1em 1em;
+				margin: 0 0.5em 0.5em 0;
+				font-size: 0.85em;
+				cursor: pointer;
+				font-weight: 400;
+				
+				&.hidden {
+					opacity: 0;
+					transform: scale(0);
+					transition: all 0.5s ease;
+				}
+				
+				&.visible {
+					opacity: 1;
+					transform: scale(1);
+				}
+				
+				&:before {
+					content: "\f00d";
+					font-family: 'Font Awesome 5 Free';
+					font-weight: 600;
+					font-size: 1.2em;
+					right: 1.2em;
+					top: 50%;
+					position: absolute;
+					transform: translate(50%, -50%);
+				}
+				
+				div {
+					height: 1.2em;
+					overflow: hidden;
+					word-break: break-all;
+				}
+			}
+		}
+		
 		.wrapper-itinerary {
 			display: block;
 			

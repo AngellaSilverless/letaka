@@ -807,7 +807,7 @@ footer .wrapper-hero {
   outline: none;
 }
 
-.gallery {
+body .gallery {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto auto auto;

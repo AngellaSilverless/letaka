@@ -146,6 +146,69 @@ jQuery(document).ready(function( $ ) {
 			return $(this).val();
 		}).toArray();
 		
+		var availability = $(".filter .wrapper-checkbox.availability input:checked").map(function() {
+			return {
+				"min-value": parseInt($(this).attr("min-avail")),
+				"max-value": parseInt($(this).attr("max-avail"))
+			};
+		}).toArray();
+		
+		var prices = $(".filter .wrapper-checkbox.price input:checked").map(function() {
+			return {
+				"min-value": parseInt($(this).attr("min-price")),
+				"max-value": parseInt($(this).attr("max-price"))
+			};
+		}).toArray();
+		
+		
+		
+		// Search Text
+		
+		var search = $(".your-search .search-block").map(function() {
+			return $(this).text();
+		}).toArray();
+		
+		$(".filter .wrapper-checkbox input").each(function() {
+			var text = $(this).next().text();
+			
+			if($(this).prop("checked")) {
+				if(!search.includes(text)) {
+					var searchBlock = $("<div class='search-block'><div>" + text + "</div></div>").addClass("hidden").appendTo(".your-search");
+					
+					searchBlock.css("opacity");
+					searchBlock.css("transform");
+					searchBlock.addClass("visible");
+					
+					if($(".your-search .search-block").length == 0) {
+						$(".your-search").removeClass("pb2");
+					} else {
+						$(".your-search").addClass("pb2");
+					}
+				}
+			} else {
+				if(search.includes(text)) {
+					var searchBlock = $(".your-search .search-block div:contains(" + text + ")").parent();
+					searchBlock.removeClass("visible");
+					
+					setTimeout(function() {
+						searchBlock.remove();
+						
+						if($(".your-search .search-block").length == 0) {
+							$(".your-search").removeClass("pb2");
+						} else {
+							$(".your-search").addClass("pb2");
+						}
+					}, 400);
+				}
+			}
+			
+		});
+		
+		$(".search-block").click(function() {
+			$(".filter .checkbox label:contains(" + $(this).text() + ")").prev().prop("checked", false).change();
+		});
+		
+		
 		$(".wrapper-itinerary").each(function() {
 			var itinerary     = $(this);
 			var isDestination = false;
@@ -175,12 +238,15 @@ jQuery(document).ready(function( $ ) {
 				
 				itinerary.find(".wrapper-tour").each(function() {
 					var tour = $(this);
-					var isMonth = false;
+					var data = JSON.parse(tour.attr("data-attr"));
+					var isMonth     = false;
+					var isAvailable = false;
+					var isPrice     = false;
 					
 					// Month
 					if(months.length > 0) {
-						var date_from = tour.attr("date-from");
-						var date_to   = tour.attr("date-to");
+						var date_from = data.date_from;
+						var date_to   = data.date_to;
 						
 						for(var i = 0; i < months.length; i++)
 							if(date_from == months[i] || date_to == months[i])
@@ -189,8 +255,54 @@ jQuery(document).ready(function( $ ) {
 						isMonth = true;
 					}
 					
+					// Availability
+					if(availability.length > 0) {
+						var places = data.availability;
+						
+						for(var i = 0; i < availability.length; i++) {
+							var min_value = availability[i]["min-value"];
+							var max_value = availability[i]["max-value"];
+							
+							if(min_value && max_value) {
+								if(places >= min_value && places <= max_value)
+									isAvailable = true;
+							} else if(min_value) {
+								if(places >= min_value)
+									isAvailable = true;
+							} else if(max_value) {
+								if(places <= max_value)
+									isAvailable = true;
+							}
+						}
+					} else {
+						isAvailable = true;
+					}
 					
-					if(isMonth) {
+					// Price
+					if(prices.length > 0) {
+						var cost = data.cost;
+						
+						for(var i = 0; i < prices.length; i++) {
+							var min_value = prices[i]["min-value"];
+							var max_value = prices[i]["max-value"];
+							
+							if(min_value && max_value) {
+								if(cost >= min_value && cost <= max_value)
+									isPrice = true;
+							} else if(min_value) {
+								if(cost >= min_value)
+									isPrice = true;
+							} else if(max_value) {
+								if(cost <= max_value)
+									isPrice = true;
+							}
+						}
+					} else {
+						isPrice = true;
+					}
+					
+					
+					if(isMonth && isAvailable && isPrice) {
 						
 						if(itinerary.css("display") == "none") {
 							tour.css("display", "grid");
