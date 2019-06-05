@@ -24,7 +24,7 @@ get_header();?>
 		    
 		    <div class="contact-us">
 			    
-			    <h2>Contact us</h2>
+			    <div class="title">Contact us</div>
 			    
 			    <?php echo do_shortcode('[contact-form-7 id="2434" title="Contact us directly" html_class="form contact-directly-form"]');?>
 			    

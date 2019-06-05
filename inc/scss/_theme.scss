@@ -166,20 +166,6 @@
 	
 	.filter {
 		
-		.title {
-			text-transform: uppercase;
-			background: $brand-primary;
-			color: white;
-			font-size: 1.2em;
-			font-weight: 400;
-			letter-spacing: 0.05em;
-			height: 3rem;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			padding-left: 1rem;
-		}
-		
 		.label {
 			margin-top: 0.5em;
 			text-transform: uppercase;
@@ -495,22 +481,12 @@
 	
 	.contact-us {
 		
-		h2 {
-			text-transform: uppercase;
-			background: $brand-primary;
-			color: white;
-			font-size: 1.2em;
-			font-weight: 400;
-			letter-spacing: 0.05em;
-			height: 3rem;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			padding-left: 1rem;
-		}
-		
 		.form-wrapper {
 			display: block;
+			
+			br {
+				display: none;
+			}
 			
 			label {
 				display: block;
@@ -521,7 +497,7 @@
 				color: $brand-primary;
 				font-weight: 700;
 				letter-spacing: 0.02em;
-				margin: 0;
+				margin: 0.5em 0 0 0;
 			}
 			
 			input:not([type=submit]), textarea {
@@ -542,10 +518,6 @@
 			
 			textarea {
 				max-height: 9.7em;
-			}
-			
-			span input {
-				margin-bottom: 0.5em;
 			}
 			
 			input[type=submit] {
@@ -620,6 +592,52 @@
 				text-transform: none;
 			}
 		}
+	}
+}
+
+.about-us {
+	
+	p {
+		font-size: 1em;
+	}
+	
+	.links a {
+		display: block;
+		text-transform: uppercase;
+		font-size: 1em;
+		background: $brand-light-grey;
+		padding: 0.7em 1em;
+		color: $brand-primary;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		margin: 0.5em 0 0 0;
+		transition: $fastEffect;
+		
+		&.active {
+			background: grey;
+			color: white;
+		}
+		
+		&:not(.active):hover {
+			background: $brand-mid-grey;
+		}
+	}
+}
+
+.sidebar {
+	
+	.title {
+		text-transform: uppercase;
+		background: $brand-primary;
+		color: white;
+		font-size: 1.2em;
+		font-weight: 400;
+		letter-spacing: 0.05em;
+		height: 3rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding-left: 1rem;
 	}
 }
 

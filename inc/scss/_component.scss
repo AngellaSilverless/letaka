@@ -201,5 +201,18 @@ a.next-section {
 	span input, span textarea {
 		width: 100%;
 	}
+	
+	span.wpcf7-not-valid-tip {
+		color: rgba($brand-primary, 0.6);
+		padding-bottom: 0.5em;
+	}
+	
+	div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
+		background: rgba($brand-primary, 0.4);
+		border: none;
+		padding: 0.5em;
+		margin: 0.5em 0;
+		color: white;
+	}
 }
 	
