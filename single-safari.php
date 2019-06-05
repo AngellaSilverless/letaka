@@ -18,11 +18,9 @@ while( have_posts() ) {
 <!-- ******************* Hero Content ******************* -->
 
 <?php 
-    if( get_field('hero_type', $parent) == 'image' ): 
-        $heroImage = get_field('hero_background_image', $parent);
-    elseif ( get_field('hero_type', $parent) == 'color' ): 
-        $heroColor = get_field('hero_background_colour', $parent);
-    endif;
+    
+    $heroImage = get_field('hero_background_image', $parent);
+    
 ?>
 
 <div class="hero <?php the_field( 'hero_height', $parent); ?>" style="background-image: url(<?php echo $heroImage['url']; ?>);">
@@ -35,19 +33,34 @@ while( have_posts() ) {
 
             <h1 class="heading heading__xl heading__light center slide-down"><?php echo $parent->post_title;?></h1>
 
-            <h2 class="heading heading__sm heading__light heading__alt-font heading__caps font800 mb2 center slide-down"><?php   
-      $terms = get_terms('destinations');
-        foreach( $terms as $term ){
-        echo $term->name;
-        } ?></h2>
+            <h2 class="heading heading__sm heading__light heading__alt-font heading__caps font800 mb2 center slide-down"><?php 
+	              
+				$terms = get_the_terms($parent->ID, 'destinations');
+				
+				$destinations = array();
+				
+				foreach( $terms as $term )
+					if($term->parent != 0)
+						array_push($destinations, $term->name);
+						
+				echo implode($destinations, " - ");
+			
+			?></h2>
                 
-            <p class="heading heading__sm heading__light heading__alt-font center slide-down"><?php the_field('date_from');?> - <?php the_field('date_to');?></p>
+            <p class="heading heading__sm heading__light heading__alt-font center slide-down"><?php
+	            
+	            $date_from = new DateTime(get_field("date_from"));
+				$date_to   = new DateTime(get_field("date_to"));
+						
+	            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
+		            
+	        ?></p>
     
             <div class="hero__safari-meta mb1">
                 
                 <p><i class="fas fa-moon"></i> 3 Nights</p>
                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
-                <p><i class="fas fa-credit-card"></i> From $<?php the_field('cost');?></p>
+                <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
             
             </div>
 
@@ -72,18 +85,16 @@ while( have_posts() ) {
 
 <!-- ******************* Hero Content END ******************* -->
 
-<div class="container mt3">
-
-<div class="row">
+<div class="container has-sidebar mt3">
     
-    <div class="col-3 sidebar">
+    <div class="sidebar">
         <?php wp_nav_menu( array(
             'theme_location' => 'safari',
             'container_class' => 'safari-sidebar' ) );
         ?>
     </div><!--sidebar-->
     
-    <div class="col-9">
+    <div>
 
         <h3 class="heading heading__lg heading__section">Overview</h3>
         
@@ -337,11 +348,9 @@ endif;?>
 
          <?php endwhile; endif;?><!--extensions loop-->      
         
-    </div><!--col-->
-
-    </div><!--r-->
+    </div>
   
-    </div><!--c-->
+</div><!--c-->
 
 </div><!--content-->
  
