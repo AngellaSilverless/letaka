@@ -37,6 +37,10 @@
         color: white;
     }
     
+    .heading {
+	    text-shadow: 1px 1px 10px hsla(0, 0%, 0%, 0.2)
+    }
+    
 }
 
 .safari-features {
@@ -730,6 +734,34 @@
 		
 		&:not(.active):hover {
 			background: $brand-mid-grey;
+		}
+	}
+}
+
+.our-team {
+	
+	.wrapper-team {
+		align-items: center;
+	
+		.img {
+			@include backgroundCover;
+			width: 8em;
+			height: 8em;
+			border-radius: 50%;
+		}
+		
+		.name {
+			font-size: 1.5em;
+		}
+		
+		.role {
+			font-size: 0.9em;
+			text-transform: uppercase;
+			display: block;
+		}
+		
+		.phone, .email {
+			color: $brand-secondary;
 		}
 	}
 }
