@@ -20,19 +20,6 @@
 			<div>
 			
 				<img class="slide-right" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">
-<!--
-				
-				<h1 class="heading heading__xxl heading__light center slide-down"><?php the_field( 'hero_heading' );?></h1>
-			
-			</div>
-			
-			<div>
-
-				<div class="video-icon mt1 mb1 slow-fade"><i class="fas fa-video"></i></div>
-				
-				<div class="heading heading__light center slow-fade hero__copy mb2"><?php the_field( 'hero_copy' );?></div>
-				
--->
 				
 				<h1 class="heading heading__xl heading__light center slide-down"><?php the_field( 'hero_heading' );?></h1>
 			
@@ -70,28 +57,12 @@
 			
 			<h1 class="heading heading__xl heading__light center slide-up"><?php the_field( 'hero_heading' );?></h1>
 			
-			<div class="heading heading__sm heading__light center slow-fade hero__copy"><?php the_field( 'hero_copy' );?></div>
+			<div class="heading heading__sm heading__light center slow-fade hero__copy mt1"><?php the_field( 'hero_copy' );?></div>
        
         </div>
         
         <?php endif; ?>       
             
-    </div>
-			
-    <?php else: ?>
-    
-    <div class="container container__bottom">
-        
-        <div class="hero__content">
-			
-			<h1 class="heading heading__xxl heading__light center slide-up"><?php the_field( 'hero_heading' );?></h1>
-			
-			<div class="heading heading__sm heading__light center slow-fade hero__copy"><?php the_field( 'hero_copy' );?></div>
-       
-        </div>
-        
-        <?php endif; ?>       
-                
     </div>
 
 </div>
