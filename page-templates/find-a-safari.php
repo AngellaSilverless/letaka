@@ -302,7 +302,7 @@ get_header();?>
 					    
 				        <div class="location mb1"><?php echo $destination_visible; ?></div>
 				        
-				        <div class="title heading heading__md mb2"><?php echo get_the_title($ID); ?></div>
+				        <div class="title heading heading__md heading__light mb2"><?php echo get_the_title($ID); ?></div>
 				        
 				        <div class="details">
 					        

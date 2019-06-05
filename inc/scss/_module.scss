@@ -39,6 +39,11 @@
     
     &:not(.hero__home) {
 	    align-items: center;
+	    padding-top: 8em;
+	    
+	    & > .container > .row {
+		    justify-content: center;
+	    }
     }
 
     &__content {
