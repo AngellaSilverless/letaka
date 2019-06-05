@@ -39,7 +39,9 @@
 						
 					while( have_rows('button') ): the_row(); ?>
 						
-					<a class="button slide-up <?php if($count > 0) echo "button__transparent-light"; ?>" href="<?php the_permalink(get_sub_field("button_target")); ?>"><?php the_sub_field("button_text"); ?></a>
+					<a class="button slide-up <?php if($count > 0) echo "button__transparent-light"; ?>" href="<?php the_permalink(get_sub_field("button_target")); ?>"><?php
+						the_sub_field("button_text");
+					?></a>
 				
 					<?php $count++; endwhile; ?>
 			

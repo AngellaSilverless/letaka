@@ -40,45 +40,65 @@
                 
                 <nav>
 	                
-	                <div class="brand">
-        
-						<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
-						
-							<img src="<?php echo get_field("logo", "options")["url"]; ?>">
-						
-						</a>
-					
-					</div>
-                
-	                <div class="nav-menu">
+	                <div class="container">
 	                
-	                	<div class="top-menu">
-		                	
-		                	<div class="search">
-			                	<i class="fas fa-search"></i>
-			                	<div>
-				                	<input/>
-									<button>Go</button>
+	                <div class="row pt1 pb1">
+	                
+		                <div class="col-3">
+			                
+			                <div class="brand">
+		        
+								<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
+								
+									<img src="<?php echo get_field("logo", "options")["url"]; ?>">
+								
+								</a>
+							
+							</div>
+						
+		                </div>
+		                
+		                <div class="col-7">
+	                
+			                <div class="nav-menu">
+			                
+			                	<div class="top-menu">
+				                	
+				                	<div class="search">
+					                	<i class="fas fa-search"></i>
+					                	<div>
+						                	<input/>
+											<button>Go</button>
+					                	</div>
+					                </div>
+				                	
+				                    <?php wp_nav_menu( array(
+					                    'theme_location' => 'main-menu-t',
+					                    'container_class' => 'mainMenu-top' ) );
+			                    	?>
 			                	</div>
+			                    
+			                    <?php wp_nav_menu( array(
+				                    'theme_location' => 'main-menu-b',
+				                    'container_class' => 'mainMenu-bottom' ) );
+			                    ?>
+			                
 			                </div>
-		                	
-		                    <?php wp_nav_menu( array(
-			                    'theme_location' => 'main-menu-t',
-			                    'container_class' => 'mainMenu-top' ) );
-	                    	?>
-	                	</div>
-	                    
-	                    <?php wp_nav_menu( array(
-		                    'theme_location' => 'main-menu-b',
-		                    'container_class' => 'mainMenu-bottom' ) );
-	                    ?>
+		                
+		                </div>
+		                
+		                <div class="col-2">
 	                
+			                <div class="actions-nav">
+			                
+			                    <a class="button button__transparent-light">Online Payment</a>
+			                    <a class="button">Enquire Now</a>
+			                
+			                </div>
+			            
+		                </div>
+		                
 	                </div>
-	                
-	                <div class="actions-nav">
-	                
-	                    <a class="button button__transparent-light">Online Payment</a>
-	                    <a class="button">Enquire Now</a>
 	                
 	                </div>
 
