@@ -18,6 +18,10 @@ function letaka_scripts() {
 	wp_enqueue_style( 'letaka-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'letaka-core-js', get_template_directory_uri() . '/inc/js/compiled.js', array('jquery'), true); 
+
+	wp_enqueue_script( 'mapbox-gl', get_template_directory_uri() . '/inc/js/mapbox-gl.js', array(), true );
+	
+	wp_enqueue_script( 'mapbox-gl-geocoder', get_template_directory_uri() . '/inc/js/mapbox-gl-geocoder.min.js', array(), true );
 	
 }
 
@@ -26,14 +30,16 @@ add_action( 'wp_enqueue_scripts', 'letaka_scripts' );
 /**= Add Menus =**/
 
 function sl_custom_menu() {
+
 	register_nav_menus(
 		array(
 		    'main-menu-t'      => __( 'Main Menu - Top' ),
 		    'main-menu-b'      => __( 'Main Menu - Bottom' ),
 		    'footer-countries' => __( 'Footer - Countries' ),
-		    'footer-pages'     => __( 'Footer - Pages' )
-		)
-	);
+            'safari' => __('Safari Menu')
+    )
+  );
+
 }
 add_action( 'init', 'sl_custom_menu' );
 
