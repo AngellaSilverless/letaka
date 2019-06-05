@@ -42,29 +42,52 @@ get_header();?>
 			));
 			
 			$agents = $wpdb->get_results(
-				"SELECT ID, name, slug, post_title, post_name, meta.meta_value AS telephone, meta2.meta_value AS email
-				FROM {$wpdb->prefix}term_taxonomy AS cat_term_taxonomy
+				"SELECT ID,
+						post_title,
+						post_name,
+						GROUP_CONCAT(DISTINCT country_name SEPARATOR ' - ') AS country,
+						GROUP_CONCAT(type_name SEPARATOR ' - ') AS type,
+						telephone,
+						email
 				
-				INNER JOIN {$wpdb->prefix}terms AS cat_terms ON cat_term_taxonomy.term_id = cat_terms.term_id
-				INNER JOIN {$wpdb->prefix}term_relationships AS cat_term_relationships ON cat_term_taxonomy.term_taxonomy_id = cat_term_relationships.term_taxonomy_id
-				INNER JOIN {$wpdb->prefix}posts AS cat_posts ON cat_term_relationships.object_id = cat_posts.ID
+				FROM (SELECT
+						ID,
+						post_title,
+						post_name,
+						cat_terms.name AS country_name,
+						cat_terms2.name AS type_name,
+						meta.meta_value AS telephone,
+						meta2.meta_value AS email
+						
+					FROM {$wpdb->prefix}term_taxonomy AS cat_term_taxonomy
+					
+					INNER JOIN {$wpdb->prefix}terms AS cat_terms ON cat_term_taxonomy.term_id = cat_terms.term_id
+					INNER JOIN {$wpdb->prefix}term_relationships AS cat_term_relationships ON cat_term_taxonomy.term_taxonomy_id = cat_term_relationships.term_taxonomy_id
+					INNER JOIN {$wpdb->prefix}posts AS cat_posts ON cat_term_relationships.object_id = cat_posts.ID
+					
+					INNER JOIN {$wpdb->prefix}term_relationships AS cat_term_relationships2 ON cat_term_relationships2.object_id = cat_posts.ID
+					INNER JOIN {$wpdb->prefix}term_taxonomy AS cat_term_taxonomy2 ON cat_term_relationships2.term_taxonomy_id = cat_term_taxonomy2.term_taxonomy_id
+					INNER JOIN {$wpdb->prefix}terms AS cat_terms2 ON cat_term_taxonomy2.term_id = cat_terms2.term_id
+					
+					LEFT JOIN {$wpdb->prefix}postmeta AS meta ON cat_posts.ID = meta.post_id AND meta.meta_key = 'telephone'
+					LEFT JOIN {$wpdb->prefix}postmeta AS meta2 ON cat_posts.ID = meta2.post_id AND meta2.meta_key = 'email'
+					
+					
+					WHERE cat_posts.post_status =  'publish'
+					AND cat_posts.post_type =  'agents'
+					AND cat_term_taxonomy.taxonomy =  'country'
+					AND cat_term_taxonomy2.taxonomy = 'type') agents
 				
-				LEFT JOIN {$wpdb->prefix}postmeta AS meta ON cat_posts.ID = meta.post_id AND meta.meta_key = 'telephone'
-				LEFT JOIN {$wpdb->prefix}postmeta AS meta2 ON cat_posts.ID = meta2.post_id AND meta2.meta_key = 'email'
-				
-				
-				WHERE cat_posts.post_status =  'publish'
-				AND cat_posts.post_type =  'agents'
-				AND cat_term_taxonomy.taxonomy =  'country'"
+				GROUP BY ID, telephone, email"
 			);
 			
 			$groups = array();
 			
 			foreach($agents as $agent) {
-				if($groups[$agent->name] == NULL)
-					$groups[$agent->name] = array();
+				if($groups[$agent->country] == NULL)
+					$groups[$agent->country] = array();
 					
-				array_push($groups[$agent->name], $agent);
+				array_push($groups[$agent->country], $agent);
 			}
 			
 			$count = 0;
@@ -81,7 +104,13 @@ get_header();?>
 					
 					<div class="agent">
 						
-						<div class="title"><?php echo $agent->post_title; ?></div>
+						<div class="title">
+							
+							<div class="name"><?php echo $agent->post_title; ?></div>
+							
+							<div class="type"><?php echo $agent->type; ?></div>
+						
+						</div>
 						
 						<div>
 							
