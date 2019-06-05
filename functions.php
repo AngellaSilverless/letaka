@@ -18,6 +18,10 @@ function letaka_scripts() {
 	wp_enqueue_style( 'letaka-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'letaka-core-js', get_template_directory_uri() . '/inc/js/compiled.js', array('jquery'), true); 
+
+	wp_enqueue_script( 'mapbox-gl', get_template_directory_uri() . '/inc/js/mapbox-gl.js', array(), true );
+	
+	wp_enqueue_script( 'mapbox-gl-geocoder', get_template_directory_uri() . '/inc/js/mapbox-gl-geocoder.min.js', array(), true );
 	
 }
 
@@ -30,7 +34,8 @@ function sl_custom_menu() {
     array(
         'main-menu-t' => __( 'Main Menu - Top' ),
         'main-menu-b' => __( 'Main Menu - Bottom' ),
-        'footer'      => __( 'Footer Menu' )
+        'footer'      => __( 'Footer Menu' ),
+        'safari' => __('Safari Menu')
     )
   );
 }
@@ -405,9 +410,9 @@ add_filter( 'menu_order', 'reorder_admin_menu' );
 * Remove top level and sub menu admin menus
 */
 function remove_admin_menus() {
-   remove_menu_page( 'edit.php' ); // Posts 
+   //remove_menu_page( 'edit.php' ); // Posts 
    remove_menu_page( 'edit-comments.php' ); // Comments
-   remove_menu_page( 'tools.php' ); // Tools
+   //remove_menu_page( 'tools.php' ); // Tools
 }
 add_action( 'admin_menu', 'remove_admin_menus' );
 

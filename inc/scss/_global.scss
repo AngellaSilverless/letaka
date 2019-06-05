@@ -70,14 +70,21 @@ h5 {
 
 .heading {
     font-family: $brand-font;
-    font-weight: 400;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: $brand-primary;
+    
+    &__alt-font {
+        font-family: $body-font;
+        font-weight: 400;
+    }
+    
+    &__caps {
+        text-transform: uppercase;
+    }
     
     &__light {
         color: white;
-    }
-    
-    &__primary-color {
-      color: $brand-primary;
     }
 
     &__secondary-color {
@@ -87,9 +94,15 @@ h5 {
     &__tertiary-color {
       color: $brand-tertiary;
     }
-    
+
+    &__section {
+        margin-bottom: 1em;
+        padding-bottom: 0.25em;
+        text-align: center;
+        border-bottom: 1px dashed $brand-tertiary;
+    }
     &__xl {
-        font-size: 5em;
+        font-size: 4em;
     }
     
     &__lg {      
