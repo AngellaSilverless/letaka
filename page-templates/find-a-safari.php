@@ -18,7 +18,7 @@ get_header();?>
 
 <!-- ******************* Hero Content END ******************* -->
 
-    <div class="container find-safari pt4 pb8">
+    <div class="container find-safari has-sidebar pt4 pb8">
     
         <div class="sidebar">
 	        

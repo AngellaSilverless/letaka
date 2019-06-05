@@ -88,6 +88,11 @@ jQuery(document).ready(function( $ ) {
     $(".see-tours").click(function() {
 	    $(this).parents(".wrapper-itinerary").find(".tours").slideToggle();
     });
+    
+    $(".wrapper-countries .country").click(function() {
+	    $(this).next().slideToggle();
+	    $(this).toggleClass("opened");
+    });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
