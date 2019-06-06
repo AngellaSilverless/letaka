@@ -42,8 +42,6 @@ $(function() {
     }
   });
 });
-
-
     
 /* File upload name */
 
