@@ -1,6 +1,5 @@
 //@prepros-prepend jquery.magnific-popup.js
 //@prepros-prepend mixitup.js
-//@prepros-prepend mixitup-pagination.js
 //@prepros-prepend jquery.magnific-popup.js
 //@prepros-prepend owl.carousel.min.js
 
@@ -155,7 +154,7 @@ $(function() {
 
 /* FILTER SAFARIS */
 
-	$(".filter .checkbox input").change(function() {
+	$(".find-safari .filter .checkbox input").change(function() {
 		
 		// Destination
 		
@@ -352,6 +351,21 @@ $(function() {
 				itinerary.slideUp();
 		});
 	});
+	
+// ========== Filtering controller (mixitup)
+
+if($('#mixitup-gallery').length) {
+
+var campsMixer = mixitup('#mixitup-gallery', {
+    load: {
+        filter: 'all'
+    },
+    selectors: {
+        control: '.mixitup-control',
+        target: '.gallery-item'
+    }
+});
+}
 
 // ========== Add class if in viewport on page load
 
