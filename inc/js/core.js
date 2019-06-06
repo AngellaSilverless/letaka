@@ -113,10 +113,16 @@ $(function() {
     });
     
     $(".wrapper-guides .guide").click(function() {
-	    $(this).next().slideToggle();
-	    $(this).toggleClass("opened");
 	    $(this).parent().siblings().find(".guide").removeClass("opened");
 	    $(this).parent().siblings().find(".info").slideUp();
+	    $(this).toggleClass("opened");
+	    $(this).next().slideToggle("slow","swing", function(){
+		    $('html, body').animate({
+				scrollTop: $(this).offset().top - $("nav").height() - 90
+			}, 500);
+		});
+	    
+	    
     });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
