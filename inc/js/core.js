@@ -116,6 +116,13 @@ $(function() {
 	    $(this).parent().siblings().find(".guide").removeClass("opened");
 	    $(this).parent().siblings().find(".info").slideUp();
     });
+    
+    $(".wrapper-questions .question").click(function() {
+	    $(this).next().slideToggle();
+	    $(this).toggleClass("opened");
+	    $(this).parent().siblings().find(".question").removeClass("opened");
+	    $(this).parent().siblings().find(".answer").slideUp();
+    });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 

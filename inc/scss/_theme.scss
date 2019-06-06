@@ -791,6 +791,51 @@
 	
 }
 
+.travel-info {
+	
+	p {
+		font-size: 1em;
+	}
+	
+	.faq {
+		
+		.wrapper-questions {
+			
+			&:not(:first-of-type) {
+				margin-top: 1em;
+			}
+			
+			.question {
+				background: grey;
+				color: white;
+				padding: 0.5em 1em;
+				position: relative;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				font-weight: 400;
+				
+				&.opened i {
+					transform: rotate(90deg);
+				}
+				
+				i {
+					float: right;
+				    position: absolute;
+				    right: 1em;
+				    transition: $fastEffect;
+				}
+			}
+			
+			.answer {
+				padding: 1em;
+				margin-top: 0.3em;
+				background: $brand-light-grey;
+			}
+		}
+	}
+}
+
 .pagination {
 	justify-content: flex-end;
 	

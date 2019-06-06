@@ -24,7 +24,7 @@ get_header();?>
 	        
 		    <div class="col-3">
 			    
-			    <div class="sidebar">
+			    <div class="sidebar sticky">
 		    	
 			    	<?php get_template_part('template-parts/this-section');?>
 			    	
