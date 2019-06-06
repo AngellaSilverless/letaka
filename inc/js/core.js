@@ -111,6 +111,13 @@ $(function() {
 	    $(this).next().slideToggle();
 	    $(this).toggleClass("opened");
     });
+    
+    $(".wrapper-guides .guide").click(function() {
+	    $(this).next().slideToggle();
+	    $(this).toggleClass("opened");
+	    $(this).parent().siblings().find(".guide").removeClass("opened");
+	    $(this).parent().siblings().find(".info").slideUp();
+    });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
