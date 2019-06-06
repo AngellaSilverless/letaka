@@ -88,9 +88,12 @@ while( have_posts() ) {
 <div class="container has-sidebar mt3">
     
     <div class="sidebar">
+        
+        <div class="title">SAFARI DETAILS</div>
+        
         <?php wp_nav_menu( array(
             'theme_location' => 'safari',
-            'container_class' => 'safari-sidebar' ) );
+            'menu_class' => 'safari sidebar-menu' ) );
         ?>
     </div><!--sidebar-->
     
