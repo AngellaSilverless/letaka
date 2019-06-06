@@ -126,6 +126,27 @@
     min-height: 10em;
 }
 
+.has-sidebar {
+	display: grid;
+	grid-template-columns: calc(25% - 1em) calc(75% - 1em);
+	grid-column-gap: 2em;
+}
+
+.sidebar-menu {
+    background: hsl(0, 0%, 88%);
+    padding: 1.5em;
+    list-style-type: none;
+    
+    li {
+        margin-bottom: 1.5em;
+        line-height: 2em;
+        margin-bottom: 0;
+        font-weight: 400;
+        color: hsl(0, 66%, 14%);
+    }
+
+}
+
 .our-safaris {
 	
 	.wrapper-actions {
