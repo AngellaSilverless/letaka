@@ -6,7 +6,7 @@
 		
 		<?php $about = get_page_by_path('about-us'); ?>
 	    
-	    <a <?php if(is_page($page->ID)) echo "class='active'"; ?> href="<?php echo get_permalink(get_the_ID()); ?>"><?php the_title(); ?></a>
+	    <a <?php if(is_page($about->ID)) echo "class='active'"; ?> href="<?php echo get_permalink($about->ID); ?>"><?php echo get_the_title($about->ID); ?></a>
 	    
 	    <?php
 		    	

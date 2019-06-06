@@ -85,9 +85,13 @@ while( have_posts() ) {
 
 <!-- ******************* Hero Content END ******************* -->
 
-<div class="container has-sidebar mt3">
+<div class="container pt3 pb3">
+
+    <div class="row">
     
-    <div class="sidebar">
+        <div class="col-4">
+    
+        <div class="sidebar">
         
         <div class="title">SAFARI DETAILS</div>
         
@@ -97,7 +101,9 @@ while( have_posts() ) {
         ?>
     </div><!--sidebar-->
     
-    <div>
+    </div>
+    
+        <div class="col-8">
 
         <h3 class="heading heading__lg heading__section">Overview</h3>
         
@@ -245,115 +251,124 @@ while( have_posts() ) {
 	$points = array();
 	
 	while( have_rows('map', $parent) ): the_row();
-	
-		//$json_string = file_get_contents ('https://api.postcodes.io/postcodes/'. preg_replace('/\s/', '', get_sub_field('postcode')));
-		
-		$json_array = json_decode ($json_string, true);
 
-		if($json_array["status"] == 200):
+				//$json_string = file_get_contents ('https://api.postcodes.io/postcodes/'. preg_replace('/\s/', '', get_sub_field('postcode')));
+				
+				$json_array = json_decode ($json_string, true);
+		
+				if($json_array["status"] == 200):
+					
+					array_push($points, array(
+						'type' => 'Feature',
+						'geometry' => array(
+							'type' => 'Point',
+							'coordinates' => array(
+								$json_array["result"]["longitude"],
+								$json_array["result"]["latitude"]
+							)
+						),
+						'properties' => array(
+							'name'       => get_sub_field('name'),
+							'address'    => get_sub_field('address'),
+							'postcode'   => get_sub_field('postcode'),
+							'phone'      => get_sub_field('phone'),
+							'website'    => $website,
+							'directions' => $directions
+						)
+					));
 			
-			array_push($points, array(
-				'type' => 'Feature',
-				'geometry' => array(
-					'type' => 'Point',
-					'coordinates' => array(
-						$json_array["result"]["longitude"],
-						$json_array["result"]["latitude"]
-					)
-				),
-				'properties' => array(
-					'name'       => get_sub_field('name'),
-					'address'    => get_sub_field('address'),
-					'postcode'   => get_sub_field('postcode'),
-					'phone'      => get_sub_field('phone'),
-					'website'    => $website,
-					'directions' => $directions
-				)
-			));
-	
-		endif;
+				endif;
+				
+			endwhile;
+				
+		endif;?>
 		
-	endwhile;
+		<div class="map-wrapper">
+			<div id='map-contact' points='<?php echo json_encode($points);?>'></div>
+		</div>
+
+		        <h3 class="heading heading__lg heading__section mt1">Safari Accommodation</h3>
+		        
+		        <div id="accom" class="safari-accommodation">
+		        
+		        <? if( have_rows('accommodation', $parent) ): 
+		            while( have_rows('accommodation', $parent) ): the_row();?>      
 		
-endif;?>
-
-<div class="map-wrapper">
-	<div id='map-contact' points='<?php echo json_encode($points);?>'></div>
-</div>
-
-
-        <h3 class="heading heading__lg heading__section mt1">Safari Accommodation</h3>
-        
-        <div id="accom" class="safari-accommodation">
-        
-        <? if( have_rows('accommodation', $parent) ): 
-            while( have_rows('accommodation', $parent) ): the_row();?>      
-
-            <div class="row">
-    
-                 <div class="col-6">
-    
-                    <?php
-                    $images = get_sub_field('gallery');
-                    if( $images ): ?>
-                
-                        <div class="gallery safari">
-                
-                        <?php foreach( $images as $image ): ?>
-                
-                        <a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"><!--<?php echo $image['caption']; ?>--></a>
-                
-                        <?php endforeach; ?>
-                
-                        </div>
-                
-                    <?php endif; ?>                
-                    
-                </div><!--col-->
-                
-                <div class="col-6">
-                    
-                    <?php the_sub_field('copy');?>  
-                    
-                </div><!--col-->
-       
-            </div><!--r-->
-
-        </div><!--accommodation-->
-
-         <?php endwhile; endif;?><!--accommodation loop-->       
-
-        <h3 class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
-
-        <? if( have_rows('extensions_&_activities', $parent) ): 
-            while( have_rows('extensions_&_activities', $parent) ): the_row();?>      
-
-        <div id="extensions" class="extensions mb3">
-
-            <? if( have_rows('items', $parent) ): 
-            while( have_rows('items', $parent) ): the_row();?>                
-
-<div class="row">
- 
-<div class="col-4">
-    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
-</div>
-
-<div class="col-8">
-    <p><?php the_sub_field('copy');?></p> 
-</div> 
-    
-</div><!--r-->
-                        
-            <?php endwhile; endif;?>
-
-        </div><!--extensions-->
-
-         <?php endwhile; endif;?><!--extensions loop-->      
-        
-    </div>
+		            <div class="row">
+		    
+		                 <div class="col-6">
+		    
+		                    <?php
+		                    $images = get_sub_field('gallery');
+		                    if( $images ): ?>
+		                
+		                        <div class="gallery safari">
+		                
+		                        <?php foreach( $images as $image ): ?>
+		                
+		                        <a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"><!--<?php echo $image['caption']; ?>--></a>
+		                
+		                        <?php endforeach; ?>
+		                
+		                        </div>
+		                
+		                    <?php endif; ?>                
+		                    
+		                </div><!--col-->
+		                
+		                <div class="col-6">
+		                    
+		                    <?php the_sub_field('copy');?>  
+		                    
+		                </div><!--col-->
+		       
+		            </div><!--r-->
+		
+		        </div><!--accommodation-->
+		
+		         <?php endwhile; endif;?><!--accommodation loop-->       
+		
+		        <h3 class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
+		
+		        <? if( have_rows('extensions_&_activities', $parent) ): 
+		            while( have_rows('extensions_&_activities', $parent) ): the_row();?>      
+		
+		        <div id="extensions" class="extensions mb3">
+		
+		            <? if( have_rows('items', $parent) ): 
+		            while( have_rows('items', $parent) ): the_row();?>                
+		
+		<div class="row">
+		 
+		<div class="col-4">
+		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
+		</div>
+		
+		<div class="col-8">
+		    <p><?php the_sub_field('copy');?></p> 
+		</div> 
+		    
+		</div><!--r-->
+		                        
+		            <?php endwhile; endif;?>
+		
+		        </div><!--extensions-->
+		
+		         <?php endwhile; endif;?><!--extensions loop-->      
+		        
+		    </div>
+		    
+		</div>
+		
+	</div>
   
-</div><!--c-->
+
+    
+    </div>
+    
+    </div>
+    
+    </div><!--c-->
 
 </div><!--content-->
  

@@ -191,15 +191,11 @@ header {
 
 nav {
     background: $brand-primary;
-    display: grid;
-    grid-template-columns: 30% 50% 20%;
-    padding: 1em;
     
     .actions-nav .button {
 		padding: 0.5em;
 		display: block;
-		margin-left: 1em;
-		margin-right: 1em;
+		margin-left: auto;
 		width: 180px;
 		font-size: 0.9em;
 		color: $brand-primary;

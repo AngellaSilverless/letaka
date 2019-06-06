@@ -1,6 +1,6 @@
 <?php
 /**
- * ============== Template Name: About Us
+ * ============== Template Name: History
  *
  * @package letaka
  */
@@ -18,7 +18,7 @@ get_header();?>
 
 <!-- ******************* Hero Content END ******************* -->
 
-    <div class="container about-us pt4 pb8">
+    <div class="container history pt4 pb8">
     
         <div class="row">
 	        
@@ -34,11 +34,29 @@ get_header();?>
 		    
 		    <div class="col-9">
 	        
-		        <div class="main justify">
+		        <div class="justify mb2">
 			        
 			        <?php the_field("content"); ?>
 			        
 		        </div>
+		        
+		        <?php
+				
+				$images = get_field('gallery');
+					
+				if( $images ): ?>
+				
+				<div class="gallery">
+				
+					<?php foreach( $images as $image ): ?>
+					
+					<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+					
+					<?php endforeach; ?>
+				
+				</div>
+				
+				<?php endif; ?> 
 		    
 		    </div>
 	    

@@ -15,7 +15,7 @@
     &:before {
         @include childOverlay;
         background:black;
-        opacity:0.1;
+        opacity:0.2;
         z-index: -1
     }
     
@@ -287,14 +287,13 @@ body .gallery {
         position: relative;
         display: block;
         min-height: 12em;
-        transition:all 0.3s ease;
+        transition: box-shadow 0.3s ease;
         margin-top: 5px;
 
         &:hover {
             position: relative;
             z-index: 500;
-            transform: scale(1.01);
-            box-shadow: 2px 2px 2px 2px hsla(0, 0%, 0%, 0.5);
+            box-shadow: 0 0 2px 2px hsla(0, 0%, 0%, 0.3);
         }
         
         &:nth-of-type(8n - 7){
