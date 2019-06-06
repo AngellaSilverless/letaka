@@ -36,7 +36,8 @@ function sl_custom_menu() {
 		    'main-menu-t'      => __( 'Main Menu - Top' ),
 		    'main-menu-b'      => __( 'Main Menu - Bottom' ),
 		    'footer-countries' => __( 'Footer - Countries' ),
-            'safari' => __('Safari Menu')
+            'safari' => __('Safari Menu'),
+            'destinations' => __('Destinations Menu')
     )
   );
 
