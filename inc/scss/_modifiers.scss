@@ -25,7 +25,12 @@ $sides: (top, bottom, left, right); // Sides var
     position: -webkit-sticky;
     position: sticky;
     top: 150px;
-    margin-bottom: 2em;
+}
+
+.sticky:before,
+.sticky:after {
+    content: '';
+    display: table;
 }
 
 .center {
