@@ -831,6 +831,37 @@
 	}
 }
 
+.page-news .adjacent-posts {
+	
+	a {
+		display: flex;
+	
+		&.previous-post {
+			justify-content: flex-start;
+			text-align: left;
+			grid-column: 1;
+		}
+				
+		&.next-post {
+			justify-content: flex-end;
+			text-align: right;
+			grid-column: 2;
+		}
+	
+		i {
+			align-items: center;
+			
+			&.fa-chevron-right {
+				padding-left: 10px;
+			}
+			
+			&.fa-chevron-left {
+				padding-right: 10px;
+			}
+		}
+	}
+}
+
 .terms-privacy {
 	
 	.sidebar .cta:first-of-type {

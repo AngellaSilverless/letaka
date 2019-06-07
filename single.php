@@ -54,13 +54,7 @@ while (have_posts()) : the_post(); ?>
 	        
 		        <div class="main justify">
 			        
-			        <?php
-				        
-				    the_content();
-			        
-			        the_post_navigation();
-			        
-			        ?>
+			        <?php the_content(); ?>
 			        
 		        </div>
 		        
@@ -81,6 +75,48 @@ while (have_posts()) : the_post(); ?>
 				</div>
 				
 				<?php endif; ?> 
+				
+				<div class="adjacent-posts row mt4">
+		        
+					<?php
+				        $prev_post = get_previous_post();
+				        $next_post = get_next_post();
+				    ?>
+			        
+			        <div class="col-6">
+				        
+				        <?php if( $prev_post ): ?>
+			        
+				        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="previous-post">
+				        
+					        <i class="fas fa-chevron-left"></i>
+					        
+					        <span><?php echo $prev_post->post_title; ?></span>
+					        
+					    </a>
+					    
+					    <?php endif; ?>
+					
+			        </div>
+				    
+				    <div class="col-6">
+				    
+				    	<?php if( $next_post ): ?>
+				
+						<a href="<?php echo get_permalink($next_post->ID); ?>" class="next-post">
+					        
+					        <span><?php echo $next_post->post_title; ?></span>
+							
+					        <i class="fas fa-chevron-right"></i>
+					        
+					    </a>
+					
+						<?php endif; ?>
+					
+				    </div>
+				
+		        </div>
+
 		    
 		    </div>
 		    
