@@ -591,14 +591,13 @@
 	
 	.links a {
 		display: block;
-		text-transform: uppercase;
 		font-size: 1em;
 		background: $brand-light-grey;
 		padding: 0.7em 1em;
 		color: $brand-primary;
-		font-weight: 700;
+		font-weight: 400;
 		letter-spacing: 0.02em;
-		margin: 0.5em 0 0 0;
+		margin: 0;
 		transition: $fastEffect;
 		
 		&.active {
@@ -638,6 +637,25 @@
 			color: $brand-secondary;
 		}
 	}
+}
+
+.team-member {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2em;
+    
+    .content {
+        display: inline-grid;
+        align-content: center;
+        min-height: 13em;
+        padding:1em;
+        background: $brand-light-grey;
+    }
+    
+    .img {
+        @include backgroundCover;
+        height:100%;
+    }
 }
 
 .sidebar {
@@ -734,7 +752,7 @@
 			background: grey;
 			color: white;
 			text-transform: uppercase;
-			padding: 0.5em 1em;
+			padding: 1em 5em;
 			position: relative;
 			display: flex;
 			align-items: center;
@@ -742,10 +760,10 @@
 			
 			.img {
 				@include backgroundCover;
-				width: 3em;
-				height: 3em;
-				border-radius: 50%;
-				border: 2px solid white;
+				position: absolute;
+				left: 0;
+				height: 100%;
+				width: 4em;
 			}
 			
 			&.opened i {
@@ -770,10 +788,7 @@
 			
 			.img {
 				@include backgroundCover;
-				height: 25em;
-				margin-right: 1em;
-				margin-bottom: 1em;
-				float: left;
+				min-height: 20em;
 			}
 		}
 		
@@ -783,12 +798,58 @@
 			
 			a {
 				&:nth-child(n) {
-					flex: calc(25% - 5px);	
+					flex: calc(10% - 5px);	
+					min-height: 5em;
 				}
 			}
 		}
 	}
 	
+}
+
+.travel-info {
+	
+	p {
+		font-size: 1em;
+	}
+	
+	.faq {
+		
+		.wrapper-questions {
+			
+			&:not(:first-of-type) {
+				margin-top: 1em;
+			}
+			
+			.question {
+				background: grey;
+				color: white;
+				padding: 0.5em 1em;
+				position: relative;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				font-weight: 400;
+				
+				&.opened i {
+					transform: rotate(90deg);
+				}
+				
+				i {
+					float: right;
+				    position: absolute;
+				    right: 1em;
+				    transition: $fastEffect;
+				}
+			}
+			
+			.answer {
+				padding: 1em;
+				margin-top: 0.3em;
+				background: $brand-light-grey;
+			}
+		}
+	}
 }
 
 .pagination {
@@ -953,28 +1014,26 @@
 				color: $brand-primary;
 				
 				&:before {
-					content: '';
-					display: block;
-					position: absolute;
-					left: 0;
-					top: 0;
-					width: 2em;
-					height: 2em;
-					margin-right: 10px;
-					background: white;
-					border-radius: 10px;
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0.25em;
+                    width: 1.5em;
+                    height: 1.5em;
+                    margin-right: 10px;
+                    background: hsl(0, 0%, 100%);
 				}
 				
 				&:after {
-					content: '';
+					content: "";
 					display: block;
 					position: absolute;
-					top: 0.3em;
-					left: 0.3em;
-					width: 1.3em;
-					height: 1.3em;
-					border-radius: 7px;
-					background: $brand-secondary;
+					top: 0.25em;
+					left: 0;
+					width: 1.5em;
+					height: 1.5em;
+					background: $brand-green;
 					opacity: 0;
 					pointer-events: none;
 				}
@@ -1027,30 +1086,28 @@
 				color: $brand-primary;
 				
 				&:before {
-					content: '';
-					display: block;
-					position: absolute;
-					left: 0;
-					top: 0;
-					width: 2em;
-					height: 2em;
-					margin-right: 10px;
-					background: white;
-					border-radius: 50%;
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0.25em;
+                    width: 1.5em;
+                    height: 1.5em;
+                    margin-right: 10px;
+                    background: hsl(0, 0%, 100%);
 				}
 				
 				&:after {
-					content: '';
-					display: block;
-					position: absolute;
-					top: 0.3em;
-					left: 0.3em;
-					width: 1.3em;
-					height: 1.3em;
-					border-radius: 50%;
-					background: $brand-secondary;
-					opacity: 0;
-					pointer-events: none;
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0.5em;
+                    left: 0.25em;
+                    width: 1em;
+                    height: 1em;
+                    background: $brand-green;
+                    opacity: 0;
+                    pointer-events: none;
 				}
 			}
 		}
