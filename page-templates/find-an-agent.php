@@ -145,7 +145,7 @@ get_header();?>
 									
 									if($email): ?>
 									
-									<a class="button button__secondary-color" href="tel:<?php echo $email; ?>">
+									<a class="button button__secondary-color" href="mailto:<?php echo $email; ?>">
 										<div>Email</div>
 										<div class="font100 info"><?php echo $email; ?></div>
 									</a>

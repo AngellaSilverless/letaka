@@ -4,95 +4,92 @@
  *
  * @package letaka
  */
-
 get_header();
-?>
 
-<?php
-    while ( have_posts() ) :
-	the_post();?>
+while (have_posts()) : the_post(); ?>
 
 <!-- ******************* Hero Content ******************* -->
 
-<?php $heroImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
+<div class="content has-hero">
+	
+<?php $heroImage = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), "full" ); ?>
 
-<div class="wrapper-hero mb3" style="background-image: url(<?php echo $heroImage[0]; ?>);">
+<div class="hero h50" style="background-image: url(<?php echo $heroImage[0]; ?>);">
 
-    <div class="container">
-    
-        <div class="row">
-                
-            <div class="col-12 wrapper-hero__content text-center">       
-                
-                <h1 class="heading heading__xl heading__light font800">
-                    
-                    <?php if (get_field('hero_heading')):
-                        the_field('hero_heading');
-                    else:    
-                        the_title();
-                    endif;?>
-                    
-                </h1>  
-                          
-                <h2 class="heading heading__sm heading__light font300">
-                    
-                    Posted <?php the_date();?>
-                
-                </h2>
-                               
-            </div>       
-                
-        </div>
-    
-    </div>
-    
-</div>
+	<div class="container">
+
+		<div class="row">
+			
+			<div class="hero__content">
+		
+				<h1 class="heading heading__xl heading__light center slide-up"><?php the_title() ;?></h1>
+				
+				<div class="heading heading__sm heading__light center slow-fade hero__copy mt1"><?php the_date( 'd F Y' );?></div>
+	       
+	        </div>
+	    
+		</div>
+	
+	</div>
+		
+</div><!--hero-->
 
 <!-- ******************* Hero Content END ******************* -->
- 
-<div class="container">
 
-    <div class="row">
+    <div class="container page-news pt4 pb8">
+	    
+	    <div class="row">
+	        
+		    <div class="col-3">
+			    
+			    <div class="sidebar sticky">
+		    	
+			    	<?php get_template_part('template-parts/this-section');?>
+			    	
+		        </div>
+		        
+		    </div>
+		    
+		    <div class="col-9">
+	        
+		        <div class="main justify">
+			        
+			        <?php
+				        
+				    the_content();
+			        
+			        the_post_navigation();
+			        
+			        ?>
+			        
+		        </div>
+		        
+		        <?php
+				
+				$images = get_field('gallery');
+					
+				if( $images ): ?>
+				
+				<div class="gallery mt2">
+				
+					<?php foreach( $images as $image ): ?>
+					
+					<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+					
+					<?php endforeach; ?>
+				
+				</div>
+				
+				<?php endif; ?> 
+		    
+		    </div>
+		    
+	    </div>
         
-        <div class="col-8">
-    
-            <article class="news mt2">
-        
-    			<?php the_content();
-    
-    			the_post_navigation();
-    
-    		endwhile; // End of the loop.
-    		?>
-    
-    </article>
-    
-        </div>
-        
-        <div class="col-4">
-        
-            <?php $ctaImage = get_field('image', 'options');?>
-        
-            <div class="sidebar-cta" style="background-image: url(<?php echo $ctaImage['url']; ?>);">
-            
-            <h3 class="heading heading__lg heading__light font300 mb0"><?php the_field('headline', 'options');?></h3>
-            
-            <p class="heading__md heading__light font300 mb0"><?php the_field('copy', 'options');?></p>
-            
-            <a href="<?php the_field('target', 'options');?>" type="button" class="button mt1 mb1">
-                
-                <?php the_field( 'button_text', 'options' );?>
-                
-            </a>
-            
-        </div>
-    
-        </div>
-        
-    </div>
+    </div><!--c-->
 
-<a href="/news" class="button mb3">Back To News</a>
+</div><!--content-->
 
-</div><!--c-->
+<?php endwhile; 
 
-<?php get_footer();
+get_footer(); ?>

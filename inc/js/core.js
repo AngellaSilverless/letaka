@@ -35,14 +35,12 @@ $(function() {
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
       if (target.length) {
         $('html,body').animate({
-          scrollTop: target.offset().top -150 }, 1000);
+          scrollTop: target.offset().top -250 }, 1000);
         return false;
       }
     }
   });
 });
-
-
     
 /* File upload name */
 
@@ -123,6 +121,18 @@ $(function() {
 		});
 	    
 	    
+    });
+    
+    $(".wrapper-questions .question").click(function() {
+	    $(this).next().slideToggle();
+	    $(this).toggleClass("opened");
+	    $(this).parent().siblings().find(".question").removeClass("opened");
+	    $(this).parent().siblings().find(".answer").slideUp();
+    });
+    
+    $(".contact-us .more-info").click(function() {
+	    $(".contact-us .extra-fields").slideDown();
+	    $(".contact-us .submit-button").slideUp();
     });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */

@@ -24,7 +24,7 @@ get_header();?>
 	        
 		    <div class="col-3">
 			    
-			    <div class="sidebar">
+			    <div class="sidebar sticky">
 		    	
 			    	<?php get_template_part('template-parts/this-section');?>
 			    	
@@ -61,21 +61,22 @@ get_header();?>
 					<div class="info" style="display:none;">
 						
 						<div class="row">
-							
-							
-						<div><div class="col-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div><?php
-							
-							the_field('description', $guide->taxonomy . '_' . $guide->term_id);
-						
-						?></div>
-							
-						<?php 
-							
-						$images = get_field('gallery', $guide->taxonomy . '_' . $guide->term_id);
-						
+    						
+    						<div class="col-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
+    						
+    						<div class="col-8">
+        						
+        					<?php the_field('description', $guide->taxonomy . '_' . $guide->term_id);?>	
+
+    						</div>
+    						
+    						<div class="col-12 pl0 pr0 pt1">    						
+    						
+    						<?php 
+						$images = get_field('gallery', $guide->taxonomy . '_' . $guide->term_id);						
 						if( $images ): ?>
-		
-						<div class="gallery">
+    						
+    						<div class="gallery">
 						
 							<?php foreach( $images as $image ): ?>
 							
@@ -84,12 +85,14 @@ get_header();?>
 							<?php endforeach; ?>
 						
 						</div>
-						
+
 						<?php endif; ?>
 						
-					</div>
+						</div><!--col-->
+						
+					</div><!--r-->
 					
-				</div>
+                    </div>
 				
 				</div>
 				

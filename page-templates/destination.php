@@ -20,13 +20,18 @@ get_header();?>
     
         <div class="row">
             
-            <div class="col-4 sidebar">
+            <div class="col-4 sidebar mt3">
+                
+                <div class="sticky">
+                
+                <div class="title">Countries</div>
                 
                         <?php wp_nav_menu( array(
             'theme_location' => 'destinations',
-            'container_class' => 'destination-sidebar' ) );
+            'menu_class' => 'destination sidebar-menu' ) );
         ?>
-
+                </div>
+                
             </div><!--col-->
             
             <div class="col-8 mt3">
