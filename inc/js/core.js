@@ -85,7 +85,7 @@ $(function() {
     });
     
     $(".search i").click(function() {
-	    $(".search div").toggleClass("visible");
+	    $(".search form").toggleClass("visible");
     });
     
     $(".selector").click(function() {

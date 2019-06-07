@@ -28,6 +28,8 @@ get_header();?>
 		    	
 			    	<?php get_template_part('template-parts/this-section');?>
 			    	
+			    	<?php get_template_part('template-parts/post-categories');?>
+			    	
 		        </div>
 		        
 		    </div>

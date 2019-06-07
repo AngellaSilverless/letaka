@@ -65,12 +65,15 @@
 			                	<div class="top-menu">
 				                	
 				                	<div class="search">
+					                	
 					                	<i class="fas fa-search"></i>
-					                	<div>
-						                	<input/>
-											<button>Go</button>
-					                	</div>
-					                </div>
+					                	
+					                	<form action="/" method="get">
+										    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
+										    <button>Go</button>
+										</form>
+									
+				                	</div>
 				                	
 				                    <?php wp_nav_menu( array(
 					                    'theme_location' => 'main-menu-t',

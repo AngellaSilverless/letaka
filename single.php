@@ -12,9 +12,19 @@ while (have_posts()) : the_post(); ?>
 
 <div class="content has-hero">
 	
-<?php $heroImage = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), "full" ); ?>
+<?php 
 
-<div class="hero h50" style="background-image: url(<?php echo $heroImage[0]; ?>);">
+$heroImage = wp_get_attachment_image_src(get_post_thumbnail_id(), "full");
+
+if(!$heroImage) {
+	$heroImage = get_field("standard_images", "options")["news"]["url"];
+} else {
+	$heroImage = $heroImage[0];
+}
+
+?>
+
+<div class="hero h50" style="background-image: url(<?php echo $heroImage; ?>);">
 
 	<div class="container">
 
@@ -42,9 +52,11 @@ while (have_posts()) : the_post(); ?>
 	        
 		    <div class="col-3">
 			    
-			    <div class="sidebar sticky">
+			    <div class="sidebar">
+				    
+				    <a class="title" href="<?php echo home_url() . "/about-us/news"; ?>">Back to News</a>
 		    	
-			    	<?php get_template_part('template-parts/this-section');?>
+			    	<?php get_template_part('template-parts/post-categories');?>
 			    	
 		        </div>
 		        
@@ -87,7 +99,7 @@ while (have_posts()) : the_post(); ?>
 				        
 				        <?php if( $prev_post ): ?>
 			        
-				        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="previous-post">
+				        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="previous-post button button__transparent">
 				        
 					        <i class="fas fa-chevron-left"></i>
 					        
@@ -103,7 +115,7 @@ while (have_posts()) : the_post(); ?>
 				    
 				    	<?php if( $next_post ): ?>
 				
-						<a href="<?php echo get_permalink($next_post->ID); ?>" class="next-post">
+						<a href="<?php echo get_permalink($next_post->ID); ?>" class="next-post button button__transparent">
 					        
 					        <span><?php echo $next_post->post_title; ?></span>
 							
