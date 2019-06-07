@@ -532,16 +532,6 @@
 	}
 	
 	.links a {
-		display: block;
-		font-size: 1em;
-		background: $brand-light-grey;
-		padding: 0.7em 1em;
-		color: $brand-primary;
-		font-weight: 400;
-		letter-spacing: 0.02em;
-		margin: 0;
-		transition: $fastEffect;
-
 		
 		&.active {
 			background: grey;
@@ -619,14 +609,13 @@
 	
 	.item {
 		display: block;
-		text-transform: uppercase;
 		font-size: 1em;
 		background: $brand-light-grey;
 		padding: 0.7em 1em;
 		color: $brand-primary;
-		font-weight: 700;
+		font-weight: 400;
 		letter-spacing: 0.02em;
-		margin: 0.5em 0 0 0;
+		margin: 0;
 		transition: $fastEffect;
 	}
 	
@@ -662,7 +651,7 @@
 	}
 }
 
-.galleries, .our-guides, .page-news, .history {
+.galleries, .our-guides, .page-news, .history, .bespoke-film {
 	
 	.gallery {
 		margin-bottom: 0em;
@@ -836,9 +825,16 @@
 	}
 }
 
-.page-news {
+.page-news, .bespoke-film, .terms-privacy {
 	p {
 		font-size: 1em;
+	}
+}
+
+.terms-privacy {
+	
+	.sidebar .cta:first-of-type {
+		margin-top: 0;
 	}
 }
 
@@ -1184,6 +1180,32 @@
 				display: none;
 			}
 		}
+		
+		.ajax-loader {
+			display: block;
+			margin-left: auto;
+		}
+	}
+}
+
+.cta {
+	@include backgroundCover;
+	position: relative;
+	z-index: 0;
+	
+	&:before {
+        @include childOverlay;
+        background: black;
+        opacity: 0.1;
+        z-index: -1;
+    }
+	
+	.content {
+		padding: 2em 1em;
+	}
+	
+	h3 {
+		margin-bottom: 2.5em;
 	}
 }
 

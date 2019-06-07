@@ -219,6 +219,10 @@ get_header();?>
 				        
 			        </div>
 			        
+			        <?php get_template_part("template-parts/cta", "film-locations"); ?>
+			        
+			        <?php get_template_part("template-parts/cta", "bespoke-experiences"); ?>
+			        
 		        </div>
 		        
 		    </div>

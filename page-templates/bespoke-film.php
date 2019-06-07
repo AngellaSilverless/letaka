@@ -18,7 +18,7 @@ get_header();?>
 
 <!-- ******************* Hero Content END ******************* -->
 
-    <div class="container about-us pt4 pb8">
+    <div class="container bespoke-film pt4 pb8">
     
         <div class="row">
 	        
@@ -45,6 +45,24 @@ get_header();?>
 			        <?php the_field("content"); ?>
 			        
 		        </div>
+		        
+		        <?php
+				
+				$images = get_field('images');
+					
+				if( $images ): ?>
+				
+				<div class="gallery mt2">
+				
+					<?php foreach( $images as $image ): ?>
+					
+					<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+					
+					<?php endforeach; ?>
+				
+				</div>
+				
+				<?php endif; ?>
 		    
 		    </div>
 	    

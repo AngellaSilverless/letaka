@@ -1,6 +1,16 @@
-<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), "large"); ?>
+<?php
+	
+$image = wp_get_attachment_image_src(get_post_thumbnail_id(), "large");
+
+if(!$image) {
+	$image = get_field("standard_images", "options")["news"]["sizes"]["large"];
+} else {
+	$image = $image[0];
+}
+
+?>
 				
-<div class="img" style="background: url(<?php echo $image[0]; ?>)"></div>
+<div class="img" style="background: url(<?php echo $image; ?>)"></div>
 
 <div class="content">
 
