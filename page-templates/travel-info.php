@@ -23,7 +23,7 @@ get_header();?>
         <div class="row">
 	        
 		    <div class="col-3">
-			    
+
 			    <div class="sidebar">
 		    	
 			    	<div class="downloads mb2">
@@ -52,7 +52,7 @@ get_header();?>
 				    	
 			    	</div>
 			    	
-			    	<div class="contact-us">
+			    	<div class="contact-us sticky">
 					    
 					    <div class="title">Can we help further?</div>
 					    
@@ -73,9 +73,9 @@ get_header();?>
 		        </div>
 		        
 		        <div class="faq">
-			        
+
 			        <h2 class="heading heading__primary-color heading__md brand-line mb1">Frequently Asked Questions</h2>
-			        
+
 			    <?php
 				    
 				$faqs = get_field("faq");
