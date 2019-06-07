@@ -34,7 +34,7 @@ get_header();?>
 		    
 		    <div class="col-9">
 	        
-		        <div class="justify mb2">
+		        <div class="justify">
 			        
 			        <?php the_field("content"); ?>
 			        
@@ -46,7 +46,7 @@ get_header();?>
 					
 				if( $images ): ?>
 				
-				<div class="gallery">
+				<div class="gallery mt2">
 				
 					<?php foreach( $images as $image ): ?>
 					

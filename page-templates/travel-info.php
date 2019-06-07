@@ -24,9 +24,41 @@ get_header();?>
 	        
 		    <div class="col-3">
 			    
-			    <div class="sidebar sticky">
+			    <div class="sidebar">
 		    	
+			    	<div class="downloads mb2">
+				    	
+				    	<div class="title">Downloads</div>
+				    	
+				    	<?php
+					    	
+					    $downloads = get_field("downloads");
+					    
+					    foreach($downloads as $download): $file = $download["file"]?>
+					    
+					    	<div class="item">
+						    	
+						    	<a class="pdf-wrapper" href="<?php echo $file["url"]; ?>" target="_blank">
+							    	
+							    	<i class="fas fa-file-pdf"></i>
+							    	
+							    	<div><?php echo $download["file_name"]; ?></div>
+							    	
+							    </a>
+							    
+					    	</div>
+					    
+					    <?php endforeach; ?>
+				    	
+			    	</div>
 			    	
+			    	<div class="contact-us">
+					    
+					    <div class="title">Can we help further?</div>
+					    
+					    <?php echo do_shortcode('[contact-form-7 id="2434" title="Contact us directly" html_class="form contact-directly-form"]');?>
+					    
+				    </div>
 			    	
 		        </div>
 		        
@@ -41,6 +73,8 @@ get_header();?>
 		        </div>
 		        
 		        <div class="faq">
+			        
+			        <h2 class="heading heading__primary-color heading__md brand-line mb1">Frequently Asked Questions</h2>
 			        
 			    <?php
 				    

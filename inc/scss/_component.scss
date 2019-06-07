@@ -215,4 +215,25 @@ a.next-section {
 		color: white;
 	}
 }
+
+div.wpcf7 .main-enquire-form {
+	
+	.ajax-loader {
+		display: block;
+		margin-left: auto;
+	}
+	
+	span.wpcf7-not-valid-tip {
+		color: rgba($brand-primary, 0.6);
+		padding-bottom: 0.5em;
+	}
+	
+	div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
+		background: rgba($brand-primary, 0.4);
+		border: none;
+		padding: 0.5em;
+		margin: 0.5em 0;
+		color: white;
+	}
+}
 	

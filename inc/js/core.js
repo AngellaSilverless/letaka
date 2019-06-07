@@ -123,6 +123,11 @@ $(function() {
 	    $(this).parent().siblings().find(".question").removeClass("opened");
 	    $(this).parent().siblings().find(".answer").slideUp();
     });
+    
+    $(".contact-us .more-info").click(function() {
+	    $(".contact-us .extra-fields").slideDown();
+	    $(".contact-us .submit-button").slideUp();
+    });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
