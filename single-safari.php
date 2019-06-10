@@ -68,7 +68,7 @@ while( have_posts() ) {
        
             <div class="hero__safari-buttons">
                 
-    			<a class="button slide-up" href="">Enquire Now</a>                
+    			<a class="button slide-up" href="<?php echo home_url() . "/enquire-now"; ?>">Enquire Now</a>                
 
     			<a id="self" class="button button__ghost slide-up" href="#self">Learn More</a>    
                 
