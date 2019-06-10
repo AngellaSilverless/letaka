@@ -18,7 +18,7 @@
 				
 				<div class="mb1">Get all the latest updates about safaris, specials & Letaka Safaris news.</div>
 				
-				<?php echo do_shortcode('[contact-form-7 id="2552" title="Newsletter Sign Up" html_class="form form-newsletter"]');?>
+				<?php echo do_shortcode('[contact-form-7 id="2558" title="Newsletter Sign Up" html_class="form form-newsletter"]');?>
 				
 			</div>
 			
