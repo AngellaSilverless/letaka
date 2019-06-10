@@ -249,45 +249,52 @@ while( have_posts() ) {
     
             <h3 class="heading heading__lg heading__section mt1">Map</h3>
     
-    <?php if( have_rows('map', $parent) ):
+			<?php if( have_rows('map', $parent) ):
+				
+			$map_config = array();
     	
-    	$points = array();
-    	
-    	while( have_rows('map', $parent) ): the_row();
-    
-    				//$json_string = file_get_contents ('https://api.postcodes.io/postcodes/'. preg_replace('/\s/', '', get_sub_field('postcode')));
-    				
-    				$json_array = json_decode ($json_string, true);
-    		
-    				if($json_array["status"] == 200):
-    					
-    					array_push($points, array(
-    						'type' => 'Feature',
-    						'geometry' => array(
-    							'type' => 'Point',
-    							'coordinates' => array(
-    								$json_array["result"]["longitude"],
-    								$json_array["result"]["latitude"]
-    							)
-    						),
-    						'properties' => array(
-    							'name'       => get_sub_field('name'),
-    							'address'    => get_sub_field('address'),
-    							'postcode'   => get_sub_field('postcode'),
-    							'phone'      => get_sub_field('phone'),
-    							'website'    => $website,
-    							'directions' => $directions
-    						)
-    					));
+	    	$points = array();
+	    	
+	    	while( have_rows('map', $parent) ): the_row();
+	    	
+	    		if(have_rows('settings')): while(have_rows('settings')): the_row();
+	    			
+	    			$map_config = array(
+		    			"center_lat"  => get_sub_field("lat"),
+		    			"center_long" => get_sub_field("long"),
+		    			"zoom_level"  => get_sub_field("zoom_level"),
+		    			
+	    			);
+	    		
+	    		endwhile; endif;
+	    		
+	    		$points = array();
+	    		
+	    		if(have_rows('markers')): while(have_rows('markers')): the_row();
+		    		
+		    		array_push($points, array(
+						'type' => 'Feature',
+						'geometry' => array(
+							'type' => 'Point',
+							'coordinates' => array(
+								get_sub_field("longtitude"),
+								get_sub_field("latitude")
+							)
+						),
+						'properties' => array(
+							'heading' => get_sub_field('heading'),
+							'detail'  => get_sub_field('detail')
+						)
+					));
+	    		
+	    		endwhile; endif;
+	    				
+	    	endwhile; endif;?>
+	    		
+    		<div class="map-wrapper mb3 h50">
+	    		
+    			<div id='map-itinerary' class="h50" points='<?php echo json_encode($points);?>' config='<?php echo json_encode($map_config);?>'></div>
     			
-    				endif;
-    				
-    			endwhile;
-    				
-    		endif;?>
-    		
-    		<div class="map-wrapper">
-    			<div id='map-contact' points='<?php echo json_encode($points);?>'></div>
     		</div>
     
     		        <h3 class="heading heading__lg heading__section mt1">Safari Accommodation</h3>

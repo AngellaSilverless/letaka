@@ -617,6 +617,11 @@
 		letter-spacing: 0.02em;
 		margin: 0;
 		transition: $fastEffect;
+		
+		&.active {
+			background: grey;
+			color: white;
+		}
 	}
 	
 	.our-details {
@@ -825,7 +830,7 @@
 	}
 }
 
-.page-news, .bespoke-film, .terms-privacy {
+.page-news, .bespoke-film, .terms-privacy, .search-page {
 	p {
 		font-size: 1em;
 	}
@@ -866,10 +871,24 @@
 	}
 }
 
-.terms-privacy, .page-news {
+.terms-privacy, .page-news, .search-page {
 	
 	.sidebar .cta:first-of-type {
 		margin-top: 0;
+	}
+}
+
+.search-page {
+	
+	.align-center {
+		margin: auto;
+	}
+	
+	.wrapper-news {
+		display: grid;
+		grid-template-columns: calc(50% - 1em) calc(50% - 1em);
+		column-gap: 2em;
+		margin: auto;
 	}
 }
 

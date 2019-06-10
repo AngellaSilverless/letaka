@@ -14,7 +14,7 @@ if(!$image) {
 
 <div class="content">
 
-	<span class="font700 heading__secondary-color"><?php echo get_the_date("d.m.Y"); ?></span>
+	<span class="font700 heading__secondary-color"><?php echo get_the_date("d.m.Y") . " - " . get_the_category()[0]->name; ?></span>
 	
 	<h3 class="heading heading__primary-color size2 brand-line"><?php the_title(); ?></h3>
 	

@@ -39,12 +39,15 @@ get_header();?>
 			    <div class="col-10 align-center">
 	        
 			        <?php
-				        
+				    
+				    $category = $_GET['category_name'];
+				    
 					$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 					
 					$query = new WP_Query( array(
 						'posts_per_page' => 5,
-						'paged' => $paged
+						'paged' => $paged,
+						'category_name' => $category
 					) );
 					
 					if ( $query->have_posts() ): while ( $query->have_posts() ) : $query->the_post(); ?>

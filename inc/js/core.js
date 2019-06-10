@@ -389,6 +389,77 @@ var campsMixer = mixitup('#mixitup-gallery', {
 });
 }
 
+
+if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points")) && JSON.parse($("#map-itinerary").attr("config"))) {
+	var config = JSON.parse($("#map-itinerary").attr("config"));
+    var points = JSON.parse($("#map-itinerary").attr("points"));
+    
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsdmVybGVzcyIsImEiOiJjaXNibDlmM2gwMDB2Mm9tazV5YWRmZTVoIn0.ilTX0t72N3P3XbzGFhUKcg';
+    
+	var map = new mapboxgl.Map({
+	    container:  'map-itinerary',
+	    style:      'mapbox://styles/silverless/cjvnw465y0bl91cmionu5nqmo',
+	    center:     [config.center_long, config.center_lat],
+	    zoom:       config.zoom_level, 
+	    scrollZoom: config.zoom_level
+	});
+	
+	map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+	
+	var geocoder = new MapboxGeocoder({
+		accessToken: mapboxgl.accessToken,
+		marker: {
+			color: 'grey'
+		},
+		mapboxgl: mapboxgl,
+		flyTo: false
+	});
+	
+	map.addControl(geocoder, 'bottom-left');
+	
+	var geojson = {
+		type: 'FeatureCollection',
+		features: points
+	};
+	
+	var coorPoints = [];
+	
+	geojson.features.forEach(function(marker) {
+
+		var el = document.createElement('div');
+		el.className = 'marker';
+		
+		new mapboxgl.Marker(el)
+			.setLngLat(marker.geometry.coordinates)
+			.setPopup(new mapboxgl.Popup({
+				offset: 25,
+			})
+			.setHTML(
+		    	'<div class="heading">'    + marker.properties.heading     + '</div>' +
+		    	'<div class="detail">' + marker.properties.detail  + '</div>' ))
+			.addTo(map);
+		
+		el.addEventListener('click', function(e){
+			position = marker.geometry.coordinates[1];
+			map.flyTo({
+			    center: [marker.geometry.coordinates[0], position],
+			    zoom: config.zoom_level
+		    });
+		});
+		
+		coorPoints.push(new mapboxgl.LngLat(marker.geometry.coordinates[0], marker.geometry.coordinates[1]));
+	});
+	
+	$(window).bind('mousewheel DOMMouseScroll', function(event) {
+	    if(event.ctrlKey == true) {
+	        map['scrollZoom'].enable();
+	    }
+	    else {
+	        map['scrollZoom'].disable();
+	    }
+	});
+}
+
 // ========== Add class if in viewport on page load
 
 $.fn.isOnScreen = function(){

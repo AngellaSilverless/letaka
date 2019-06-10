@@ -4,11 +4,23 @@
 	    	
 	<?php
 		
-	$categories = get_categories();
-		
-	foreach($categories as $category): ?>
+	if(is_page(get_page_by_path('about-us/news'))) {
+		$active = "active";
+	} else {
+		$active = "";
+	}
 	
-	<a class="item"><?php echo $category->name; ?></a>
+	$current = $_GET['category_name'];
+	
+	$categories = get_categories();
+	
+	?>
+	
+	<a href="<?php echo home_url() . "/about-us/news/"; ?>" class="item <?php if(!$current) echo $active; ?>">All</a>
+		
+	<?php foreach($categories as $category): ?>
+	
+	<a href="<?php echo home_url() . "/about-us/news/?category_name=" . $category->slug; ?>" class="item <?php if($current == $category->slug) echo $active; ?>"><?php echo $category->name; ?></a>
 	
 	<?php endforeach; ?>
 
