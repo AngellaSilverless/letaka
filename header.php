@@ -108,5 +108,11 @@
                 </nav>
                 
             </header>
+    
+		    <!-- Modal Video -->
+		    
+			<?php get_template_part('template-parts/modal');?>
+			
+			<!-- Modal Video END -->
 
             <main><!--closes in footer.php-->

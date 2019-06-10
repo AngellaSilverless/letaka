@@ -26,7 +26,7 @@ if(!$image) {
 		
 		<?php if(isset($newsletter) && $newsletter == true): ?>
 			
-			<div><a class="button button__secondary-color" href="<?php the_permalink(); ?>">Newsletter Sign Up</a></div>
+			<div><div class="button button__secondary-color modal-toggle newsletter-signup" href="">Newsletter Sign Up</div></div>
 			
 		<?php endif; ?>
 		

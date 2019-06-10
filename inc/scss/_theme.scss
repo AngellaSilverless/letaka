@@ -1154,7 +1154,7 @@
 	}
 }
 
-.contact-us {
+.contact-us, .modal {
 		
 	.form-wrapper {
 		display: block;
@@ -1285,6 +1285,17 @@ body .home-gallery {
 	a {
 		margin-top: 0px;
 		margin-bottom: 5px;
+	}
+}
+
+.modal {
+	.wrapper-button {
+		text-align: right;
+		
+		.button {
+			display: inline-block;
+			padding: 1em 4em;
+		}
 	}
 }
 

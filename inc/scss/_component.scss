@@ -17,9 +17,15 @@
     position: relative;
     vertical-align: middle;
     -webkit-appearance: none;
-    transition: color 0.25s;
+    transition: color 0.5s, border 0.5s, background 0.5s;
     font-weight: 700;
     font-size: 0.9em;
+    cursor: pointer;
+    
+    &:hover {
+	    background: grey;
+	    color: white;
+    }
     
     &__ghost {
         background:transparent;
@@ -49,6 +55,12 @@
 	    background: transparent;
 	    border: 1px solid $brand-secondary;
 	    color: $brand-secondary;
+	    
+	    &:hover {
+		    background: rgba($brand-primary, 0.2);
+		    border: 1px solid $brand-primary;
+		    color: $brand-primary;
+	    }
     }
     
     &__transparent-light {
@@ -61,6 +73,11 @@
 	    background: $brand-secondary;
 	    border: none;
 	    color: white;
+	    
+	    &:hover {
+		    background: rgba($brand-primary, 0.8);
+		    color: white;
+	    }
     }
 }
 
@@ -216,7 +233,7 @@ a.next-section {
 	}
 }
 
-div.wpcf7 .main-enquire-form {
+div.wpcf7 .main-enquire-form, div.wpcf7 .form-newsletter {
 	
 	.ajax-loader {
 		display: block;
@@ -236,13 +253,6 @@ div.wpcf7 .main-enquire-form {
 		color: white;
 	}
 }
-
-
-
-
-
-
-
 
 #map-itinerary {
 	overflow: hidden;
@@ -335,4 +345,115 @@ div.wpcf7 .main-enquire-form {
 .mapboxgl-ctrl-bottom-right {
     right: 2em;
     bottom: 1em;
+}
+
+.modal {
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+    &.is-visible {
+	    visibility: visible;
+	    
+	    .modal-overlay {
+			opacity: 1;
+			visibility: visible;
+			transition-delay: 0s;
+		}
+		
+		.modal-transition {
+			transform: translateY(-50%) translateX(50%);
+			opacity: 1;
+		}
+	}
+	
+	.modal-overlay {
+		position: fixed;
+		z-index: 10;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: hsla(0, 0%, 0%, 0.6);
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0s linear 0.3s, opacity 0.3s;
+	}
+	
+	.modal-wrapper {
+		border-radius: 0.3rem;
+		position: absolute;
+		z-index: 9999;
+		top: 50%;
+		right: 50%;
+		width: 40vw;
+		margin-left: -16em;
+
+		.modal-header {
+            position: absolute;
+            top: 2em;
+            right: 2em;
+            z-index: 999999;
+			
+			.modal-close {
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 1em;
+				color: white;
+				background: none;
+				border: 0;
+				outline: none;
+				cursor: pointer;
+				color: $brand-primary;
+  
+				i {
+					font-size: 1.3em;
+				}
+  
+				&:focus {
+					outline: none;
+				}
+				
+				&:hover {
+					color: $brand-secondary;
+				}
+			}
+			
+			.modal-heading {
+				font-size: 1.125em;
+				margin: 0;
+				color: white;
+				font-family: $body-font;
+				font-weight: 200;
+				text-transform: uppercase;
+			}
+
+		}
+		
+		.modal-content {
+			background: hsl(0, 0%, 96%);
+			color: hsl(69, 2%, 31%);
+			padding: 1em;
+			
+			& > *:first-child {
+				margin-top: 0;
+			}
+			
+			& > *:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	
+	.modal-transition {
+		transition: all 0.3s 0.12s;
+		transform: translateY(-10%) translateX(50%);
+		opacity: 0;
+	}
 }

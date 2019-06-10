@@ -134,6 +134,11 @@ $(function() {
 	    $(".contact-us .extra-fields").slideDown();
 	    $(".contact-us .submit-button").slideUp();
     });
+    
+    $(".modal-toggle").click(function() {
+	    $(".modal").toggleClass("is-visible");
+		$("html").toggleClass("no-scroll");
+    });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
