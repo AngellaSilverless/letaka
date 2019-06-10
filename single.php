@@ -52,7 +52,7 @@ if(!$heroImage) {
 	        
 		    <div class="col-3">
 			    
-			    <div class="sidebar">
+			    <div class="sidebar sticky">
 				    
 				    <a class="title" href="<?php echo home_url() . "/about-us/news"; ?>">Back to News</a>
 		    	
