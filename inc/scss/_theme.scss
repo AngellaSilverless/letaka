@@ -150,10 +150,8 @@
 .our-safaris {
 	
 	.wrapper-actions {
-		display: grid;
-		grid-template-columns: 33.33% 33.33% 33.33%;
 		
-		& > div {
+		.wrapper {
 			@include backgroundCover;
 			height: 50vh;
 			display: flex;
@@ -189,8 +187,6 @@
 .why-letaka {
 	
 	.wrapper-selectors {
-		display: grid;
-		grid-template-columns: 25% 25% 25% 25%;
 		
 		.selector {
 			display: flex;
@@ -260,7 +256,7 @@
 	
 	.wrapper-news {
 		display: grid;
-		grid-template-columns: calc(50% - 1em) calc(50% - 1em);
+		grid-template-columns: 40% calc(60% - 2em);
 		grid-column-gap: 2em;
 	}
 }
@@ -1296,6 +1292,10 @@ body .home-gallery {
 			padding: 1em 4em;
 		}
 	}
+}
+
+.margin-auto {
+	margin: auto;
 }
 
 /*===========FOOTER==========*/

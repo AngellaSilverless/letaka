@@ -44,7 +44,7 @@
 	                
 	                <div class="row pt1 pb1">
 	                
-		                <div class="col-3">
+		                <div class="col-12 col-md-3">
 			                
 			                <div class="brand">
 		        
@@ -58,27 +58,40 @@
 						
 		                </div>
 		                
-		                <div class="col-7">
+		                <div class="col-12 col-md-7">
 	                
 			                <div class="nav-menu">
 			                
 			                	<div class="top-menu">
 				                	
-				                	<div class="search">
+				                	<div class="row">
 					                	
-					                	<i class="fas fa-search"></i>
-					                	
-					                	<form action="/" method="get">
-										    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
-										    <button>Go</button>
-										</form>
-									
-				                	</div>
+					                	<div class="col-5">
 				                	
-				                    <?php wp_nav_menu( array(
-					                    'theme_location' => 'main-menu-t',
-					                    'container_class' => 'mainMenu-top' ) );
-			                    	?>
+						                	<div class="search">
+							                	
+							                	<i class="fas fa-search"></i>
+							                	
+							                	<form action="/" method="get">
+												    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
+												    <button>Go</button>
+												</form>
+											
+						                	</div>
+						                
+					                	</div>
+					                	
+					                	<div class="col-7">
+					                	
+						                    <?php wp_nav_menu( array(
+							                    'theme_location' => 'main-menu-t',
+							                    'container_class' => 'mainMenu-top' ) );
+					                    	?>
+					                    
+					                	</div>
+					                	
+				                	</div>
+					                
 			                	</div>
 			                    
 			                    <?php wp_nav_menu( array(
@@ -90,7 +103,7 @@
 		                
 		                </div>
 		                
-		                <div class="col-2">
+		                <div class="col-12 col-md-2">
 	                
 			                <div class="actions-nav">
 			                
