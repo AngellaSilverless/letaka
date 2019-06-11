@@ -658,10 +658,12 @@ $(window).on('resize scroll', function() {
 		}
 	});
 	
-	if($("#map-itinerary").isInViewport() && !$("#map-itinerary").hasClass("active")) {
-		$("#map-itinerary").addClass("active");
-		loadMapAnimation();
-	}
+	$("#map-itinerary").each(function() {
+		if ($(this).isInViewport() && !$(this).hasClass("active")) {
+			$(this).addClass('active');
+			loadMapAnimation();
+		}
+	});
     
 });
 
