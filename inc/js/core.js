@@ -403,32 +403,17 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsdmVybGVzcyIsImEiOiJjaXNibDlmM2gwMDB2Mm9tazV5YWRmZTVoIn0.ilTX0t72N3P3XbzGFhUKcg';
     
 	var map = new mapboxgl.Map({
-	    container:  'map-itinerary',
-	    style:      'mapbox://styles/silverless/cjvnw465y0bl91cmionu5nqmo',
-	    center:     [config.center_long, config.center_lat],
-	    zoom:       config.zoom_level, 
-	    scrollZoom: config.zoom_level
+		container:  'map-itinerary',
+		style:      'mapbox://styles/silverless/cjvnw465y0bl91cmionu5nqmo',
+		center:     [config.center_long, config.center_lat],
+		zoom:       config.zoom_level, 
+		scrollZoom: config.zoom_level
 	});
-	
-	map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-	
-	var geocoder = new MapboxGeocoder({
-		accessToken: mapboxgl.accessToken,
-		marker: {
-			color: 'grey'
-		},
-		mapboxgl: mapboxgl,
-		flyTo: false
-	});
-	
-	map.addControl(geocoder, 'bottom-left');
 	
 	var geojson = {
 		type: 'FeatureCollection',
 		features: points
 	};
-	
-	var coorPoints = [];
 	
 	geojson.features.forEach(function(marker) {
 
@@ -438,7 +423,7 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 		new mapboxgl.Marker(el)
 			.setLngLat(marker.geometry.coordinates)
 			.setPopup(new mapboxgl.Popup({
-				offset: 25,
+				offset: 0,
 			})
 			.setHTML(
 		    	'<div class="heading">'    + marker.properties.heading     + '</div>' +
@@ -446,24 +431,123 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 			.addTo(map);
 		
 		el.addEventListener('click', function(e){
-			position = marker.geometry.coordinates[1];
 			map.flyTo({
-			    center: [marker.geometry.coordinates[0], position],
+			    center: [marker.geometry.coordinates[0], marker.geometry.coordinates[1]],
 			    zoom: config.zoom_level
 		    });
 		});
-		
-		coorPoints.push(new mapboxgl.LngLat(marker.geometry.coordinates[0], marker.geometry.coordinates[1]));
 	});
 	
-	$(window).bind('mousewheel DOMMouseScroll', function(event) {
-	    if(event.ctrlKey == true) {
-	        map['scrollZoom'].enable();
-	    }
-	    else {
-	        map['scrollZoom'].disable();
-	    }
+	map.on("load", function() {
+		if($("#map-itinerary").isOnScreen()) {
+			$("#map-itinerary").addClass("active");
+			loadMapAnimation();
+		}
 	});
+
+}
+
+function loadMapAnimation() {
+	
+	var lengthPoints = $(".marker").length;
+	
+	var geojsonLine = {
+		"type": "FeatureCollection",
+		"features": [{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": []
+			}
+		}]
+	};
+      
+    $(".marker").addClass("visible");
+    
+    //Line
+    map.addLayer({
+		'id': 'line-animation',
+		'type': 'line',
+		'source': {
+			'type': 'geojson',
+			'data': geojsonLine
+		},
+		'layout': {
+			'line-cap': 'round',
+			'line-join': 'round'
+		},
+		'paint': {
+			'line-color': '#ffffff',
+			'line-width': 3,
+			'line-dasharray': [2, 2],
+		}
+    });
+
+    var lineCoordinates = [];
+	var speedFactor = 100;
+	
+	for(var startPoint = 0; startPoint < lengthPoints; startPoint++) {
+		
+		var endPoint = startPoint + 1;
+		
+		if(startPoint == (lengthPoints - 1)) {
+			endPoint = 0;
+		}
+		
+		var diffX = points[endPoint].geometry.coordinates[0] - points[startPoint].geometry.coordinates[0];
+		var diffY = points[endPoint].geometry.coordinates[1] - points[startPoint].geometry.coordinates[1];
+		
+		var sfX = diffX / speedFactor;
+		var sfY = diffY / speedFactor;
+		
+		var i = 0; j = 0;
+		
+		lineCoordinates[startPoint] = [];
+		
+		while ((diffX > 0 && i < diffX) || (diffX < 0 && i > diffX) || Math.abs(j) < Math.abs(diffY)) {
+			lineCoordinates[startPoint].push([points[startPoint].geometry.coordinates[0] + i, points[startPoint].geometry.coordinates[1] + j]);
+			
+			if(diffX > 0) {
+				if (i < diffX) {
+					i += sfX;
+				}
+			} else {
+				if (i > diffX) {
+					i += sfX;
+				}
+			}
+			
+			
+			if (Math.abs(j) < Math.abs(diffY)) {
+				j += sfY;
+			}
+		}
+	}
+	
+	var animationCounter = 0;
+	var pointCounter = 0;
+
+	function animateLine() {
+	
+		if(pointCounter < lengthPoints) {
+			
+			if (animationCounter < lineCoordinates[pointCounter].length) {
+				geojsonLine.features[0].geometry.coordinates.push(lineCoordinates[pointCounter][animationCounter]);
+				map.getSource('line-animation').setData(geojsonLine);
+
+				animationCounter++;
+				
+				requestAnimationFrame(animateLine);
+	        } else {
+		        animationCounter = 0;
+		        pointCounter++;
+		        requestAnimationFrame(animateLine);
+	        }
+	    }
+    }
+
+    animateLine();
+
 }
 
 if($('.gallery').length) {
@@ -573,6 +657,11 @@ $(window).on('resize scroll', function() {
 			$(this).addClass('active');    
 		}
 	});
+	
+	if($("#map-itinerary").isInViewport() && !$("#map-itinerary").hasClass("active")) {
+		$("#map-itinerary").addClass("active");
+		loadMapAnimation();
+	}
     
 });
 

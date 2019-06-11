@@ -260,8 +260,8 @@ while( have_posts() ) {
 	    		if(have_rows('settings')): while(have_rows('settings')): the_row();
 	    			
 	    			$map_config = array(
-		    			"center_lat"  => get_sub_field("lat"),
-		    			"center_long" => get_sub_field("long"),
+		    			"center_lat"  => floatval(get_sub_field("lat")),
+		    			"center_long" => floatval(get_sub_field("long")),
 		    			"zoom_level"  => get_sub_field("zoom_level"),
 		    			
 	    			);
@@ -277,8 +277,8 @@ while( have_posts() ) {
 						'geometry' => array(
 							'type' => 'Point',
 							'coordinates' => array(
-								get_sub_field("longtitude"),
-								get_sub_field("latitude")
+								floatval(get_sub_field("longtitude")),
+								floatval(get_sub_field("latitude"))
 							)
 						),
 						'properties' => array(

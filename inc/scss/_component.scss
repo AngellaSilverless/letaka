@@ -266,6 +266,13 @@ div.wpcf7 .main-enquire-form, div.wpcf7 .form-newsletter {
 		border: 5px solid rgba($brand-primary, 0.75);
 		border-radius: 50%;
 		cursor: pointer;
+		position: absolute;
+		opacity: 0;
+		transition: opacity 0.5s ease;
+		
+		&.visible {
+			opacity: 1;
+		}
 	}
 	
 	.mapboxgl-ctrl-bottom-left {
@@ -279,6 +286,7 @@ div.wpcf7 .main-enquire-form, div.wpcf7 .form-newsletter {
 	}
 	
 	.mapboxgl-popup {
+		margin-top: 6em;
 		max-width: 300px;
 	}
 	
