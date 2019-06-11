@@ -438,6 +438,15 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 		});
 	});
 	
+	$(window).bind('mousewheel DOMMouseScroll', function(event) {
+	    if(event.ctrlKey == true) {
+	        map['scrollZoom'].enable();
+	    }
+	    else {
+	        map['scrollZoom'].disable();
+	    }
+	});
+	
 	map.on("load", function() {
 		if($("#map-itinerary").isOnScreen()) {
 			$("#map-itinerary").addClass("active");
@@ -446,6 +455,8 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 	});
 
 }
+
+// ========== Map Load Animation
 
 function loadMapAnimation() {
 	
@@ -549,6 +560,8 @@ function loadMapAnimation() {
     animateLine();
 
 }
+
+// ========== Magnific Popup Gallery
 
 if($('.gallery').length) {
 
