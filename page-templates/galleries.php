@@ -22,59 +22,62 @@ get_header();?>
     
         <div class="row mixitup-gallery">
 	        
-		    <div class="col-3">
+		   <div class="col-12 col-lg-4 col-xl-3 order-sidebar">
 			    
 			    <div class="sidebar sticky">
 		    	
 		    		<div class="filter">
 				        
-				        <div class="title">Filter</div>
+				        <div class="title">Filter<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 				        
-				        <fieldset>
-					        
-					        <div class="label">Galleries<i class="fas fa-chevron-down"></i></div>
-					        
-					        <div class="wrapper-radio galleries">
+				        <div>
+					        <fieldset>
 						        
-						        <div>
-							        <div class="radio control mixitup-control mixitup-control-active" data-filter="all">
-								        <input type="radio" value="all" name="gallery-selector" checked/>
-										<label>All</label>
+						        <div class="label">Galleries<i class="fas fa-chevron-down"></i></div>
+						        
+						        <div class="wrapper-radio galleries">
+							        
+							        <div>
+								        <div class="radio control mixitup-control mixitup-control-active" data-filter="all">
+									        <input type="radio" value="all" name="gallery-selector" checked/>
+											<label>All</label>
+								        </div>
 							        </div>
+							        
+						        <?php
+		
+								$galleries = get_field("galleries");
+								
+								foreach($galleries as &$gallery):
+									
+									$className = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($gallery["title"]));
+									
+									$gallery["className"] = $className;
+									
+									?>
+								    
+								    <div>
+								        <div class="radio control mixitup-control" data-filter="<?php echo "." . $className; ?>">
+									        <input type="radio" value="<?php echo $className; ?>" name="gallery-selector"/>
+											<label><?php echo $gallery["title"]; ?></label>
+								        </div>
+							        </div>
+								    
+								<?php endforeach; ?>
+							        
 						        </div>
 						        
-					        <?php
-	
-							$galleries = get_field("galleries");
-							
-							foreach($galleries as &$gallery):
-								
-								$className = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($gallery["title"]));
-								
-								$gallery["className"] = $className;
-								
-								?>
-							    
-							    <div>
-							        <div class="radio control mixitup-control" data-filter="<?php echo "." . $className; ?>">
-								        <input type="radio" value="<?php echo $className; ?>" name="gallery-selector"/>
-										<label><?php echo $gallery["title"]; ?></label>
-							        </div>
-						        </div>
-							    
-							<?php endforeach; ?>
-						        
-					        </div>
-					        
-				        </fieldset>
-				    
+					        </fieldset>
+					    
+				        </div>
+					    
 		    		</div>
 			    	
 		        </div>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9 order-content">
 				
 				<div class="gallery" data-ref="mixitup-container">
 					

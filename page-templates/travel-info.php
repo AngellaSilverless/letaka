@@ -22,7 +22,7 @@ get_header();?>
     
         <div class="row">
 	        
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 order-sidebar order-sidebar-form">
 
 			    <div class="sidebar">
 		    	
@@ -64,7 +64,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9 order-content order-content-form">
 	        
 		        <div class="main justify mb2">
 			        

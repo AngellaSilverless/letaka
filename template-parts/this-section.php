@@ -1,6 +1,6 @@
 <div class="this-section">
 	
-	<div class="title">This section</div>
+	<div class="title">This section<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 	    	
 	<div class="links">
 		

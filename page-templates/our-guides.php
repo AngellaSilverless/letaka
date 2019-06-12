@@ -22,7 +22,7 @@ get_header();?>
     
         <div class="row">
 	        
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 			    
 			    <div class="sidebar sticky">
 		    	
@@ -32,7 +32,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9">
 	        
 			    <?php
 				
@@ -62,9 +62,9 @@ get_header();?>
 						
 						<div class="row">
     						
-    						<div class="col-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
+    						<div class="col-12 col-xl-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
     						
-    						<div class="col-8">
+    						<div class="col-12 col-xl-8">
         						
         					<?php the_field('description', $guide->taxonomy . '_' . $guide->term_id);?>	
 

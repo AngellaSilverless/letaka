@@ -175,6 +175,12 @@ header {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		
+		&.big {
+			a {
+				height: 7em;
+			}
+		}
         
         a {
             display: block;
@@ -187,6 +193,10 @@ header {
                 height: 100%;    
             }
         }
+    }
+    
+    .menu-toggle {
+	    display: none;
     }
     
 }
@@ -278,7 +288,11 @@ nav {
 		    li {
 				display: inline-block;
 				font-size: 0.8em;
-				padding: 0.5em 0 0.5em 4em;
+				padding: 0.5em 0;
+				
+				&:not(:first-of-type) {
+					padding-left: 4em;
+				}
 			}
 	    }
 	    

@@ -45,9 +45,9 @@ get_header();?>
     
         <div class="row">
 	        
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 order-cta order-cta-only">
 			    
-			    <div class="sidebar">
+			    <div class="call-to-action">
 		    	
 			    	<?php get_template_part("template-parts/cta", "find-safari"); ?>
 			    	
@@ -61,13 +61,13 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9 order-content">
 	        
 		        <h3 class="heading heading__lg heading__primary-color brand-line">Your search: <span class="heading__secondary-color"><?php the_search_query(); ?></span></h3>
 		    	
 		    	<div class="row mt2">
 			    	
-			    	<div class="col-10 align-center">
+			    	<div class="col-12 col-xl-10 align-center">
 			    	
 				    	<?php
 					    

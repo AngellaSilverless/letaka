@@ -32,7 +32,7 @@ get_header();?>
 					
 					foreach ($actions as $action): $backgroundImage = $action["background_image"]; ?>
 					
-					<div class="col-4">
+					<div class="col-12 col-sm-6 col-xl-4">
 					
 						<div class="wrapper" style="background: url(<?php echo $backgroundImage["url"]; ?>);">
 							
@@ -60,7 +60,7 @@ get_header();?>
 			
 			<div class="row">
 				
-				<div class="col-8 margin-auto">
+				<div class="col-12 col-lg-10 col-xl-8 margin-auto">
 			
 					<div class="wrapper-selectors mt4">
 						
@@ -131,7 +131,7 @@ get_header();?>
 			
 			<div class="row">
 				
-				<div class="col-8 margin-auto">
+				<div class="col-12 col-lg-10 col-xl-8 margin-auto">
 			
 					<div class="wrapper-news pt2 pb6">
 						<?php

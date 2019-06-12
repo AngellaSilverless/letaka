@@ -86,27 +86,42 @@ while( have_posts() ) {
 <!-- ******************* Hero Content END ******************* -->
 
     <div class="container pt3 pb3">
-    
-        <div class="row">
-        
-        
-        
-            <div class="col-4">
-                
-            <div class="sidebar sticky">
+	    
+	    <div class="row">
             
-                <div class="title">SAFARI DETAILS</div>
-                
-                <?php wp_nav_menu( array(
-                    'theme_location' => 'safari',
-                    'menu_class' => 'safari sidebar-menu' ) );
-                ?>
-            
-        </div><!--sidebar-->
+            <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
+
+			    <div class="sidebar sticky toggle-item">
+				    	
+			    	<div class="title">Safari Details<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
+			    	
+			    	<div>
+			    	
+				    	<?php 
+						
+						if(($locations = get_nav_menu_locations() ) && isset( $locations[ "safari" ])):
+							
+						$menu_countries = wp_get_nav_menu_object( $locations[ "safari" ] );
+						
+						$menu_items = wp_get_nav_menu_items($menu_countries);
+			        
+						foreach($menu_items as $menu_item): ?>
+			        
+						<div class="item">
+					    	
+					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?></a>
+						    
+				    	</div>
+				        
+				        <?php endforeach; endif; ?>
+				    
+			    	</div>
+			    	
+			    </div>
+			    
+            </div>
         
-        </div>
-        
-            <div class="col-8">
+            <div class="col-12 col-lg-8 col-xl-9">
     
             <h3 class="heading heading__lg heading__section">Overview</h3>
             
@@ -145,7 +160,7 @@ while( have_posts() ) {
     
             <div class="row mb2">
                 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
             
                     <div class="safari-includes list">
                         
@@ -156,7 +171,8 @@ while( have_posts() ) {
                     </div>
                 </div>
                 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
+	                
                     <div class="safari-excludes list">
                         
                          <h2 class="heading heading__md mb1">Excluded In This Safari</h2>   
@@ -171,7 +187,7 @@ while( have_posts() ) {
     
             <div class="row">
                 
-                <div class="col-8">
+                <div class="col-12 col-md-8">
     
             <div class="safari-payment list">
                 
@@ -197,49 +213,49 @@ while( have_posts() ) {
                 <? if( have_rows('days', $parent) ): 
                 while( have_rows('days', $parent) ): the_row();   ?>
     
-    <div class="row mb3">
-        
-        <div class="col-4 daily-activity__day-meta">
-        
-            <p class="heading heading__sm">
-                <?php the_sub_field('day');?>
-            </p>
-            
-            <p><i class="fas fa-map-marker-alt">
-                </i> 
-                <?php the_sub_field('location');?>
-            </p>
-            
-            <p>
-                <i class="fas fa-campground"></i> 
-                <?php the_sub_field('accommodation');?>
-            </p>    
-        
-            <? if( have_rows('highlights', $parent) ): 
-            while( have_rows('highlights', $parent) ): the_row();?>                
-               
-                <p>
-                    <img src="<?php the_sub_field('icon');?>"/>
-                    <?php the_sub_field('detail');?>
-                </p>   
-                    
-            <?php endwhile; endif;?>    
-            
-        </div><!--col-->         
-        
-        <div class="col-8">
-        
-            <p class="heading heading__sm">
-                <?php the_sub_field('heading');?>
-            </p>                      
-            
-            <p>
-                <?php the_sub_field('copy');?>
-            </p>          
-        
-        </div><!--col-->        
-    
-    </div><!--r-->
+			    <div class="row mb3">
+			        
+			        <div class="col-12 col-sm-4 daily-activity__day-meta">
+			        
+			            <p class="heading heading__sm">
+			                <?php the_sub_field('day');?>
+			            </p>
+			            
+			            <p><i class="fas fa-map-marker-alt">
+			                </i> 
+			                <?php the_sub_field('location');?>
+			            </p>
+			            
+			            <p>
+			                <i class="fas fa-campground"></i> 
+			                <?php the_sub_field('accommodation');?>
+			            </p>    
+			        
+			            <? if( have_rows('highlights', $parent) ): 
+			            while( have_rows('highlights', $parent) ): the_row();?>                
+			               
+			                <p>
+			                    <img src="<?php the_sub_field('icon');?>"/>
+			                    <?php the_sub_field('detail');?>
+			                </p>   
+			                    
+			            <?php endwhile; endif;?>    
+			            
+			        </div><!--col-->         
+			        
+			        <div class="col-12 col-sm-8">
+			        
+			            <p class="heading heading__sm">
+			                <?php the_sub_field('heading');?>
+			            </p>                      
+			            
+			            <p>
+			                <?php the_sub_field('copy');?>
+			            </p>          
+			        
+			        </div><!--col-->        
+			    
+			    </div><!--r-->
                        
                 <?php endwhile; endif;?>            
     
@@ -306,7 +322,7 @@ while( have_posts() ) {
     		
     		            <div class="row">
     		    
-    		                 <div class="col-6">
+    		                 <div class="col-12 col-md-6">
     		    
     		                    <?php
     		                    $images = get_sub_field('gallery');
@@ -326,7 +342,7 @@ while( have_posts() ) {
     		                    
     		                </div><!--col-->
     		                
-    		                <div class="col-6">
+    		                <div class="col-12 col-md-6">
     		                    
     		                    <?php the_sub_field('copy');?>  
     		                    
@@ -350,11 +366,11 @@ while( have_posts() ) {
     		
     		<div class="row">
     		 
-    		<div class="col-4">
+    		<div class="col-12 col-sm-4">
     		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
     		</div>
     		
-    		<div class="col-8">
+    		<div class="col-12 col-sm-8">
     		    <p><?php the_sub_field('copy');?></p> 
     		</div> 
     		    

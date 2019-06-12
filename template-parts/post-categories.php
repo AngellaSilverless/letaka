@@ -1,6 +1,6 @@
 <div class="post-categories mt2">
 	
-	<div class="title">Categories</div>
+	<div class="title">Categories<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 	    	
 	<?php
 		
@@ -16,12 +16,16 @@
 	
 	?>
 	
-	<a href="<?php echo home_url() . "/about-us/news/"; ?>" class="item <?php if(!$current) echo $active; ?>">All</a>
+	<div class="links">
 		
-	<?php foreach($categories as $category): ?>
+		<a href="<?php echo home_url() . "/about-us/news/"; ?>" class="item <?php if(!$current) echo $active; ?>">All</a>
+			
+		<?php foreach($categories as $category): ?>
+		
+		<a href="<?php echo home_url() . "/about-us/news/?category_name=" . $category->slug; ?>" class="item <?php if($current == $category->slug) echo $active; ?>"><?php echo $category->name; ?></a>
+		
+		<?php endforeach; ?>
 	
-	<a href="<?php echo home_url() . "/about-us/news/?category_name=" . $category->slug; ?>" class="item <?php if($current == $category->slug) echo $active; ?>"><?php echo $category->name; ?></a>
-	
-	<?php endforeach; ?>
+	</div>
 
 </div>

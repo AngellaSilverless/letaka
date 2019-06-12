@@ -15,7 +15,7 @@
 			    
 			    <div class="row">
 				    
-				    <div class="col-8">
+				    <div class="col-12 col-lg-9 col-xl-8">
 		    
 				        <div class="quick-contact pt3 pb3">
 				            
@@ -44,7 +44,7 @@
 				        
 				    </div>
 				    
-				    <div class="col-4 pl6">
+				    <div class="col-12 col-lg-3 col-xl-4 pl6 wrapper-quick-links">
 			        
 				        <div class="quick-links pt3 pb3">
 				                

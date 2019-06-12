@@ -22,7 +22,7 @@ get_header();?>
 	    
 	    <div class="row">
 	        
-		    <div class="col-lg-3">
+		    <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 			    
 			    <div class="sidebar sticky">
 		    	
@@ -32,13 +32,13 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-lg-9">
+		    <div class="col-12 col-lg-8 col-xl-9">
 	        
 			    <div class="row">
 			    
 			    <?php if(have_rows("team")): while(have_rows("team")): the_row(); ?>
 		
-				    <div class="col-6">
+				    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
 
                         <div class="team-member">
                         

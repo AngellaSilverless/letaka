@@ -44,21 +44,40 @@
 	                
 	                <div class="row pt1 pb1">
 	                
-		                <div class="col-12 col-md-3">
+		                <div class="col-12 col-lg-3 menu-header">
 			                
-			                <div class="brand">
-		        
-								<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
+			                <div class="row">
+				                
+				                <div class="col-3 col-lg-0 row-toggle">
+			                
+					                <div class="menu-toggle">
+				        
+										<i class="fas fa-bars icon-open"></i>
+										<i class="fas fa-times icon-close"></i>
+									
+									</div>
 								
-									<img src="<?php echo get_field("logo", "options")["url"]; ?>">
+				                </div>
+				                
+				                <div class="col-9 col-lg-12 row-brand">
+				                
+					                <div class="brand">
+				        
+										<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
+										
+											<img src="<?php echo get_field("logo", "options")["url"]; ?>">
+										
+										</a>
+									
+									</div>
 								
-								</a>
+				                </div>
 							
-							</div>
+			                </div>
 						
 		                </div>
 		                
-		                <div class="col-12 col-md-7">
+		                <div class="col-12 col-md-7 menu-body">
 	                
 			                <div class="nav-menu">
 			                
@@ -66,7 +85,7 @@
 				                	
 				                	<div class="row">
 					                	
-					                	<div class="col-5">
+					                	<div class="col-12 col-md-5">
 				                	
 						                	<div class="search">
 							                	
@@ -81,7 +100,7 @@
 						                
 					                	</div>
 					                	
-					                	<div class="col-7">
+					                	<div class="col-12 col-md-7">
 					                	
 						                    <?php wp_nav_menu( array(
 							                    'theme_location' => 'main-menu-t',
@@ -103,7 +122,7 @@
 		                
 		                </div>
 		                
-		                <div class="col-12 col-md-2">
+		                <div class="col-12 col-md-2 menu-body">
 	                
 			                <div class="actions-nav">
 			                

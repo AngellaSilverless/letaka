@@ -22,212 +22,232 @@ get_header();?>
 	    
 	    <div class="row">
 		    
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 order-sidebar">
     
 		        <div class="sidebar">
 			        
 			        <div class="filter">
 				        
-				        <div class="title">Filter</div>
+				        <div class="title">Filter<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 				        
-				        <fieldset>
-					        
-					        <div class="label">By Location<i class="fas fa-chevron-down"></i></div>
-					        
-					        <div class="wrapper-checkbox destination">
-						        
-						        <?php
-							    
-							    $locations = get_terms(array(
-								    "taxonomy"   => "destinations",
-								    "hide_empty" => false,
-								    "parent"     => 0,
-								    "orderby"    => "name"
-								));
-							    
-							    foreach ($locations as $location): ?>
-							    
-							    <div>
-							        <div class="checkbox">
-								        <input type="checkbox" value="<?php echo $location->slug; ?>"/>
-										<label><?php echo $location->name; ?></label>
-							        </div>
-						        </div>
-							    
-							    <?php endforeach; ?>
-						        
-					        </div>
-					        
-				        </fieldset>
+				        <div>
 				        
-				        <fieldset>
-					        
-					        <div class="label">By Style<i class="fas fa-chevron-down"></i></div>
-					        
-					        <div class="wrapper-checkbox style">
+					        <fieldset>
 						        
-						        <?php
-							    
-							    $styles = get_terms(array(
-								    "taxonomy"   => "style",
-								    "hide_empty" => false,
-								    "parent"     => 0,
-								    "orderby"    => "name"
-								));
-							    
-							    foreach ($styles as $style): ?>
-							    
-							    <div>
-							        <div class="checkbox">
-								        <input type="checkbox" value="<?php echo $style->slug; ?>"/>
-										<label><?php echo $style->name; ?></label>
-							        </div>
-						        </div>
-							    
-							    <?php endforeach; ?>
+						        <div class="label">By Location<i class="fas fa-chevron-down"></i></div>
 						        
-					        </div>
-					        
-				        </fieldset>
-				        
-				        <fieldset>
-					        
-					        <div class="label">By Date<i class="fas fa-chevron-down closed"></i></div>
-					        
-					        <div class="wrapper-checkbox dates" style="display:none">
-						        
-						        <?php
+						        <div class="wrapper-checkbox destination">
 							        
-							    $months = ["jan", "fev", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-							    
-							    for($i = 0; $i < sizeof($months); $i++): ?>
-							    
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" value="<?php echo ($i + 1); ?>"/>
-										<label><?php echo ucfirst($months[$i]); ?></label>
+							        <?php
+								    
+								    $locations = get_terms(array(
+									    "taxonomy"   => "destinations",
+									    "hide_empty" => false,
+									    "parent"     => 0,
+									    "orderby"    => "name"
+									));
+								    
+								    foreach ($locations as $location): ?>
+								    
+								    <div>
+								        <div class="checkbox">
+									        <input type="checkbox" value="<?php echo $location->slug; ?>"/>
+											<label><?php echo $location->name; ?></label>
+								        </div>
 							        </div>
-						        </div>
-						        
-						        <?php endfor; ?>
-					        </div>
-					        
-				        </fieldset>
-				        
-				        <fieldset>
-					        
-					        <div class="label">By Availability<i class="fas fa-chevron-down closed"></i></div>
-					        
-					        <div class="wrapper-checkbox availability" style="display:none">
-							    
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" min-avail="1" max-avail="2"/>
-										<label>1 - 2 spaces</label>
-							        </div>
-						        </div>
-						        
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" min-avail="3" max-avail="5"/>
-										<label>3 - 5 spaces</label>
-							        </div>
-						        </div>
-						        
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" min-avail="6" max-avail="8"/>
-										<label>6 - 8 spaces</label>
-							        </div>
-						        </div>
-						        
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" min-avail="8"/>
-										<label>More than 8 spaces</label>
-							        </div>
-						        </div>
-					        </div>
-					        
-				        </fieldset>
-				        
-				        <fieldset>
-					        
-					        <div class="label">By Price<i class="fas fa-chevron-down closed"></i></div>
-					        
-					        <div class="wrapper-checkbox price" style="display:none">
-						        
-						        <?php 
-							    
-						        if(have_rows("filter_by_price_option", "options")):
-						        
-						        while(have_rows("filter_by_price_option", "options")):
-						        
-						        the_row();
-						        
-						        function formatPrice($price) {
-							        return "$" . number_format($price, 2);
-						        }
+								    
+								    <?php endforeach; ?>
 							        
-							    ?>
-							    
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" max-price="<?php echo get_sub_field("less_than"); ?>"/>
-										<label>Less than <?php echo formatPrice(get_sub_field("less_than")); ?></label>
-							        </div>
 						        </div>
 						        
-						        <div>
-							        <div class="checkbox">
-								        <?php
-									        
-								        $minPrice = get_sub_field("low_range")["from"];
-								        $maxPrice = get_sub_field("low_range")["to"];
-								        
-									    ?>
-								        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
-										<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
-							        </div>
-						        </div>
-						        
-						        <div>
-							        <div class="checkbox">
-								        <?php
-									        
-								        $minPrice = get_sub_field("mid_range")["from"];
-								        $maxPrice = get_sub_field("mid_range")["to"];
-								        
-									    ?>
-								        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
-										<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
-							        </div>
-						        </div>
-						        
-						        <div>
-							        <div class="checkbox">
-								        <input type="checkbox" min-price="<?php echo get_sub_field("more_than"); ?>"/>
-										<label>More than <?php echo formatPrice(get_sub_field("more_than")); ?></label>
-							        </div>
-						        </div>
-						        
-						        <?php endwhile; endif; ?>
-						        
-					        </div>
+					        </fieldset>
 					        
-				        </fieldset>
+					        <fieldset>
+						        
+						        <div class="label">By Style<i class="fas fa-chevron-down"></i></div>
+						        
+						        <div class="wrapper-checkbox style">
+							        
+							        <?php
+								    
+								    $styles = get_terms(array(
+									    "taxonomy"   => "style",
+									    "hide_empty" => false,
+									    "parent"     => 0,
+									    "orderby"    => "name"
+									));
+								    
+								    foreach ($styles as $style): ?>
+								    
+								    <div>
+								        <div class="checkbox">
+									        <input type="checkbox" value="<?php echo $style->slug; ?>"/>
+											<label><?php echo $style->name; ?></label>
+								        </div>
+							        </div>
+								    
+								    <?php endforeach; ?>
+							        
+						        </div>
+						        
+					        </fieldset>
+					        
+					        <fieldset>
+						        
+						        <div class="label">By Date<i class="fas fa-chevron-down closed"></i></div>
+						        
+						        <div class="wrapper-checkbox dates" style="display:none">
+							        
+							        <?php
+								        
+								    $months = ["jan", "fev", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+								    
+								    for($i = 0; $i < sizeof($months); $i++): ?>
+								    
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" value="<?php echo ($i + 1); ?>"/>
+											<label><?php echo ucfirst($months[$i]); ?></label>
+								        </div>
+							        </div>
+							        
+							        <?php endfor; ?>
+						        </div>
+						        
+					        </fieldset>
+					        
+					        <fieldset>
+						        
+						        <div class="label">By Availability<i class="fas fa-chevron-down closed"></i></div>
+						        
+						        <div class="wrapper-checkbox availability" style="display:none">
+								    
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" min-avail="1" max-avail="2"/>
+											<label>1 - 2 spaces</label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" min-avail="3" max-avail="5"/>
+											<label>3 - 5 spaces</label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" min-avail="6" max-avail="8"/>
+											<label>6 - 8 spaces</label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" min-avail="8"/>
+											<label>More than 8 spaces</label>
+								        </div>
+							        </div>
+						        </div>
+						        
+					        </fieldset>
+					        
+					        <fieldset>
+						        
+						        <div class="label">By Price<i class="fas fa-chevron-down closed"></i></div>
+						        
+						        <div class="wrapper-checkbox price" style="display:none">
+							        
+							        <?php 
+								    
+							        if(have_rows("filter_by_price_option", "options")):
+							        
+							        while(have_rows("filter_by_price_option", "options")):
+							        
+							        the_row();
+							        
+							        function formatPrice($price) {
+								        return "$" . number_format($price, 2);
+							        }
+								        
+								    ?>
+								    
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" max-price="<?php echo get_sub_field("less_than"); ?>"/>
+											<label>Less than <?php echo formatPrice(get_sub_field("less_than")); ?></label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <?php
+										        
+									        $minPrice = get_sub_field("low_range")["from"];
+									        $maxPrice = get_sub_field("low_range")["to"];
+									        
+										    ?>
+									        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
+											<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <?php
+										        
+									        $minPrice = get_sub_field("mid_range")["from"];
+									        $maxPrice = get_sub_field("mid_range")["to"];
+									        
+										    ?>
+									        <input type="checkbox" min-price="<?php echo $minPrice; ?>" max-price="<?php echo $maxPrice; ?>"/>
+											<label><?php echo formatPrice($minPrice) . ' - ' . formatPrice($maxPrice); ?></label>
+								        </div>
+							        </div>
+							        
+							        <div>
+								        <div class="checkbox">
+									        <input type="checkbox" min-price="<?php echo get_sub_field("more_than"); ?>"/>
+											<label>More than <?php echo formatPrice(get_sub_field("more_than")); ?></label>
+								        </div>
+							        </div>
+							        
+							        <?php endwhile; endif; ?>
+							        
+						        </div>
+						        
+					        </fieldset>
+					    
+				        </div>
 				        
 			        </div>
 			        
+		        </div>
+		        
+		        <div class="call-to-action hidden-small">
+				    
 			        <?php get_template_part("template-parts/cta", "film-locations"); ?>
 			        
 			        <?php get_template_part("template-parts/cta", "bespoke-experiences"); ?>
-			        
-		        </div>
+				    
+			    </div>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-4 col-xl-3 order-cta hidden-large">
+			    
+			    <div class="call-to-action">
+				    
+			        <?php get_template_part("template-parts/cta", "film-locations"); ?>
+			        
+			        <?php get_template_part("template-parts/cta", "bespoke-experiences"); ?>
+				    
+			    </div>
+			    
+		    </div>
+		    
+		    <div class="col-12 col-lg-8 col-xl-9 order-content">
 		        
 		        <div class="results">
 			        

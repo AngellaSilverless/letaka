@@ -16,25 +16,41 @@ get_header();?>
 
 <?php endif;?>
 
-    <div class="container">
+    <div class="container pt4">
     
         <div class="row">
             
-            <div class="col-4 sidebar mt3">
-                
-                <div class="sticky">
-                
-                <div class="title">Countries</div>
-                
-                        <?php wp_nav_menu( array(
-            'theme_location' => 'destinations',
-            'menu_class' => 'destination sidebar-menu' ) );
-        ?>
-                </div>
-                
-            </div><!--col-->
+            <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
+
+			    <div class="sidebar sticky toggle-item">
+				    	
+			    	<div class="title">Countries<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
+			    	
+			    	<div>
+				    	<?php 
+						
+						if(($locations = get_nav_menu_locations() ) && isset( $locations[ "destinations" ])):
+							
+						$menu_countries = wp_get_nav_menu_object( $locations[ "destinations" ] );
+						
+						$menu_items = wp_get_nav_menu_items($menu_countries);
+			        
+						foreach($menu_items as $menu_item): ?>
+			        
+						<div class="item">
+					    	
+					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?></a>
+						    
+				    	</div>
+				        
+				        <?php endforeach; endif; ?>
+			    	</div>
+			    	
+			    </div>
+			    
+            </div>
             
-            <div class="col-8 mt3">
+            <div class="col-12 col-lg-8 col-xl-9">
 
 <?php
 

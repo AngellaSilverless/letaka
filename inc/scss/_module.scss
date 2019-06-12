@@ -341,24 +341,24 @@ body .gallery {
         
         a {
             
-            &:nth-of-type(1){
+            &:nth-of-type(4n - 3){
                 flex: calc(65% - 5px);
                 margin-right: 5px;
             }
             
-            &:nth-of-type(2){
+            &:nth-of-type(4n - 2){
                 flex: calc(35% - 5px);
                 margin-right: 5px;
             }
             
-            &:nth-of-type(3){
-                flex: calc(28% - 5px);
+            &:nth-of-type(4n - 1){
+                flex: calc(31% - 5px);
                 margin-right: 5px;
             }        
     
-            &:nth-of-type(4) {
-    	        flex: 50%;
-            margin-right: 5px;
+            &:nth-of-type(4n) {
+    	        flex: calc(69% - 5px);
+				margin-right: 5px;
             }            
         }
     }

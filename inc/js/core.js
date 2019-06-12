@@ -92,7 +92,7 @@ $(function() {
 	    $(".action").removeClass("active");
 	    $(".action." + $(this).attr("name")).addClass("active");
 	    
-	    $(this).siblings().removeClass("active");
+	    $(this).parent().siblings().find(".selector").removeClass("active");
 	    $(this).addClass("active");
     });
     
@@ -106,21 +106,33 @@ $(function() {
     });
     
     $(".wrapper-countries .country").click(function() {
+	    $(this).parent().siblings().find(".country").removeClass("opened");
+	    $(this).parent().siblings().find(".wrapper-agents").slideUp();
 	    $(this).next().slideToggle();
 	    $(this).toggleClass("opened");
     });
     
     $(".wrapper-guides .guide").click(function() {
 	    $(this).parent().siblings().find(".guide").removeClass("opened");
-	    $(this).parent().siblings().find(".info").slideUp();
 	    $(this).toggleClass("opened");
-	    $(this).next().slideToggle("slow","swing", function(){
+	    
+	    var self = $(this);
+	    var height = 0;
+	    
+	    $(this).parent().siblings().find(".info").slideUp();
+	    
+	    if(checkWidth(992))
+	    	height = 120;
+	    else
+	    	height = 90;
+	    
+	    setTimeout(function(){
 		    $('html, body').animate({
-				scrollTop: $(this).offset().top - $("nav").height() - 90
-			}, 500);
-		});
-	    
-	    
+				scrollTop: self.offset().top - $("nav").height() - height
+			}, 300);
+			
+			self.next().slideToggle();
+	    }, 500);
     });
     
     $(".wrapper-questions .question").click(function() {
@@ -138,6 +150,12 @@ $(function() {
     $(".modal-toggle").click(function() {
 	    $(".modal").toggleClass("is-visible");
 		$("html").toggleClass("no-scroll");
+    });
+    
+    $(".menu-toggle").click(function() {
+	    $(".menu-body").slideToggle();
+	    $(this).toggleClass("opened");
+	    $(".brand").toggleClass("big");
     });
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
@@ -679,6 +697,29 @@ $(window).on('resize scroll', function() {
 	});
     
 });
+
+// ========== Specific functions on smaller screens
+
+$(".sidebar .title").click(function() {
+	if(checkWidth(992)) {
+		$(this).next().slideToggle();
+		$(this).toggleClass("opened");
+	}
+});
+
+$(document).bind("mousedown touchstart", function(e){
+	if(checkWidth(992)) {
+		var container = $('.sidebar');
+		if (!container.is(e.target) && container.has(e.target).length === 0) {
+			$(".sidebar .links").slideUp();
+			$(".sidebar .title").removeClass("opened");
+		}
+	}
+});
+
+function checkWidth(pixels) {
+	return window.matchMedia("only screen and (max-width: " + pixels + "px)").matches;
+}
 
 });//Don't remove ---- end of jQuery wrapper
 

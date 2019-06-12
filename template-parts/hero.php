@@ -19,7 +19,7 @@
 			
 			<div>
 			
-				<img class="slide-right" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">
+				<img class="slide-right img-logo" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">
 				
 				<h1 class="heading heading__xl heading__light center slide-down"><?php the_field( 'hero_heading' );?></h1>
 			
