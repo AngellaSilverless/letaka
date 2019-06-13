@@ -1189,7 +1189,7 @@
 	}
 }
 
-.contact-us, .modal {
+.contact-us, .modal-newsletter {
 		
 	.form-wrapper {
 		display: block;
@@ -1330,6 +1330,26 @@ body .home-gallery {
 		.button {
 			display: inline-block;
 			padding: 1em 4em;
+		}
+	}
+}
+
+.modal-video {
+	
+	.modal-wrapper {
+		width: 90vw;
+	
+		.modal-header {
+			border: none;
+			
+			.modal-close {
+				color: white;
+				text-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.5);
+			}
+		}
+		
+		video {
+			width: 100%;
 		}
 	}
 }

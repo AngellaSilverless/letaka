@@ -1,4 +1,6 @@
-<div class="modal">
+<!-- Modal Newsletter -->
+
+<div class="modal modal-newsletter">
 	
 	<div class="modal-overlay modal-toggle"></div>
 	
@@ -6,7 +8,7 @@
 		
 		<div class="modal-header">
 			
-			<button class="modal-close modal-toggle pause-video"><i class="fas fa-times"></i></button>
+			<button class="modal-close modal-toggle"><i class="fas fa-times"></i></button>
 			
 		</div>
 	
@@ -27,3 +29,5 @@
 	</div>
 	
 </div>
+
+<!-- Modal Newsletter END -->

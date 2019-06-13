@@ -27,7 +27,7 @@
 			
 			<div>
 			
-				<div class="video-icon mt1 mb1 slow-fade"><i class="fas fa-video"></i></div>
+				<div class="video-icon mt1 mb1 slow-fade"><i class="play-video fas fa-video"></i></div>
 				
 				<div class="heading heading__light center slow-fade hero__copy mb2"><?php the_field( 'hero_copy' );?></div>
 				

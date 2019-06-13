@@ -140,11 +140,13 @@
                 </nav>
                 
             </header>
-    
-		    <!-- Modal Video -->
+            
+            <?php if(is_front_page()): ?>
+			    
+				<?php get_template_part('template-parts/modal-home');?>
+				
+			<?php endif; ?>
 		    
-			<?php get_template_part('template-parts/modal');?>
-			
-			<!-- Modal Video END -->
+			<?php get_template_part('template-parts/modal-newsletter');?>
 
             <main><!--closes in footer.php-->
