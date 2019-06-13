@@ -77,7 +77,7 @@
 						
 		                </div>
 		                
-		                <div class="col-12 col-md-7 menu-body">
+		                <div class="col-12 col-lg-7 menu-body">
 	                
 			                <div class="nav-menu">
 			                
@@ -85,7 +85,7 @@
 				                	
 				                	<div class="row">
 					                	
-					                	<div class="col-12 col-md-5">
+					                	<div class="col-12 col-lg-5">
 				                	
 						                	<div class="search">
 							                	
@@ -100,7 +100,7 @@
 						                
 					                	</div>
 					                	
-					                	<div class="col-12 col-md-7">
+					                	<div class="col-12 col-lg-7">
 					                	
 						                    <?php wp_nav_menu( array(
 							                    'theme_location' => 'main-menu-t',
@@ -122,7 +122,7 @@
 		                
 		                </div>
 		                
-		                <div class="col-12 col-md-2 menu-body">
+		                <div class="col-12 col-lg-2 menu-body">
 	                
 			                <div class="actions-nav">
 			                
