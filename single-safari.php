@@ -144,17 +144,21 @@ while( have_posts() ) {
                 
                 <h3 class="heading heading__md mb1">Activities Include:   </h3>
                 
+                <div class="wrapper-activities">
+	                
                 <? if( have_rows('activities', $parent) ): 
                 while( have_rows('activities', $parent) ): the_row();?>
                 
-                    <div class="safari-activites__item">
+                    <div class="safari-activities__item">
                 
                         <img src="<?php the_sub_field('icon');?>"/>
                         <p><?php the_sub_field('title');?></p>
                 
                     </div>
                 
-                <?php endwhile; endif;?>           
+                <?php endwhile; endif;?>    
+            	
+                </div>       
                 
             </div>
     

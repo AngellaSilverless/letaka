@@ -50,11 +50,15 @@ if(!$heroImage) {
 	    
 	    <div class="row">
 	        
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 			    
 			    <div class="sidebar sticky">
 				    
-				    <a class="title" href="<?php echo home_url() . "/about-us/news"; ?>">Back to News</a>
+				    <div>
+					    
+					    <a class="title" href="<?php echo home_url() . "/about-us/news"; ?>">Back to News</a>
+					    
+				    </div>
 		    	
 			    	<?php get_template_part('template-parts/post-categories');?>
 			    	
@@ -62,7 +66,7 @@ if(!$heroImage) {
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9">
 	        
 		        <div class="main justify">
 			        

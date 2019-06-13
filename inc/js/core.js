@@ -79,10 +79,12 @@ $(function() {
         $(this).closest('.expanding-copy').removeClass("expand");
     });
 
+/*
     $(".toggle").click(function() {   
       	$('.toggle.active').removeClass("active"); 
-        $(this).addClass("active");   
+        $(this).toggleClass("active");   
     });
+*/
     
     $(".search i").click(function() {
 	    $(".search form").toggleClass("visible");
@@ -157,6 +159,13 @@ $(function() {
 	    $(this).toggleClass("opened");
 	    $(".brand").toggleClass("big");
     });
+    
+    $(".toggle__question").click(function() {
+	    $(".region-wrapper").not($(this).parents(".region-wrapper")).find(".toggle__answer").slideUp();
+	    $(".region-wrapper").not($(this).parents(".region-wrapper")).find(".toggle.country").removeClass("active");
+	    $(this).next().slideToggle();
+	    $(this).parents(".toggle.country").toggleClass("active");
+    })
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 

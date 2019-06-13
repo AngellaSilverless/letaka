@@ -22,9 +22,9 @@ get_header();?>
     
         <div class="row">
 	        
-		    <div class="col-3">
+		    <div class="col-12 col-lg-4 col-xl-3 order-cta order-cta-only">
 		    	
-		    	<div class="sidebar">
+		    	<div class="call-to-action">
 			    	
 			    	<?php get_template_part("template-parts/cta", "find-safari"); ?>
 			    	
@@ -38,7 +38,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-9">
+		    <div class="col-12 col-lg-8 col-xl-9 order-content order-content-form">
 	        
 		        <div class="main justify">
 			        

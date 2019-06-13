@@ -495,6 +495,9 @@ body .gallery {
     
         p {
             position: relative;
+			display: flex;
+			align-items: center;
+			padding-right: 3em;
         
             span {
                 position: absolute;
@@ -511,9 +514,7 @@ body .gallery {
     }
     
     &__answer {
-        max-height: 0;
-        overflow: hidden;
-        transition:max-height .5s ease;
+        display: none;
     }
 }
 
@@ -521,10 +522,6 @@ body .gallery {
 
     .toggle__question i {
         transform: rotate(0deg);
-    }
-
-    .toggle__answer {
-        max-height: 100vh;
     }
 }
 

@@ -88,7 +88,7 @@
      
                 <div class="row">
 
-                    <div class="col-4 socket__colophon">
+                    <div class="col-12 col-sm-4 socket__colophon">
                         
                         &copy; Letaka <?php echo date ('Y');?>
     
@@ -98,7 +98,7 @@
     
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-12 col-sm-4">
                         
                         <div class="logo-holder">
                             
@@ -112,7 +112,7 @@
     
                     </div>
     
-                    <div class="col-4 socials">
+                    <div class="col-12 col-sm-4 socials">
     
                         <?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
     

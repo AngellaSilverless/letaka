@@ -67,11 +67,11 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
         
         <div class="row">
             
-            <div class="col-4">
+            <div class="col-8 col-sm-4 margin-auto img-country">
                 <img src="<?php the_sub_field('map', $parent_term);?>"/>                
             </div>
 
-            <div class="col-8">
+            <div class="col-12 col-sm-8">
                 
                 <?php the_sub_field( 'text_block_text', $parent_term );?>
 
@@ -122,7 +122,7 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
 
             <div class="row">
                 
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     
                     <?php
                     $images = get_sub_field('images');
@@ -143,7 +143,7 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
                 </div>
                 
                 
-                <div class="col-8">
+                <div class="col-12 col-sm-8">
                     
                     <div class="expanding-copy">
 

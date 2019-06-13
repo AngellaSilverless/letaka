@@ -305,7 +305,7 @@ nav {
 	}
 }
 
-.news .post-categories {
+.news .post-categories, .page-news .post-categories {
 	margin-top: 1em;
 }
 
@@ -402,6 +402,11 @@ body .gallery a:nth-of-type(n) {
 	.quick-links {
 		padding-top: 0;
 	}
+	
+	.socket > .container > .row > div {
+		text-align: center;
+		padding: 0.5em;
+	}
 }
 
 }/*---end small mq---*/
@@ -436,7 +441,7 @@ body {
 	grid-template-columns: 100%;
 }
 
-.latest-news .wrapper-news, .search-page .wrapper-news {
+.latest-news .wrapper-news, .search-page .wrapper-news, .news .wrapper-news {
 	grid-template-columns: 100%;
 	grid-row-gap: 1em;
 
@@ -519,7 +524,27 @@ body .gallery a {
 #map-itinerary .mapboxgl-popup {
 	max-width: 200px;	
 }
-			
+
+body .gallery.region {
+	margin-bottom: 1em;
+	
+	a:nth-of-type(n) {
+		margin-top: 5px;
+		min-height: 8em;
+	}
+}
+
+.toggle__answer {
+	padding-bottom: 2em;
+}
+
+.img-country {
+	margin-bottom: 2em;
+}
+
+.safari-activities__item {
+	width: calc(50% - 2em);
+}
 
 /*---FOOTER---*/
 
