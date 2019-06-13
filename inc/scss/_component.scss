@@ -10,7 +10,7 @@
     text-transform: uppercase;
     font-family: $supporting-font;  
     // Using inset box-shadow instead of border for sizing simplicity
-    box-shadow: inset 0 0 0 2px transparent;
+    box-shadow: inset 0 0 0 2px hsla(0, 0%, 0%, 0);
     color: $brand-primary;
     font-size: inherit;
     // Required, since we're setting absolute on pseudo-elements
@@ -28,7 +28,7 @@
     }
     
     &__ghost {
-        background:transparent;
+        background: hsla(0, 0%, 0%, 0);
         box-shadow: inset 0 0 0 2px white;
         color: white;
         transition:all 0.5s ease;
@@ -52,7 +52,7 @@
     }
     
     &__transparent {
-	    background: transparent;
+	    background: hsla(0, 0%, 0%, 0);
 	    border: 1px solid $brand-secondary;
 	    color: $brand-secondary;
 	    
@@ -64,7 +64,7 @@
     }
     
     &__transparent-light {
-	    background: transparent;
+	    background: hsla(0, 0%, 0%, 0);
 	    border: 1px solid white;
 	    color: white;
     }
