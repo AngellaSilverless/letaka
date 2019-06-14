@@ -27,20 +27,42 @@ jQuery(document).ready(function( $ ) {
 
 //SMOOTH SCROLL TO ANCHOR 
 
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top -250 }, 1000);
-        return false;
-      }
-    }
-  });
-});
+	$(function() {
+		$('a[href*=#]:not([href=#])').click(function() {
+			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		
+				var target = $(this.hash);
+				target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				
+				if (target.length) {
+					var height = 250;
+					
+					if($("html").hasClass("safari")) {
+						if(checkWidth(576))
+							height = 350;
+						else if(checkWidth(768))
+							height = 400;
+						else if(checkWidth(992))
+							height = 450;
+						else
+							height = 250;
+							
+					} else if($("html").hasClass("destinations")) {
+						if(checkWidth(768))
+							height = 200;
+						else if(checkWidth(992))
+							height = 250;
+						else
+							height = 150;
+					}
+					
+					$('html,body').animate({
+					scrollTop: target.offset().top - height }, 1000);
+					return false;
+				}
+			}
+		});
+	});
     
 /* File upload name */
 
