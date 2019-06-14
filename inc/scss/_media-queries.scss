@@ -275,6 +275,36 @@ nav {
 	}
 }
 
+.wrapper-section {
+	
+	&.wrapper-section__home .heading__section {
+		top: 0.5em;
+	}
+	
+	div:last-of-type {
+		padding-bottom: 1em;
+	}
+	
+	.heading__section {
+		z-index: 14;
+		position: sticky;
+		top: 4.5em;
+		background: whitesmoke;
+		
+		&::before {
+			content: "";
+			background: whitesmoke;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			height: 3em;
+			width: 100vw;
+			z-index: -1;
+		}
+	}
+}
+
 .sidebar {
 	
 	&.toggle-item > div:last-of-type {

@@ -20,9 +20,9 @@ get_header();?>
 
     <div class="container">
 		
-		<div class="our-safaris">
+		<div class="our-safaris wrapper-section wrapper-section__home">
 			
-			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Our Safaris</h2>
+			<h2 class="heading heading__lg heading__primary-color heading__section font700 pt2 brand-line center">Our Safaris</h2>
 			
 			<div class="wrapper-actions mt4">
 				
@@ -54,9 +54,9 @@ get_header();?>
 			
 		</div>
 		
-		<div class="why-letaka">
+		<div class="why-letaka wrapper-section wrapper-section__home">
 			
-			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Why Letaka</h2>
+			<h2 class="heading heading__lg heading__primary-color heading__section font700 pt2 brand-line center">Why Letaka</h2>
 			
 			<div class="row">
 				
@@ -125,9 +125,9 @@ get_header();?>
 			
 		</div>
 		
-		<div class="latest-news">
+		<div class="latest-news wrapper-section wrapper-section__home">
 			
-			<h2 class="heading heading__lg heading__primary-color font700 pt2 brand-line center">Latest</h2>
+			<h2 class="heading heading__lg heading__primary-color heading__section font700 pt2 brand-line center">Latest</h2>
 			
 			<div class="row">
 				

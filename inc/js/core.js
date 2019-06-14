@@ -729,6 +729,13 @@ $(".sidebar .title").click(function() {
 	}
 });
 
+$(".sidebar .item a").click(function() {
+    if(checkWidth(992)) {
+		$(".sidebar .title").next().slideUp();
+		$(".sidebar .title").removeClass("opened");
+	}
+});
+
 $(document).bind("mousedown touchstart", function(e){
 	if(checkWidth(992)) {
 		var container = $('.sidebar');
