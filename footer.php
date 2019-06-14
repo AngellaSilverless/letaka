@@ -31,6 +31,8 @@
 		                        <a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
 		    
 		                        <?php endwhile; endif; ?>
+		                        
+		                        <div><div class="button button__transparent-light mt1 mr1 font1 modal-toggle newsletter-signup" href="">Newsletter Sign Up</div></div>
 				            
 				            </div>
 				            
@@ -121,6 +123,8 @@
                         <?php endwhile; endif; ?>
     
                     </div>
+                    
+                    <div class=
     
                 </div><!--row-->
     
