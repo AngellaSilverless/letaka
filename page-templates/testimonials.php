@@ -33,7 +33,7 @@ get_header();?>
 		    </div>
 		    
 		    <div class="col-12 col-lg-8 col-xl-9">
-	        
+	        <div class="row">
 	        <?php
 		        
 		    $paged = ( get_query_var("paged") ) ? get_query_var("paged") : 1;
@@ -58,16 +58,24 @@ get_header();?>
 				
 				if($row > $max) { break; } ?>
 					
-				<div class="wrapper-testimonial pb3">
+				<div class="wrapper-testimonial col-9 pb3">
 				
-					<h3 class="heading heading__md heading__primary-color brand-line"><?php the_sub_field("attribution"); ?></h3>
+				    <i class="fas fa-quote-left"></i>
+							
+					<div class="wrapper-testimonial__content">		
+							
+					<div class="justify mb1"><?php the_sub_field("testimonial"); ?></div>
 					
-					<div class="justify"><?php the_sub_field("testimonial"); ?></div>
-				
+					<h3 class="heading heading__md heading__primary-color mb0"><?php the_sub_field("attribution_name"); ?></h3>
+					
+					<p><?php the_sub_field("attribution_details"); ?></p>	
+					
+					</div>
+										
 				</div>
-			
+					
 			<?php endwhile; ?>
-			
+			</div>
 			<div class="pagination"><?php 
 							
 		        echo paginate_links( array(

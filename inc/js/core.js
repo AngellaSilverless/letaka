@@ -45,7 +45,7 @@ jQuery(document).ready(function( $ ) {
 						else if(checkWidth(992))
 							height = 450;
 						else
-							height = 250;
+							height = 150;
 							
 					} else if($("html").hasClass("destinations")) {
 						if(checkWidth(768))
@@ -201,6 +201,31 @@ jQuery(document).ready(function( $ ) {
 		$(".modal-video").toggleClass('is-visible');
 		$("html").toggleClass('no-scroll');
     });
+    
+    $( ".region-wrapper" ).each(function() {
+        var regionName = $(this).find('> div').attr('class'); 
+        $(this).find( "#"+regionName ).addClass( "active" );
+    });    
+
+$('.input-wrapper input').focusin(function(){
+  $(this).closest('.input-wrapper').addClass('active');
+});
+
+$('.input-wrapper input').blur(function(){
+  if(!$(this).val().length > 0) {  
+    $(this).closest('.input-wrapper').removeClass('active');
+  }
+});
+
+$('.input-wrapper textarea').focusin(function(){
+  $(this).closest('.input-wrapper').addClass('active');
+});
+
+$('.input-wrapper textarea').blur(function(){
+  if(!$(this).val().length > 0) {  
+    $(this).closest('.input-wrapper').removeClass('active');
+  }
+});
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
@@ -295,7 +320,7 @@ jQuery(document).ready(function( $ ) {
 					if($(".your-search .search-block").length == 0) {
 						$(".your-search").removeClass("pb2");
 					} else {
-						$(".your-search").addClass("pb2");
+						$(".your-search").addClass("pb0");
 					}
 				}
 			} else {
@@ -309,7 +334,7 @@ jQuery(document).ready(function( $ ) {
 						if($(".your-search .search-block").length == 0) {
 							$(".your-search").removeClass("pb2");
 						} else {
-							$(".your-search").addClass("pb2");
+							$(".your-search").addClass("pb0");
 						}
 					}, 400);
 				}
@@ -737,6 +762,14 @@ $(window).on('resize scroll', function() {
 		if ($(this).isInViewport() && !$(this).hasClass("active")) {
 			$(this).addClass('active');
 			loadMapAnimation();
+		}
+	});
+
+	$('.sidebar').each(function() {
+		if ($('#hero-content').isInViewport()) {
+    		$(this).removeClass('active'); 			   
+		} else {
+    		$(this).addClass('active'); 
 		}
 	});
     

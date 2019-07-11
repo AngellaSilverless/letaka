@@ -38,7 +38,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-12 col-lg-8 col-xl-9 order-content order-content-form">
+		    <div class="col-12 col-lg-8 col-xl-7 order-content order-content-form">
 	        
 		        <div class="main justify">
 			        

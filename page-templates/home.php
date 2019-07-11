@@ -20,7 +20,7 @@ get_header();?>
 
     <div class="container">
 		
-		<div class="our-safaris wrapper-section wrapper-section__home">
+		<div id="more" class="our-safaris wrapper-section wrapper-section__home">
 			
 			<h2 class="heading heading__lg heading__primary-color heading__section font700 pt2 brand-line center">Our Safaris</h2>
 			
@@ -30,13 +30,20 @@ get_header();?>
 				
 					<?php $actions = get_field("our_safaris")["action"];
 					
-					foreach ($actions as $action): $backgroundImage = $action["background_image"]; ?>
+					foreach ($actions as $action): 
+					$backgroundImage = $action["background_image"];
+					$safariIcon = $action['icon']; 
+					 ?>
 					
 					<div class="col-12 col-sm-6 col-xl-4">
 					
-						<div class="wrapper" style="background: url(<?php echo $backgroundImage["url"]; ?>);">
+						<div class="wrapper">
 							
-							<div class="circle"></div>
+							<div class="background-image" style="background: url(<?php echo $backgroundImage["url"]; ?>);"></div>
+							
+							<div class="circle">
+    							<?php echo file_get_contents($safariIcon['url']); ?>
+							</div>
 							
 							<h3 class="heading heading__light size3 center"><?php echo $action["title"]; ?></h3>
 							
@@ -56,7 +63,7 @@ get_header();?>
 		
 		<div class="why-letaka wrapper-section wrapper-section__home">
 			
-			<h2 class="heading heading__lg heading__primary-color heading__section font700 pt2 brand-line center">Why Letaka</h2>
+			<h2 class="heading heading__lg heading__primary-color heading__section font700 mb0 pt2 brand-line center">Why Letaka</h2>
 			
 			<div class="row">
 				
@@ -70,15 +77,19 @@ get_header();?>
 								
 							$count = 0;
 								
-							foreach ($actions as $action): ?>
+							foreach ($actions as $action): 
+							$whyIcon = $action['icon']; 
+							?>
 							
 							<div class="col-3">
 								
 								<div class="selector <?php if($count == 0) echo " active"; ?>" name="div-<?php echo $count; ?>">
 									
-									<div class="circle-red"></div>
+									<div class="circle-red">
+    									<?php echo file_get_contents($whyIcon['url']); ?>
+									</div>
 									
-									<div class="heading heading__primary-color heading__md center arrow"><?php echo $action["label"]; ?></div>
+									<div class="heading heading__primary-color heading__xs heading__alt-font heading__caps center arrow"><?php echo $action["label"]; ?></div>
 									
 								</div>
 							
@@ -106,9 +117,9 @@ get_header();?>
 							
 							<div class="content">
 								
-								<h3 class="heading heading__light size2 brand-line-light"><?php echo $action["title"]; ?></h3>
+								<h3 class="heading heading__md brand-line"><?php echo $action["title"]; ?></h3>
 							
-								<div class="description pt1 pb2"><?php echo $action["description"]; ?></div>
+								<div class="description pt1 pb2"><p><?php echo $action["description"]; ?></p></div>
 								
 								<div class="wrapper-buttons"><a class="button" href="<?php echo $action["button_target"]; ?>"><?php echo $action["button_text"]; ?></a></div>
 							</div>

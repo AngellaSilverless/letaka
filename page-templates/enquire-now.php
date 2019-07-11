@@ -61,7 +61,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-12 col-lg-8 col-xl-9 order-content">
+		    <div class="col-12 col-lg-8 col-xl-7 order-content">
 	        
 		        <div class="contact-us">
 					    

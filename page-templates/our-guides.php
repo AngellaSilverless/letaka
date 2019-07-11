@@ -64,7 +64,7 @@ get_header();?>
     						
     						<div class="col-12 col-xl-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
     						
-    						<div class="col-12 col-xl-8">
+    						<div class="col-12 col-xl-8 pl2">
         						
         					<?php the_field('description', $guide->taxonomy . '_' . $guide->term_id);?>	
 

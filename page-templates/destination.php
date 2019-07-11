@@ -68,7 +68,10 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
         <div class="row">
             
             <div class="col-8 col-sm-4 margin-auto img-country">
-                <img src="<?php the_sub_field('map', $parent_term);?>"/>                
+                <?php $parentMap = get_sub_field('map', $parent_term);?>
+                <div class="parent-map">
+                    <?php echo file_get_contents($parentMap); ?>   
+                </div>                         
             </div>
 
             <div class="col-12 col-sm-8">
@@ -87,7 +90,6 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
                 </div>
     
                 <div class="season-key">
-                    <p>Key</p>
                     <div class="high">High</div>
                     <div class="good">Good</div>
                     <div class="low">Low</div>        
@@ -107,7 +109,9 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
 if( have_rows('region_fields', $child_term) ): 
 while( have_rows('region_fields', $child_term) ): the_row();?>
 
-    <div class="region-wrapper">
+<div class="region-wrapper">
+
+    <div class="<?php echo ($child_term->slug);?>">
 
         <div class="toggle country">
 
@@ -123,26 +127,12 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
             <div class="row">
                 
                 <div class="col-12 col-sm-4">
-                    
-                    <?php
-                    $images = get_sub_field('images');
-                    if( $images ): ?>
-                
-                        <div class="gallery region">
-                
-                        <?php foreach( $images as $image ): ?>
-                
-                        <a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"><!--<?php echo $image['caption']; ?>--></a>
-                
-                        <?php endforeach; ?>
-                
-                        </div>
-                
-                    <?php endif; ?>      
-                    
+                    <?php $childMap = get_sub_field('map', $child_term);?>
+                    <div class="child-map">
+                        <?php echo file_get_contents($parentMap); ?>   
+                    </div>                        
                 </div>
-                
-                
+
                 <div class="col-12 col-sm-8">
                     
                     <div class="expanding-copy">
@@ -173,6 +163,56 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
                     
                 </div>                    
                     
+                    <h2 class="heading heading__sm mt2 mb1">Upcoming Safaris</h2>
+                  
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>    
+
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>   
+
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>   
+                    
+                    <a href="" class="button button__ghost mb1">Find More Safaris</a>
+                    
+                </div>
+
+                <div class="col-12">
+                
+                        
+
+                <?php
+                    $images = get_sub_field('images');
+                    if( $images ): ?>
+                
+                        <div class="gallery region">
+                
+                        <?php foreach( $images as $image ): ?>
+                
+                        <a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"><!--<?php echo $image['caption']; ?>--></a>
+                
+                        <?php endforeach; ?>
+                
+                        </div>
+                
+                    <?php endif; ?>      
+                
                 </div>
 
             </div><!--r-->
@@ -182,6 +222,8 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
         </div>
 
     </div><!--region wrapper-->
+
+</div>
 
 <?php endwhile; endif; ?>
     
