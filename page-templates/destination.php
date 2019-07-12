@@ -66,7 +66,11 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
             <div class="col-8 col-sm-4 margin-auto img-country">
                 <?php $parentMap = get_sub_field('map', $parent_term);?>
                 <div class="parent-map">
+<<<<<<< HEAD
+                    <?php echo file_get_contents($parentMap); ?>   
+=======
                     <?php if($parentMap) echo file_get_contents($parentMap); ?>   
+>>>>>>> master
                 </div>                         
             </div>
 
@@ -143,6 +147,11 @@ $safaris = get_posts(array(
 
 <div class="region-wrapper">
 
+<<<<<<< HEAD
+<div class="region-wrapper">
+
+=======
+>>>>>>> master
     <div class="<?php echo ($child_term->slug);?>">
 
         <div class="toggle country">
@@ -161,7 +170,11 @@ $safaris = get_posts(array(
                 <div class="col-12 col-sm-4">
                     <?php $childMap = get_sub_field('map', $child_term);?>
                     <div class="child-map">
+<<<<<<< HEAD
+                        <?php echo file_get_contents($parentMap); ?>   
+=======
                         <?php if($parentMap) echo file_get_contents($parentMap); ?>   
+>>>>>>> master
                     </div>                        
                 </div>
 
@@ -169,6 +182,62 @@ $safaris = get_posts(array(
                     
                     <div class="expanding-copy">
 
+<<<<<<< HEAD
+                    <div class="expanding-copy__lead">
+                    
+                        <p><?php the_sub_field( 'copy_main', $child_term);?></p>
+                    
+                    </div>
+                    
+                    <?php if( get_sub_field('copy_read_more', $child_term) ): ?>
+                    
+                        <a class="trigger-expand">Read More</a>    
+                    
+                    <?php endif; ?>
+                    
+                    <div class="expanding-copy__more">
+                    
+                        <p><?php the_sub_field('copy_read_more', $child_term); ?></p>          
+                    
+                    </div>    
+                    
+                    <?php if( get_sub_field('copy_read_more', $child_term) ): ?>
+                    
+                        <a class="trigger-collapse hide">Read Less</a>    
+                    
+                    <?php endif; ?>
+                    
+                </div>                    
+                    
+                    <h2 class="heading heading__sm mt2 mb1">Upcoming Safaris</h2>
+                  
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>    
+
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>   
+
+                  <div class="region-safari-wrapper">
+                      <p class="title"><span>Desert Explorer River Safari</span> - 23 August 2019 - 26 August 2019</p>
+                      <p class="nights"><i class="fas fa-moon"></i> 4 nights</p>
+                      <p class="spaces"><i class="fas fa-users"></i> 2 spaces</p>
+                      <p class="cost"><i class="fas fa-credit-card"></i> $2599</p>
+                      <a href="" class="button"><i class="fas fa-caret-right"></i></a>
+                  </div>   
+                    
+                    <a href="" class="button button__ghost mb1">Find More Safaris</a>
+                    
+=======
 	                    <div class="expanding-copy__lead">
 	                    
 	                        <p><?php the_sub_field( 'copy_main', $child_term);?></p>
@@ -237,6 +306,7 @@ $safaris = get_posts(array(
                     
                     <?php endif; ?>
                     
+>>>>>>> master
                 </div>
 
                 <div class="col-12">

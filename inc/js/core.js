@@ -216,6 +216,7 @@ jQuery(document).ready(function( $ ) {
 	    $(this).find("a")[0].click();
     });
 
+
 $('.input-wrapper input').focusin(function(){
   $(this).closest('.input-wrapper').addClass('active');
 });
@@ -775,6 +776,10 @@ $(window).on('resize scroll', function() {
 	});
 
 	$('.sidebar').each(function() {
+		if ($('#hero-content').isInViewport()) {
+    		$(this).removeClass('active'); 			   
+		} else {
+    		$(this).addClass('active'); 
 		
 		if($('#hero-content').length) {
 			
@@ -783,6 +788,7 @@ $(window).on('resize scroll', function() {
 			} else {
 	    		$(this).addClass('active'); 
 			}
+
 		}
 	});
     
