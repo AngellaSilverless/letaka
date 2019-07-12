@@ -54,7 +54,7 @@ get_header();?>
 
 <?php
 
-foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ) ) as $parent_term ) {?>
+foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ) ) as $parent_term ) { ?>
 
 <div id="<?php echo strtolower($parent_term->name);?>" class="destination-wrapper">
 
@@ -70,7 +70,7 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
             <div class="col-8 col-sm-4 margin-auto img-country">
                 <?php $parentMap = get_sub_field('map', $parent_term);?>
                 <div class="parent-map">
-                    <?php echo file_get_contents($parentMap); ?>   
+                    <?php if($parentMap) echo file_get_contents($parentMap); ?>   
                 </div>                         
             </div>
 
@@ -104,7 +104,7 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
     
 <?php endwhile; endif; ?>
      
-<? foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => $parent_term->term_id ) ) as $child_term ) {
+<? foreach( get_terms( 'destinations', array( 'hide_empty' => true, 'parent' => $parent_term->term_id ) ) as $child_term ) {
 
 if( have_rows('region_fields', $child_term) ): 
 while( have_rows('region_fields', $child_term) ): the_row();
@@ -116,7 +116,7 @@ $itinerariesID = $wpdb->get_results("SELECT DISTINCT ID
 				LEFT JOIN {$wpdb->prefix}term_relationships ON ({$wpdb->prefix}posts.ID = {$wpdb->prefix}term_relationships.object_id)
 				LEFT JOIN {$wpdb->prefix}term_taxonomy ON ({$wpdb->prefix}term_relationships.term_taxonomy_id = {$wpdb->prefix}term_taxonomy.term_taxonomy_id)
 				WHERE {$wpdb->prefix}term_taxonomy.term_id IN ($child_ID)");
-				
+	
 $itinerariesID = array_map(create_function('$o', 'return $o->ID;'), $itinerariesID);
 
 $safaris = get_posts(array(
@@ -165,7 +165,7 @@ $safaris = get_posts(array(
                 <div class="col-12 col-sm-4">
                     <?php $childMap = get_sub_field('map', $child_term);?>
                     <div class="child-map">
-                        <?php echo file_get_contents($parentMap); ?>   
+                        <?php if($parentMap) echo file_get_contents($parentMap); ?>   
                     </div>                        
                 </div>
 
