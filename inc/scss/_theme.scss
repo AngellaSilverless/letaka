@@ -1142,10 +1142,12 @@ p.role {
 		display: flex;
 		align-items: center;
 		line-height: unset;
+		padding-right: 2em;
 		
 		i {
 			font-size: 1.5em;
 			padding-right: 0.5em;
+			color: $brand-secondary;
 		}
 	}
 	

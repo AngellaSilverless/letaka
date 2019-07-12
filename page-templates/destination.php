@@ -35,7 +35,7 @@ get_header();?>
 			        
 						<div class="item">
 					    	
-					    	<a href="#<?php echo strtolower($menu_item->slug);?>"><?php echo $menu_item->name;?></a>
+					    	<a href="#<?php echo strtolower($menu_item->slug);?>"><?php echo $menu_item->name;?><i class="fas fa-chevron-right state"></i></a>
 						    
 				    	</div>
 				        
