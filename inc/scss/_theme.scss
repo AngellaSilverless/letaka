@@ -114,9 +114,9 @@
             &:before {
                 content:'';
                 position: absolute;
-                width:100%;
-                height:100%;
-                left:-50%;
+                width: 1000%;
+                height: 100%;
+                left: -1000%;
                 background: hsl(0, 0%, 96%);
             }
         }
