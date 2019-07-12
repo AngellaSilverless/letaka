@@ -22,28 +22,24 @@ get_header();?>
             
             <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 
-			    <div class="sidebar sticky toggle-item">
+			    <div class="sidebar sticky toggle-item menu-destination">
 				    	
 			    	<div class="title">Countries<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 			    	
 			    	<div>
 				    	<?php 
 						
-						if(($locations = get_nav_menu_locations() ) && isset( $locations[ "destinations" ])):
-							
-						$menu_countries = wp_get_nav_menu_object( $locations[ "destinations" ] );
-						
-						$menu_items = wp_get_nav_menu_items($menu_countries);
+						$menu_items = get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ));
 			        
 						foreach($menu_items as $menu_item): ?>
 			        
 						<div class="item">
 					    	
-					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?></a>
+					    	<a href="#<?php echo strtolower($menu_item->slug);?>"><?php echo $menu_item->name;?></a>
 						    
 				    	</div>
 				        
-				        <?php endforeach; endif; ?>
+				        <?php endforeach; ?>
 			    	</div>
 			    	
 			    </div>
@@ -56,7 +52,7 @@ get_header();?>
 
 foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ) ) as $parent_term ) { ?>
 
-<div id="<?php echo strtolower($parent_term->name);?>" class="destination-wrapper">
+<div id="<?php echo strtolower($parent_term->slug);?>" class="destination-wrapper">
 
 <?php if( have_rows('country_fields', $parent_term) ): 
 while( have_rows('country_fields', $parent_term) ): the_row();?>

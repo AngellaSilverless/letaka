@@ -211,6 +211,10 @@ jQuery(document).ready(function( $ ) {
 	    $(this).parent().find(".safari-overflow").slideToggle();
 	    $(this).text($(this).text() == "View More Safaris" ? "View Less Safaris" : "View More Safaris");
     });
+    
+    $(".menu-destination .item").click(function() {
+	    $(this).find("a")[0].click();
+    });
 
 $('.input-wrapper input').focusin(function(){
   $(this).closest('.input-wrapper').addClass('active');
