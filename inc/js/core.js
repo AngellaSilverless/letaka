@@ -205,7 +205,17 @@ jQuery(document).ready(function( $ ) {
     $( ".region-wrapper" ).each(function() {
         var regionName = $(this).find('> div').attr('class'); 
         $(this).find( "#"+regionName ).addClass( "active" );
-    });    
+    });
+    
+    $(".find-more-safaris").click(function() {
+	    $(this).parent().find(".safari-overflow").slideToggle();
+	    $(this).text($(this).text() == "View More Safaris" ? "View Less Safaris" : "View More Safaris");
+    });
+    
+    $(".menu-destination .item").click(function() {
+	    $(this).find("a")[0].click();
+    });
+
 
 $('.input-wrapper input').focusin(function(){
   $(this).closest('.input-wrapper').addClass('active');
@@ -770,6 +780,15 @@ $(window).on('resize scroll', function() {
     		$(this).removeClass('active'); 			   
 		} else {
     		$(this).addClass('active'); 
+		
+		if($('#hero-content').length) {
+			
+			if ($('#hero-content').isInViewport()) {
+	    		$(this).removeClass('active'); 			   
+			} else {
+	    		$(this).addClass('active'); 
+			}
+
 		}
 	});
     

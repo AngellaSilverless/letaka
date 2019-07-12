@@ -22,28 +22,24 @@ get_header();?>
             
             <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 
-			    <div class="sidebar sticky toggle-item">
+			    <div class="sidebar sticky toggle-item menu-destination">
 				    	
 			    	<div class="title">Countries<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
 			    	
 			    	<div>
 				    	<?php 
 						
-						if(($locations = get_nav_menu_locations() ) && isset( $locations[ "destinations" ])):
-							
-						$menu_countries = wp_get_nav_menu_object( $locations[ "destinations" ] );
-						
-						$menu_items = wp_get_nav_menu_items($menu_countries);
+						$menu_items = get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ));
 			        
 						foreach($menu_items as $menu_item): ?>
 			        
 						<div class="item">
 					    	
-					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?></a>
+					    	<a href="#<?php echo strtolower($menu_item->slug);?>"><?php echo $menu_item->name;?></a>
 						    
 				    	</div>
 				        
-				        <?php endforeach; endif; ?>
+				        <?php endforeach; ?>
 			    	</div>
 			    	
 			    </div>
@@ -54,9 +50,9 @@ get_header();?>
 
 <?php
 
-foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ) ) as $parent_term ) {?>
+foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => 0 ) ) as $parent_term ) { ?>
 
-<div id="<?php echo strtolower($parent_term->name);?>" class="destination-wrapper">
+<div id="<?php echo strtolower($parent_term->slug);?>" class="destination-wrapper">
 
 <?php if( have_rows('country_fields', $parent_term) ): 
 while( have_rows('country_fields', $parent_term) ): the_row();?>
@@ -70,7 +66,11 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
             <div class="col-8 col-sm-4 margin-auto img-country">
                 <?php $parentMap = get_sub_field('map', $parent_term);?>
                 <div class="parent-map">
+<<<<<<< HEAD
                     <?php echo file_get_contents($parentMap); ?>   
+=======
+                    <?php if($parentMap) echo file_get_contents($parentMap); ?>   
+>>>>>>> master
                 </div>                         
             </div>
 
@@ -104,13 +104,54 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
     
 <?php endwhile; endif; ?>
      
-<? foreach( get_terms( 'destinations', array( 'hide_empty' => false, 'parent' => $parent_term->term_id ) ) as $child_term ) {
+<? foreach( get_terms( 'destinations', array( 'hide_empty' => true, 'parent' => $parent_term->term_id ) ) as $child_term ) {
 
 if( have_rows('region_fields', $child_term) ): 
-while( have_rows('region_fields', $child_term) ): the_row();?>
+while( have_rows('region_fields', $child_term) ): the_row();
+
+$child_ID = $child_term->term_id;
+
+$itinerariesID = $wpdb->get_results("SELECT DISTINCT ID
+				FROM {$wpdb->prefix}posts
+				LEFT JOIN {$wpdb->prefix}term_relationships ON ({$wpdb->prefix}posts.ID = {$wpdb->prefix}term_relationships.object_id)
+				LEFT JOIN {$wpdb->prefix}term_taxonomy ON ({$wpdb->prefix}term_relationships.term_taxonomy_id = {$wpdb->prefix}term_taxonomy.term_taxonomy_id)
+				WHERE {$wpdb->prefix}term_taxonomy.term_id IN ($child_ID)");
+	
+$itinerariesID = array_map(create_function('$o', 'return $o->ID;'), $itinerariesID);
+
+$safaris = get_posts(array(
+	'post_type'       => 'safari',
+	'posts_per_page'  => -1,
+	'post_parent__in' => $itinerariesID,
+	'meta_key'        => 'date_from',
+	'orderby'         => 'meta_value',
+	'order'           => 'ASC',
+	'meta_query'     => array(
+		'relation'   => 'OR',
+		array(
+			'key'     => 'date_from',
+			'value'   => date('Ymd', strtotime('now')),
+			'type'    => 'numeric',
+			'compare' => '>='
+		),
+		array(
+			'key'     => 'date_to',
+			'value'   => date('Ymd', strtotime('now')),
+			'type'    => 'numeric',
+			'compare' => '>='
+		)
+	)
+));
+
+?>
 
 <div class="region-wrapper">
 
+<<<<<<< HEAD
+<div class="region-wrapper">
+
+=======
+>>>>>>> master
     <div class="<?php echo ($child_term->slug);?>">
 
         <div class="toggle country">
@@ -129,7 +170,11 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
                 <div class="col-12 col-sm-4">
                     <?php $childMap = get_sub_field('map', $child_term);?>
                     <div class="child-map">
+<<<<<<< HEAD
                         <?php echo file_get_contents($parentMap); ?>   
+=======
+                        <?php if($parentMap) echo file_get_contents($parentMap); ?>   
+>>>>>>> master
                     </div>                        
                 </div>
 
@@ -137,6 +182,7 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
                     
                     <div class="expanding-copy">
 
+<<<<<<< HEAD
                     <div class="expanding-copy__lead">
                     
                         <p><?php the_sub_field( 'copy_main', $child_term);?></p>
@@ -191,6 +237,76 @@ while( have_rows('region_fields', $child_term) ): the_row();?>
                     
                     <a href="" class="button button__ghost mb1">Find More Safaris</a>
                     
+=======
+	                    <div class="expanding-copy__lead">
+	                    
+	                        <p><?php the_sub_field( 'copy_main', $child_term);?></p>
+	                    
+	                    </div>
+	                    
+	                    <?php if( get_sub_field('copy_read_more', $child_term) ): ?>
+	                    
+	                        <a class="trigger-expand">Read More</a>    
+	                    
+	                    <?php endif; ?>
+	                    
+	                    <div class="expanding-copy__more">
+	                    
+	                        <p><?php the_sub_field('copy_read_more', $child_term); ?></p>          
+	                    
+	                    </div>    
+	                    
+	                    <?php if( get_sub_field('copy_read_more', $child_term) ): ?>
+	                    
+	                        <a class="trigger-collapse hide">Read Less</a>    
+	                    
+	                    <?php endif; ?>
+	                    
+	                </div>                    
+                    
+	                <h2 class="heading heading__sm mt2 mb1">Upcoming Safaris</h2>
+	                    
+	                <?php
+		            
+		            $count = 1; foreach($safaris as $safari): ?>
+		            
+		            <?php if($count == 4): ?>
+						<div class="safari-overflow">
+					<?php endif; ?>
+	                
+					<div class="region-safari-wrapper">
+						
+						<p class="title"><span><?php echo get_the_title($safari->post_parent); ?></span> - <?php
+							echo get_field("date_from", $safari) . " - " . get_field("date_to", $safari);
+						?></p>
+						<p class="nights"><i class="fas fa-moon"></i> <?php
+							$nights = get_field("number_of_nights", $safari->post_parent);
+							echo $nights == 1 ? $nights . " night" : $nights . " nights";
+						?></p>
+						<p class="spaces"><i class="fas fa-users"></i> <?php
+							$avail = get_field("availability", $safari);
+							echo $avail == 1 ? $avail . " space" : $avail . " spaces";
+						?></p>
+						<p class="cost"><i class="fas fa-credit-card"></i> <?php
+							echo "$" . number_format(get_field("cost", $safari));
+						?></p>
+						<a href="<?php echo get_permalink($safari); ?>" class="button"><i class="fas fa-caret-right"></i></a>
+						
+					</div>
+					
+					<?php if($count >= 4 && $count == sizeof($safaris)): ?>
+						</div>
+					<?php endif; ?>
+					
+					<?php $count++; endforeach; ?>
+                    
+                    <?php if(sizeof($safaris) > 3): ?>
+                    
+                    <button class="button button__ghost mb1 find-more-safaris">View More Safaris</button>
+                    
+                    <?php endif; ?>
+                    
+>>>>>>> master
                 </div>
 
                 <div class="col-12">
