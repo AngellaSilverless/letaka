@@ -14,17 +14,10 @@
 /*---HEADER---*/
 
 nav > .container {
-	max-width: 100%;
+	/*max-width: 100%;*/ 
 	
 	.actions-nav .button {
 		width: 100%;
-	}
-}
-
-.nav-menu {
-	margin-right: 0;
-	.mainMenu-top ul li:not(:first-of-type) {
-		padding-left: 3em;
 	}
 }
 

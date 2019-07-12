@@ -17,23 +17,19 @@ while( have_posts() ) {
 
 <!-- ******************* Hero Content ******************* -->
 
-<?php 
-    
-    $heroImage = get_field('hero_background_image', $parent);
-    
-?>
+<?php $heroImage = get_field('hero_background_image', $parent);?>
 
 <div class="hero <?php the_field( 'hero_height', $parent); ?>" style="background-image: url(<?php echo $heroImage['url']; ?>);">
 
     <div class="container">
     
         <div class="row">
-              
+            <div class="col-9 offset-3">
             <div class="hero__content">
 
-            <h1 class="heading heading__xl heading__light center slide-down"><?php echo $parent->post_title;?></h1>
+            <h1 class="heading heading__xl heading__light slide-down"><?php echo $parent->post_title;?></h1>
 
-            <h2 class="heading heading__sm heading__light heading__alt-font heading__caps font800 mb2 center slide-down"><?php 
+            <h2 id="hero-content" class="heading heading__sm heading__light heading__alt-font heading__caps mb2 slide-down"><?php 
 	              
 				$terms = get_the_terms($parent->ID, 'destinations');
 				
@@ -47,7 +43,7 @@ while( have_posts() ) {
 			
 			?></h2>
                 
-            <p class="heading heading__sm heading__light heading__alt-font center slide-down"><?php
+            <p class="heading heading__sm heading__light heading__alt-font mb0"><?php
 	            
 	            $date_from = new DateTime(get_field("date_from"));
 				$date_to   = new DateTime(get_field("date_to"));
@@ -56,16 +52,14 @@ while( have_posts() ) {
 		            
 	        ?></p>
     
-            <div class="hero__safari-meta mb1">
+            <div class="hero__safari-meta mb2">
                 
                 <p><i class="fas fa-moon"></i> 3 Nights</p>
                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
                 <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
             
             </div>
-
-            <p class="hero__safari-desc mb2"><?php the_field('hero_copy', $parent);?></p>
-       
+            
             <div class="hero__safari-buttons">
                 
     			<a class="button slide-up" href="<?php echo home_url() . "/enquire-now"; ?>">Enquire Now</a>                
@@ -76,10 +70,30 @@ while( have_posts() ) {
        
        
         </div>
-    
+              </div>
         </div> <!--r-->
     
     </div><!--c-->
+
+<div class="separator-wrapper">
+
+    <div class="container">
+    
+    <div class="row">
+        
+        <div class="col-3">
+            <div class="separator-device left"></div>            
+        </div>
+
+        <div class="col-9">
+            <div class="separator-device right"></div>            
+        </div>
+        
+    </div>
+            
+</div>
+
+</div>
 
 </div><!--hero-->
 
@@ -92,10 +106,51 @@ while( have_posts() ) {
             <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 
 			    <div class="sidebar sticky toggle-item">
-				    	
-			    	<div class="title">Safari Details<div class="collapsible-icon"><i class="fas fa-chevron-right"></i></div></div>
-			    	
-			    	<div>
+				    
+				    <div class="title">Safari Details</div>
+				    
+				    <div class="safari-summary">
+
+    				    <div id="hero-content" class="hero__content">
+
+                            <p class="safari-title mb0"><?php echo $parent->post_title;?></p>
+
+                            <p class="location"><?php 
+	              
+				$terms = get_the_terms($parent->ID, 'destinations');
+				
+				$destinations = array();
+				
+				foreach( $terms as $term )
+					if($term->parent != 0)
+						array_push($destinations, $term->name);
+						
+				echo implode($destinations, " - ");
+			
+			?></p>
+                
+                            <p class="date mb0"><?php
+	            
+	            $date_from = new DateTime(get_field("date_from"));
+				$date_to   = new DateTime(get_field("date_to"));
+						
+	            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
+		            
+	        ?></p>
+    
+                            <div class="safari-meta mb2">
+                                
+                                <p><i class="fas fa-moon"></i> 3 Nights</p>
+                                <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
+                                <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
+                            
+                            </div>
+
+                        </div>
+
+				    </div>
+				    			    	
+			    	<div class="menu mb1">
 			    	
 				    	<?php 
 						
@@ -109,7 +164,7 @@ while( have_posts() ) {
 			        
 						<div class="item">
 					    	
-					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?></a>
+					    	<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->post_title; ?><i class="fas fa-chevron-right state"></i></a>
 						    
 				    	</div>
 				        
@@ -117,167 +172,113 @@ while( have_posts() ) {
 				    
 			    	</div>
 			    	
+			    	<a href="" class="button button__green button__fullwidth">Enquire Now</a>
+			    	
 			    </div>
 			    
             </div>
         
             <div class="col-12 col-lg-8 col-xl-9">
     
-				<div class="wrapper-section">
+				<div id="overview" class="wrapper-section">
+					
+					<div class="overview mb5">
 					
 		            <h3 class="heading heading__lg heading__section sticky-header">Overview</h3>
+		            
+		            <p><?php the_field('hero_copy', $parent);?></p>
 		            
 		            <? if( have_rows('overview', $parent) ): 
 		                while( have_rows('overview', $parent) ): the_row();   
 		                $featuresImage = get_sub_field('features_image', $parent);?>      
 		            
-		            <div id="overview" class="safari-features" style="background-image: url(<?php echo $featuresImage['url']; ?>);">
+		            <div class="safari-features">
 		                
 		                <? if( have_rows('features', $parent) ): 
 		                while( have_rows('features', $parent) ): the_row();   ?>
 		                
-		                    <p class="heading__light"><?php the_sub_field('item');?></p> 
+		                    <p><?php the_sub_field('item');?></p> 
 		                
 		                <?php endwhile; endif;?>            
 		    
 		            </div>
-		    
-		            <div class="safari-activities text-center pt3 mb3">
-		                
-		                <h3 class="heading heading__md mb1">Activities Include:   </h3>
-		                
-		                <div class="wrapper-activities">
-			                
-		                <? if( have_rows('activities', $parent) ): 
-		                while( have_rows('activities', $parent) ): the_row();?>
-		                
-		                    <div class="safari-activities__item">
-		                
-		                        <img src="<?php the_sub_field('icon');?>"/>
-		                        <p><?php the_sub_field('title');?></p>
-		                
-		                    </div>
-		                
-		                <?php endwhile; endif;?>    
-		            	
-		                </div>       
-		                
-		            </div>
-		    
-		            <div class="row mb2">
-		                
-		                <div class="col-12 col-md-6">
-		            
-		                    <div class="safari-includes list">
-		                        
-		                        <h2 class="heading heading__md mb1">Included in Your Safari</h2>   
-		            
-		                        <?php the_sub_field('includes');?>   
-		                        
-		                    </div>
-		                </div>
-		                
-		                <div class="col-12 col-md-6">
-			                
-		                    <div class="safari-excludes list">
-		                        
-		                         <h2 class="heading heading__md mb1">Excluded In This Safari</h2>   
-		            
-		                        <?php the_sub_field('excludes');?>   
-		                        
-		                    </div>
-		            
-		                </div>
-		                
-		            </div><!--row-->
-		    
-		            <div class="row">
-		                
-		                <div class="col-12 col-md-8">
-		    
-		            <div class="safari-payment list">
-		                
-		                <h2 class="heading heading__md mb1">Easy Payment Options</h2>
-		    
-		                <?php the_sub_field('payment_options');?> 
-		                
-		            </div>
-		    
-		                </div>
-		                
-		            </div><!--row-->
-		    
+
+<?php
+                    $images = get_sub_field('gallery');
+                    if( $images ): ?>
+                
+                        <div class="gallery">
+                
+                        <?php foreach( $images as $image ): ?>
+                
+                        <a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"><!--<?php echo $image['caption']; ?>--></a>
+                
+                        <?php endforeach; ?>
+                
+                        </div>
+                
+                    <?php endif; ?>
+
+					</div>
+
+                    <div id="daily" class="mb5">
+                        
+		                <h3 class="heading heading__lg heading__section mt1">Daily Activity</h3>                        
+                        <?php $count = 0;?> 
+                        	
+                        <?php if( have_rows('daily', $parent) ): 
+                        while( have_rows('daily', $parent) ): the_row();?>
+                        
+                        <div class="wrapper-questions daily">		
+                            		
+                            <div class="question">
+                        		<p><?php the_sub_field('day');?></p>
+                        		
+                        		<p>
+                        		    <i class="fas fa-map-marker-alt"></i>
+                        		    <?php the_sub_field('location');?>
+                        		</p>
+                        		<p>
+                        		    <i class="fas fa-campground"></i> 
+                            	    <?php the_sub_field('accom');?>
+                        		</p>
+                        
+                            	<i class="fas fa-chevron-right state"></i></div>
+                        	
+                        	<div class="answer" style="display:none;">
+                        
+                                <div class="activities">
+                                    
+                                    <?php if( have_rows('activities', $parent) ): ?>
+                                    <p class="font400 heading__caps">Activities</p>
+                                    	<?php while( have_rows('activities', $parent) ): the_row(); ?>
+                                        	<div class="item">
+                                                <img src="<?php the_sub_field('icon');?>"/>
+                                                <?php the_sub_field('activity');?>
+                                        	</div>
+                                    	<?php endwhile; endif; ?>        
+                                </div>
+                                
+                                <div class="detail">
+                                     <p class="font400 heading__caps">Daily Detail</p>
+                                     <?php the_sub_field('detail');?>   
+                                </div>
+                        					
+                            </div>
+                        					
+                        </div>
+                        
+                        <?php $count++;  endwhile;  endif; ?>
+
+                    </div><!--#daily-->
+
 		            <?php endwhile; endif;?><!--overview loop-->
 		            
 				</div>
 				
-				<div class="wrapper-section">
-            
-		            <h3 class="heading heading__lg heading__section mt1">Daily Activity</h3>
-		            
-		            <? if( have_rows('daily_activity', $parent) ): 
-		                while( have_rows('daily_activity', $parent) ): the_row();?>      
-		    
-		            <div id="daily" class="daily-activity">
-		                
-		                <? if( have_rows('days', $parent) ): 
-		                while( have_rows('days', $parent) ): the_row();   ?>
-		    
-					    <div class="row mb3">
-					        
-					        <div class="col-12 col-sm-4 daily-activity__day-meta">
-					        
-					            <p class="heading heading__sm">
-					                <?php the_sub_field('day');?>
-					            </p>
-					            
-					            <p><i class="fas fa-map-marker-alt">
-					                </i> 
-					                <?php the_sub_field('location');?>
-					            </p>
-					            
-					            <p>
-					                <i class="fas fa-campground"></i> 
-					                <?php the_sub_field('accommodation');?>
-					            </p>    
-					        
-					            <? if( have_rows('highlights', $parent) ): 
-					            while( have_rows('highlights', $parent) ): the_row();?>                
-					               
-					                <p>
-					                    <img src="<?php the_sub_field('icon');?>"/>
-					                    <?php the_sub_field('detail');?>
-					                </p>   
-					                    
-					            <?php endwhile; endif;?>    
-					            
-					        </div><!--col-->         
-					        
-					        <div class="col-12 col-sm-8">
-					        
-					            <p class="heading heading__sm">
-					                <?php the_sub_field('heading');?>
-					            </p>                      
-					            
-					            <p>
-					                <?php the_sub_field('copy');?>
-					            </p>          
-					        
-					        </div><!--col-->        
-					    
-					    </div><!--r-->
-		                       
-		                <?php endwhile; endif;?>            
-		    
-		            </div><!--daily-->
-		    
-		             <?php endwhile; endif;?><!--daily loop-->   
-		        
-				</div>
-				
-				<div class="wrapper-section">    
+				<div class="wrapper-section mb5">    
     
-					<h3 class="heading heading__lg heading__section mt1">Map</h3>
+					<h3 id='map' class="heading heading__lg heading__section mt1 ">Map</h3>
     
 					<?php if( have_rows('map', $parent) ):
 						
@@ -329,11 +330,11 @@ while( have_posts() ) {
 		    	
 				</div>
 				
-				<div class="wrapper-section">
+				<div class="wrapper-section mb5">
     
-    		        <h3 class="heading heading__lg heading__section mt1">Safari Accommodation</h3>
+    		        <h3  id="accom" class="heading heading__lg heading__section mt1">Safari Accommodation</h3>
     		        
-    		        <div id="accom" class="safari-accommodation">
+    		        <div class="safari-accommodation">
     		        
     		        <? if( have_rows('accommodation', $parent) ): 
     		            while( have_rows('accommodation', $parent) ): the_row();?>      
@@ -373,15 +374,71 @@ while( have_posts() ) {
     		         <?php endwhile; endif;?><!--accommodation loop-->   
     		         
 				</div>
+
+				<div  id="detail" class="wrapper-section mb5">
+    
+    		        <h3  id="accom" class="heading heading__lg heading__section mt1">Details</h3>
+
+                    <div class="includes-excludes">
+		    
+		                <div class="row">
+		                
+		                <div class="col-12 col-md-6">
+		            
+		                    <div class="safari-includes list">
+		                        
+		                        <h2 class="heading heading__md">Included in Your Safari</h2>   
+
+                                <?php if( have_rows('details', $parent) ): 
+                                                        while( have_rows('details', $parent) ): the_row();?>
+                                <?php the_sub_field('includes');?>   
+                                <?php endwhile; endif;?>		                        
+		                    </div>
+		                </div>
+		                
+		                <div class="col-12 col-md-6">
+			                
+		                    <div class="safari-excludes list">
+		                        
+		                         <h2 class="heading heading__md">Excluded In This Safari</h2>   
+		            
+                                <?php if( have_rows('details', $parent) ): 
+                                                        while( have_rows('details', $parent) ): the_row();?>
+                                <?php the_sub_field('excludes');?>   
+                                <?php endwhile; endif;?>		
+		                        
+		                    </div>
+
+		                </div>
+		                
+		            </div><!--row-->
+		    
+                    </div>
+		    
+		    <div class="safari-payment list">
+		                
+		                <h2 class="heading heading__md mb1">Easy Payment Options</h2>
+		    
+                        <?php if( have_rows('details', $parent) ): 
+                            while( have_rows('details', $parent) ): the_row();?>
+                        <?php the_sub_field('payment_options');?>   
+                        <?php endwhile; endif;?>	
+		                
+		            </div>
+		    
+				</div>
+		    
+		           
+
 				
 				<div class="wrapper-section">    
     		
-    		        <h3 class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
+    		        <h3 id="extensions" class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
     		
     		        <? if( have_rows('extensions_&_activities', $parent) ): 
     		            while( have_rows('extensions_&_activities', $parent) ): the_row();?>      
     		
-    		        <div id="extensions" class="extensions mb3">
+    		        <div class="extensions mb3">
     		
     		            <? if( have_rows('items', $parent) ): 
     		            while( have_rows('items', $parent) ): the_row();?>                

@@ -9,27 +9,27 @@
     text-align: center;
     text-transform: uppercase;
     font-family: $supporting-font;  
-    // Using inset box-shadow instead of border for sizing simplicity
-    box-shadow: inset 0 0 0 2px hsla(0, 0%, 0%, 0);
+    border: 1px solid hsla(0, 0%, 100%, 0);
     color: $brand-primary;
     font-size: inherit;
-    // Required, since we're setting absolute on pseudo-elements
     position: relative;
     vertical-align: middle;
     -webkit-appearance: none;
-    transition: color 0.5s, border 0.5s, background 0.5s;
+    transition: all 0.5s ease;
     font-weight: 700;
     font-size: 0.9em;
     cursor: pointer;
-    
+     
     &:hover {
-	    background: grey;
+	    border: 1px solid hsla(0, 0%, 100%, 0.34);
+	    background: transparent;
 	    color: white;
+	    cursor: pointer;
     }
     
     &__ghost {
         background: hsla(0, 0%, 0%, 0);
-        box-shadow: inset 0 0 0 2px white;
+        border: 1px solid hsl(0, 0%, 100%);
         color: white;
         transition:all 0.5s ease;
         
@@ -65,19 +65,34 @@
     
     &__transparent-light {
 	    background: hsla(0, 0%, 0%, 0);
-	    border: 1px solid white;
+	    border: 1px solid hsla(0, 0%, 100%, 0.34);
 	    color: white;
+	    
+	    &:hover {
+    	    background: white;
+    	    color: $brand-primary;
+	    }
     }
     
     &__secondary-color {
-	    background: $brand-secondary;
+	    background: $brand-primary;
 	    border: none;
 	    color: white;
 	    
 	    &:hover {
 		    background: rgba($brand-primary, 0.8);
 		    color: white;
+		    border: none;
 	    }
+    }
+    
+    &__green {
+        background:$brand-green;
+        color: white;
+        
+        &:hover {
+            background:hsl(88, 40%, 35%);
+        }
     }
 }
 
@@ -158,7 +173,6 @@ a.next-section {
 }
 
 .logo-holder {
-    text-align: center;
     margin-top: -10px;
  
     #logo {

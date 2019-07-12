@@ -11,7 +11,8 @@
     height: 100vh;
     z-index: 50; 
     padding-bottom: 2em; 
-
+    overflow: hidden;
+    
     &:before {
         @include childOverlay;
         background:black;
@@ -34,12 +35,17 @@
 			display: grid;
 			grid-template-rows: 50% 50%;
 			align-items: flex-end;
+			text-align: center;
+			
+			> div:nth-of-type(2) {
+    			align-self: flex-start;
+			}
 	    }
     }
     
     &:not(.hero__home) {
-	    align-items: center;
-	    padding-top: 8em;
+        align-items: flex-end;
+        padding-bottom: 5em;
 	    
 	    & > .container > .row {
 		    justify-content: center;
@@ -51,10 +57,9 @@
 	    height: 100%;
         position: relative;
         z-index: 10;
-        text-align: center;
         
         img {
-	        width: 35%;
+	        width: 20%;
         }
         
         .video-icon {
@@ -63,16 +68,8 @@
 	        align-items: center;
 	        
 	        i {
-		        color: $brand-primary;
-				background: white;
-				padding: 0.4em;
-				border-radius: 100%;
-				height: 2em;
-				width: 2em;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 1.8em;
+		        color: white;
+				font-size: 3em;
 				cursor: pointer;
 			}
         }
@@ -94,10 +91,6 @@
 	    font-size: 1.3em;
 		width: 70%;
 		display: inline-block;
-    }
-    
-    .row {
-	    height: 100%;
     }
 }
 
@@ -282,7 +275,7 @@
 body .gallery {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5em;
+    margin-bottom: 0;
 
     a {
         @include backgroundCover;
@@ -295,7 +288,7 @@ body .gallery {
         &:hover {
             position: relative;
             z-index: 13;
-            box-shadow: 0 0 2px 2px hsla(0, 0%, 0%, 0.3);
+            box-shadow: inset 0 0 0px 5px rgb(245, 245, 245);
         }
         
         &:nth-of-type(8n - 7){
@@ -366,11 +359,11 @@ body .gallery {
     
     &.region {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         
         a {
             margin-right: 1px;
-            min-height: 4em;
+            min-height: 6em;
             margin-top: 1px;
         }
         

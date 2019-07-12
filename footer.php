@@ -9,6 +9,26 @@
 
     <footer class="footer">
 
+        <div class="separator-wrapper">
+        
+            <div class="container">
+            
+            <div class="row">
+                
+                <div class="col-3">
+                    <div class="separator-device left"></div>            
+                </div>
+        
+                <div class="col-9">
+                    <div class="separator-device right"></div>            
+                </div>
+                
+            </div>
+                    
+        </div>
+        
+        </div>
+
 		<div class="pre-socket">
 		    
 		    <div class="container">
@@ -19,7 +39,7 @@
 		    
 				        <div class="quick-contact pt3 pb3">
 				            
-				            <h3 class="heading heading__light font100 mb1">Quick Contact</h3>
+				            <h3 class="heading heading__light font100 brand-line-light mb1">Quick Contact</h3>
 				            
 				            <div class="content">
 					            
@@ -31,8 +51,6 @@
 		                        <a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
 		    
 		                        <?php endwhile; endif; ?>
-		                        
-		                        <div><div class="button button__transparent-light mt1 mr1 font1 modal-toggle newsletter-signup" href="">Newsletter Sign Up</div></div>
 				            
 				            </div>
 				            
@@ -50,7 +68,7 @@
 			        
 				        <div class="quick-links pt3 pb3">
 				                
-				            <h3 class="heading heading__light font100 mb1">Quick Links</h3>
+				            <h3 class="heading heading__light font100 brand-line-light mb1">Quick Links</h3>
 				            
 				            <div class="content">
 					            
@@ -101,7 +119,11 @@
                     </div>
 
                     <div class="col-12 col-sm-4">
-                        
+                            
+                    </div>
+    
+                    <div class="col-12 col-sm-4 socials">
+
                         <div class="logo-holder">
                             
                             <a href="https://silverless.co.uk">
@@ -111,20 +133,8 @@
                             </a>
                         
                         </div>
-    
+                            
                     </div>
-    
-                    <div class="col-12 col-sm-4 socials">
-    
-                        <?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
-    
-                        <a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
-    
-                        <?php endwhile; endif; ?>
-    
-                    </div>
-                    
-                    <div class=
     
                 </div><!--row-->
     

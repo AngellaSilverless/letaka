@@ -38,7 +38,7 @@ get_header();?>
 			    
 			    <div class="row">
 			    
-				    <div class="col-12 col-xl-10 align-center">
+				    <div class="col-12">
 		        
 				        <?php
 					    

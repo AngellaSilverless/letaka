@@ -64,7 +64,7 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-12 col-lg-8 col-xl-9 order-content order-content-form">
+		    <div class="col-12 col-lg-8 col-xl-7 order-content order-content-form">
 	        
 		        <div class="main justify mb2">
 			        
@@ -86,7 +86,7 @@ get_header();?>
 				
 					<div class="wrapper-questions">
 						
-						<div class="question heading heading__sm <?php if($count == 0) echo " opened"; ?>"><?php echo $faq["question"]; ?><i class="fas fa-chevron-right"></i></div>
+						<div class="question <?php if($count == 0) echo " opened"; ?>"><?php echo $faq["question"]; ?><i class="fas fa-chevron-right"></i></div>
 						
 						<div class="answer" style="<?php if($count > 0) echo "display:none;"; ?>"><?php echo $faq["answer"]; ?></div>
 					

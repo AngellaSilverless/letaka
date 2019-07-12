@@ -32,33 +32,35 @@ get_header();?>
 		        
 		    </div>
 		    
-		    <div class="col-12 col-lg-8 col-xl-9">
+		    <div class="col-12 col-lg-8 col-xl-7">
 	        
 		        <div class="justify">
 			        
 			        <?php the_field("content"); ?>
 			        
 		        </div>
-		        
-		        <?php
-				
-				$images = get_field('gallery');
-					
-				if( $images ): ?>
-				
-				<div class="gallery mt2">
-				
-					<?php foreach( $images as $image ): ?>
-					
-					<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
-					
-					<?php endforeach; ?>
-				
-				</div>
-				
-				<?php endif; ?> 
 		    
 		    </div>
+	    
+    	    <div class="col-12">
+                        
+                    	<?php $images = get_field('gallery');
+    					
+                            if( $images ): ?>
+    				
+                            <div class="gallery mt2">
+    				
+    					<?php foreach( $images as $image ): ?>
+    					
+    					<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+    					
+    					<?php endforeach; ?>
+    				
+    				</div>
+    				
+                        <?php endif; ?>     
+                        
+                    </div>
 	    
         </div>
         

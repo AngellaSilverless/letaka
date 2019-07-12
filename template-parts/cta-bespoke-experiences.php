@@ -10,7 +10,9 @@ $backgroundImage = get_field("hero_background_image", $pageID);
 	
 	<div class="content">
 		
-		<div class="circle"></div>
+		<div class="circle">
+    		<?php get_template_part('template-parts/bespoke');?>
+		</div>
 		
 		<h3 class="heading heading__light heading__lg center">Taylor-made safaris</h3>
 		

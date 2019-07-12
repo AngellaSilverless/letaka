@@ -128,8 +128,8 @@ get_header();?>
 									
 									if($telephone): ?>
 									
-									<a class="button" href="tel:<?php echo $telephone; ?>">
-										<div>Call</div>
+									<a class="button button__white" href="tel:<?php echo $telephone; ?>">
+										<i class="fas fa-phone"></i>
 										<div class="font100 info"><?php echo $telephone; ?></div>
 									</a>
 									
@@ -145,8 +145,8 @@ get_header();?>
 									
 									if($email): ?>
 									
-									<a class="button button__secondary-color" href="mailto:<?php echo $email; ?>">
-										<div>Email</div>
+									<a class="button button__green" href="mailto:<?php echo $email; ?>">
+										<i class="fas fa-envelope"></i>
 										<div class="font100 info"><?php echo $email; ?></div>
 									</a>
 									
