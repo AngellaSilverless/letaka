@@ -528,8 +528,8 @@ function fh_dropdown_time_safari(){
     if ('safari' == $type){
         $values = array(
             'All Safaris' => 'all-safaris', 
-            'Old Safaris' => 'old-safaris',
-            'Future Safaris' => 'future-safaris',
+            'Previous Safaris' => 'old-safaris',
+            'Upcoming Safaris' => 'future-safaris',
         );
         
         echo '<select name="date-safaris">';
