@@ -125,7 +125,7 @@ jQuery(document).ready(function( $ ) {
 		$(this).find("i").toggleClass("closed");
     });
     
-    $(".see-tours").click(function() {
+    $(".expand-tours").click(function() {
 	    $(this).parents(".wrapper-itinerary").find(".tours").slideToggle();
     });
     
@@ -216,25 +216,30 @@ jQuery(document).ready(function( $ ) {
 	    $(this).find("a")[0].click();
     });
 
-$('.input-wrapper input').focusin(function(){
-  $(this).closest('.input-wrapper').addClass('active');
-});
-
-$('.input-wrapper input').blur(function(){
-  if(!$(this).val().length > 0) {  
-    $(this).closest('.input-wrapper').removeClass('active');
-  }
-});
-
-$('.input-wrapper textarea').focusin(function(){
-  $(this).closest('.input-wrapper').addClass('active');
-});
-
-$('.input-wrapper textarea').blur(function(){
-  if(!$(this).val().length > 0) {  
-    $(this).closest('.input-wrapper').removeClass('active');
-  }
-});
+	$('.input-wrapper input').focusin(function(){
+		$(this).closest('.input-wrapper').addClass('active');
+	});
+	
+	$('.input-wrapper input').blur(function(){
+		if(!$(this).val().length > 0) {  
+			$(this).closest('.input-wrapper').removeClass('active');
+	}
+	});
+	
+	$('.input-wrapper textarea').focusin(function(){
+		$(this).closest('.input-wrapper').addClass('active');
+	});
+	
+	$('.input-wrapper textarea').blur(function(){
+		if(!$(this).val().length > 0) {  
+			$(this).closest('.input-wrapper').removeClass('active');
+		}
+	});
+	
+	$(".menu-details .item").click(function() {
+		$(this).find("a").click();
+		return false;
+	});
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 

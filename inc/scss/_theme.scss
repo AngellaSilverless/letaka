@@ -16,6 +16,10 @@
         display: inline-block;
         border-top: 1px dashed hsl(0, 0%, 100%);
         
+        &.no-line {
+	        border-top: none;
+        }
+        
         p {
             display: inline-block;
             margin-right: 2em;
@@ -694,62 +698,96 @@
 					letter-spacing: 0.05em;
 					font-weight: 700;
 					color: $brand-primary;
+				}
+				
+				.view-itinerary, .expand-tours {
+					width: 100%;
+					height: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
 					cursor: pointer;
+					transition: background 0.5s ease-in-out;
+					
+					&:hover {
+						color: $brand-primary;
+						background: rgba(61, 26, 25, 0.28);
+					}
+				}
+				
+				.view-itinerary {
+					position: relative;
+					padding: 1em;
+					line-height: 2;
+					
+					&:before {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						width: 70%;
+						background: $brand-primary;
+						height: 2px;
+					}
+				}
+				
+				.expand-tours {
+					flex-direction: column;
 					
 					i {
-						font-size: 2em;
-						margin-top: 0.5em;
+						font-size: 1.5em;
+						margin-top: 0.2em;
 					}
 				}
 			}
 		}
-		
-		.tours {
+	}
+}
+
+.tours {
 			
-			.wrapper-tour {
-				display: grid;
-				grid-template-columns: 1% 39% 21.75% 21.75% 16.5%;
-				background: $brand-mid-grey;
-				margin-top: 0.3em;
-				font-weight: 400;
-				
-				.bar, .book {
-					background: $brand-green;
-				}
-				
-				.date, .availability, .price, .book {
-					padding: 1em;
-					border-left: 0.1em solid hsl(0, 0%, 96%);
-				}
-				
-				.book {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					text-transform: uppercase;
-					font-weight: bold;
-					color: white;
-					cursor: pointer;
-				}
-				
-				i {
-					padding-right: 0.5em;
-					font-size: 1.2em;
-				}
-				
-				&.full {
-					.bar, .book {
-						background: grey;
-					}
-					
-					.book {
-						cursor: default;
-					}
-					
-					.availability span {
-						color: $brand-red;
-					}
-				}
+	.wrapper-tour {
+		display: grid;
+		grid-template-columns: 1% 39% 21.75% 21.75% 16.5%;
+		background: $brand-mid-grey;
+		margin-top: 0.3em;
+		font-weight: 400;
+		
+		.bar, .book {
+			background: $brand-green;
+		}
+		
+		.date, .availability, .price, .book {
+			padding: 1em;
+			border-left: 0.1em solid hsl(0, 0%, 96%);
+		}
+		
+		.book {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: white;
+			cursor: pointer;
+		}
+		
+		i {
+			padding-right: 0.5em;
+			font-size: 1.2em;
+		}
+		
+		&.full {
+			.bar, .book {
+				background: grey;
+			}
+			
+			.book {
+				cursor: default;
+			}
+			
+			.availability span {
+				color: $brand-red;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
-    Single Safari Custom Post Type
-    
+ * Single Safari Custom Post Type
+ *
  * @package letaka
  */
 get_header();?>
@@ -22,6 +22,8 @@ while( have_posts() ) {
 <div class="hero <?php the_field( 'hero_height', $parent); ?>" style="background-image: url(<?php echo $heroImage['url']; ?>);">
 
     <div class="container">
+	    
+	    <?php $number_nights = get_field("overview", $parent)["number_of_nights"]; ?>
     
         <div class="row">
             <div class="col-9 offset-3">
@@ -54,7 +56,7 @@ while( have_posts() ) {
     
             <div class="hero__safari-meta mb2">
                 
-                <p><i class="fas fa-moon"></i> 3 Nights</p>
+                <p><i class="fas fa-moon"></i> <?php echo $number_nights; ?> Nights</p>
                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
                 <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
             
@@ -140,7 +142,7 @@ while( have_posts() ) {
     
                             <div class="safari-meta mb2">
                                 
-                                <p><i class="fas fa-moon"></i> 3 Nights</p>
+                                <p><i class="fas fa-moon"></i> <?php echo $number_nights; ?> Nights</p>
                                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
                                 <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
                             
@@ -150,7 +152,7 @@ while( have_posts() ) {
 
 				    </div>
 				    			    	
-			    	<div class="menu mb1">
+			    	<div class="menu menu-details mb1">
 			    	
 				    	<?php 
 						

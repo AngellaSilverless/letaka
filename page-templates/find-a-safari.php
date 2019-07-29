@@ -354,9 +354,14 @@ get_header();?>
 							    
 							    <div class="see-tours">
 								    
-								    <div>See Tours</div>
+								    <a class="view-itinerary" href="<?php echo get_permalink($ID); ?>">View Itinerary</a>
 								    
-								    <i class="fas fa-chevron-down"></i>
+								    <div class="expand-tours">
+									    
+									    <div>See Tours</div>
+									    
+									    <i class="fas fa-chevron-down"></i>
+								    </div>
 								    
 								</div>
 							    
