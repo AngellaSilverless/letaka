@@ -39,13 +39,7 @@ while( have_posts() ) {
 						
 				echo implode($destinations, " - ");
 			
-			?></h2>
-                
-            <div class="hero__safari-meta no-line mb2">
-                
-                <p><i class="fas fa-moon"></i> <?php echo get_field("overview")["number_of_nights"]; ?> Nights</p>
-            
-            </div>
+			?> | <span class="nr_nights"><i class="fas fa-moon"></i> <?php echo get_field("overview")["number_of_nights"]; ?> nights</span></h2>
             
             <div class="hero__safari-buttons mt2">
                 
