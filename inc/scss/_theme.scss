@@ -1012,8 +1012,11 @@ p.role {
 		}
 		
 		i {
-            position: absolute;
-            right: 1em;
+			float: right;
+		}
+		
+		a {
+			display: block;
 		}
 	}
 	
@@ -1896,6 +1899,10 @@ body .home-gallery {
     }
 }
 
+.extra-fields .input-wrapper.active {
+	margin-top: 2.5em;
+}
+
 .form label {
         position: absolute;
         z-index: 99;
@@ -1905,7 +1912,7 @@ body .home-gallery {
 }
 
 .form .active label {
-    transform: translateY(-2em) scale(0.8);
+    transform: translateY(-80%) scale(0.8);
 
 }
 
@@ -2172,6 +2179,11 @@ body .home-gallery {
 }
 
 /*===========PAGE SPECIFIC==========*/
+
+.hero.h50 {
+	height: unset;
+	min-height: calc(50vh + 115px);
+}
 
 
 /*===========VENDOR ADJUSTMENTS==========*/

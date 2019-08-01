@@ -166,6 +166,7 @@ nav {
 	
 	.menu-body {
 		display: none;
+		margin-left: 0;
 	}
 
 	.nav-menu {
@@ -239,6 +240,11 @@ nav {
 	grid-template-rows: 45% 55%;
 }
 
+.hero.h50 {
+	height: unset;
+	min-height: calc(50vh + 75px);
+}
+
 /*---CONTENT---*/
 
 .sticky-mobile {
@@ -250,7 +256,7 @@ nav {
 	&::before {
 		content: '';
 		width: 100%;
-		height: 20em;
+		height: 100vh;
 		bottom: 0;
 		background: whitesmoke;
 		position: absolute;
@@ -268,6 +274,10 @@ nav {
 	}
 }
 
+.sidebar-safari {
+	display: none;
+}
+
 .wrapper-section {
 	
 	&.wrapper-section__home .heading__section {
@@ -278,10 +288,14 @@ nav {
 		padding-bottom: 1em;
 	}
 	
+	.action-buttons > div:last-of-type {
+		padding-bottom: 0;
+	}
+	
 	.heading__section {
 		z-index: 14;
 		position: sticky;
-		top: 4.5em;
+		top: 3em;
 		background: whitesmoke;
 		
 		&::before {
@@ -415,6 +429,21 @@ body .gallery a:nth-of-type(n) {
 	width: 80vw;
 }
 
+.separator-wrapper .separator-device {
+	
+	&.left, &.right {
+		height: 2.5em;
+	}
+	
+	&.left:before {
+		left: calc(-1000% + 1px);
+	}
+}
+
+.separator-wrapper {
+	margin-top: -1em;
+}
+
 /*---FOOTER---*/
 
 .footer {
@@ -451,6 +480,16 @@ body {
 }
 
 /*---HEADER---*/
+
+.hero__content .heading__xl {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.hero.h50 {
+	height: unset;
+	min-height: calc(50vh + 50px);
+}
 
 /*---CONTENT---*/
 
@@ -544,6 +583,10 @@ body .gallery a {
 	display: block;
 }
 
+.hero__safari-buttons a {
+	margin-right: 0.5em;
+}
+
 #map-itinerary .mapboxgl-popup {
 	max-width: 200px;	
 }
@@ -567,6 +610,38 @@ body .gallery.region {
 
 .safari-activities__item {
 	width: calc(50% - 2em);
+}
+
+.wrapper-testimonial i {
+	font-size: 2.5em;
+}
+
+.find-agent .wrapper-agents .agent .agent-details {
+	grid-column: 1/3;
+	
+	.button {
+		border-left: none;
+	}
+	
+	.info {
+		display: inline-block;
+		padding-left: 0.5em;
+	}
+}
+
+.tours .wrapper-tour {
+	grid-template-columns: 100%;
+}
+
+.wrapper-questions.daily {
+	
+	.question, .answer {
+		grid-template-columns: 100%;
+	}
+}
+
+.safari-features p {
+	display: block;
 }
 
 /*---FOOTER---*/
@@ -632,6 +707,12 @@ body {
 
 .why-letaka .wrapper-actions .action .img {
 	min-height: 25em;
+}
+
+.season__month {
+    width: 1.6em;
+    height: 1.6em;
+    line-height: 1.6em;
 }
 
 /*---CONTENT---*/

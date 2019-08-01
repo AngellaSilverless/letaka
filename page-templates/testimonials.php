@@ -58,7 +58,7 @@ get_header();?>
 				
 				if($row > $max) { break; } ?>
 					
-				<div class="wrapper-testimonial col-9 pb3">
+				<div class="wrapper-testimonial col-11 col-lg-9 pb3">
 				
 				    <i class="fas fa-quote-left"></i>
 							

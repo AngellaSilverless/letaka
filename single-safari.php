@@ -26,7 +26,7 @@ while( have_posts() ) {
 	    <?php $number_nights = get_field("overview", $parent)["number_of_nights"]; ?>
     
         <div class="row">
-            <div class="col-9 offset-3">
+            <div class="col-12 col-sm-9 offset-0 offset-sm-3">
             <div class="hero__content">
 
             <h1 class="heading heading__xl heading__light slide-down"><?php echo $parent->post_title;?></h1>
@@ -107,7 +107,7 @@ while( have_posts() ) {
             
             <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 
-			    <div class="sidebar sticky toggle-item">
+			    <div class="sidebar sidebar-safari sticky toggle-item">
 				    
 				    <div class="title">Safari Details</div>
 				    

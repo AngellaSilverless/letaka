@@ -15,7 +15,7 @@
 
         <?php if ( is_front_page() ): ?>
         
-			<div class="col-8 offset-2">
+			<div class="col-12 col-sm-8 offset-0 offset-sm-2">
                 <div class="hero__content">
 			
 			<div>
@@ -57,7 +57,7 @@
 			
         <?php else: ?>
         
-            <div class="col-9 offset-3">
+        	<div class="col-12 col-sm-9 offset-0 offset-sm-3">
                 <div class="hero__content">
 		
 		<h1 class="heading heading__xl heading__light slide-up"><?php the_field( 'hero_heading' );?></h1>

@@ -22,7 +22,7 @@ while( have_posts() ) {
     <div class="container">
     
         <div class="row">
-            <div class="col-9 offset-3">
+            <div class="col-12 col-sm-9 offset-0 offset-sm-3">
             <div class="hero__content">
 
             <h1 class="heading heading__xl heading__light slide-down"><?php echo $post->post_title;?></h1>
