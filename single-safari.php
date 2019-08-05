@@ -174,7 +174,7 @@ while( have_posts() ) {
 				    
 			    	</div>
 			    	
-			    	<a href="" class="button button__green button__fullwidth">Enquire Now</a>
+			    	<a href="<?php echo home_url() . "/enquire-now"; ?>" class="button button__green button__fullwidth">Enquire Now</a>
 			    	
 			    </div>
 			    
