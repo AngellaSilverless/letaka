@@ -135,8 +135,7 @@ while( have_posts() ) {
 		            <p><?php the_field('hero_copy');?></p>
 		            
 		            <? if( have_rows('overview') ): 
-		                while( have_rows('overview') ): the_row();   
-		                $featuresImage = get_sub_field('features_image');?>      
+		                while( have_rows('overview') ): the_row(); ?>      
 		            
 		            <div class="safari-features">
 		                
@@ -320,6 +319,41 @@ while( have_posts() ) {
     		         <?php endwhile; endif;?><!--accommodation loop-->   
     		         
 				</div>
+				
+				
+				
+				<div class="wrapper-section mb5">    
+    		
+    		        <h3 id="extensions" class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
+    		
+    		        <? if( have_rows('extensions_&_activities') ): 
+    		            while( have_rows('extensions_&_activities') ): the_row();?>      
+    		
+    		        <div class="extensions mb3">
+    		
+    		            <? if( have_rows('items') ): 
+    		            while( have_rows('items') ): the_row();?>                
+    		
+			    		<div class="row">
+			    		 
+			    		<div class="col-12 col-sm-4">
+			    		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
+			    		</div>
+			    		
+			    		<div class="col-12 col-sm-8">
+			    		    <p><?php the_sub_field('copy');?></p> 
+			    		</div> 
+			    		    
+			    		</div><!--r-->
+    		                        
+    		            <?php endwhile; endif;?>
+    		
+    		        </div><!--extensions-->
+    		
+    		         <?php endwhile; endif;?><!--extensions loop-->      
+    		        
+    		    </div>
+
 
 				<div  id="detail" class="wrapper-section mb5">
     
@@ -361,7 +395,7 @@ while( have_posts() ) {
 		    
                     </div>
 		    
-		    <div class="safari-payment list">
+					<div class="safari-payment list">
 		                
 		                <h2 class="heading heading__md mb1">Easy Payment Options</h2>
 		    
@@ -373,45 +407,8 @@ while( have_posts() ) {
 		            </div>
 		    
 				</div>
-		    
-		           
 
-				
-				<div class="wrapper-section">    
-    		
-    		        <h3 id="extensions" class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
-    		
-    		        <? if( have_rows('extensions_&_activities') ): 
-    		            while( have_rows('extensions_&_activities') ): the_row();?>      
-    		
-    		        <div class="extensions mb3">
-    		
-    		            <? if( have_rows('items') ): 
-    		            while( have_rows('items') ): the_row();?>                
-    		
-			    		<div class="row">
-			    		 
-			    		<div class="col-12 col-sm-4">
-			    		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
-			    		</div>
-			    		
-			    		<div class="col-12 col-sm-8">
-			    		    <p><?php the_sub_field('copy');?></p> 
-			    		</div> 
-			    		    
-			    		</div><!--r-->
-    		                        
-    		            <?php endwhile; endif;?>
-    		
-    		        </div><!--extensions-->
-    		
-    		         <?php endwhile; endif;?><!--extensions loop-->      
-    		        
-    		    </div>
-    		    
-    		    
-    		    
-    		    
+
     		    <div class="wrapper-section mb3">    
     		
     		        <h3 id="upcoming-safaris" class="heading heading__lg heading__section mt1">Upcoming Safaris</h3>

@@ -126,7 +126,7 @@
 	                
 			                <div class="actions-nav">
 			                
-			                    <a class="button button__transparent-light">Online Payment</a>
+			                    <a href="<?php the_field("online_payment", "options"); ?>" class="button button__transparent-light">Online Payment</a>
 			                    <a class="button" href="<?php echo get_permalink( get_page_by_path( 'enquire-now' ) ); ?>">Enquire Now</a>
 			                
 			                </div>
