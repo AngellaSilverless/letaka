@@ -169,14 +169,6 @@ function my_custom_fonts() {
 		'redirect'		=> false
 	));
 
-	acf_add_options_page(array(
-		'page_title' 	=> 'Testimonials',
-		'menu_title'	=> 'Testimonials',
-		'menu_slug' 	=> 'testimonials',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
-
 }
  
 /**= Remove Default Menu Items =**/
@@ -555,3 +547,92 @@ function register_my_custom_menu_page() {
 	add_submenu_page('edit.php?post_type=special_safaris', 'Safaris', 'Safaris', 'manage_options', 'edit.php?post_type=special_safaris', '' );
 	add_submenu_page('edit.php?post_type=special_safaris', 'Uploads', 'Uploads', 'manage_options', 'edit.php?post_type=special_uploads', '' );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * A function used to programmatically create a post in WordPress. The slug, author ID, and title
+ * are defined within the context of the function.
+ *
+ * @returns -1 if the post was never created, -2 if a post with the same title exists, or the ID
+ *          of the post if successful.
+ */
+function programmatically_create_post() {
+	global $wpdb;
+	
+	$row = 1;
+	$safaris = array();
+	
+	if (($handle = fopen((get_stylesheet_directory_uri() . "/sql.csv"), "r")) !== FALSE) {
+		
+	    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+		    
+		    if($row != 1) {
+		    
+			    $num = count($data);
+		        $row++;
+		        
+		        $date = new DateTime($data[2]);
+		        
+	            array_push($safaris, array(
+		            "title" => explode(" - ", $data[0])[0],
+		            "location" => explode(" - ", $data[0])[1],
+		            "date" => $date->format("Ymd"),
+		            "testimonial" => $data[1],
+		            "created" => $date->format("Y-m-d H:i:s")
+	            ));
+		    } else {
+			    $row++;
+		    }
+	    }
+	    fclose($handle);
+	}
+
+/*
+	foreach($safaris as $safari) {
+	
+			wp_insert_post(
+				array(
+					'comment_status'	=>	'closed',
+					'ping_status'		=>	'closed',
+					'post_author'		=>	1,
+					'post_name'		    =>	str_replace(' ', '-', str_replace(" & ", " ", strtolower($safari["title"]))),
+					'post_title'		=>	$safari["title"],
+					'post_status'		=>	'publish',
+					'post_type'		    =>	'testimonial',
+					'post_parent'       =>  0,
+					'post_date'         =>  $safari["created"],
+					'meta_input' => array(
+					    'attribution_location' => $safari["location"],
+					    'attribution_date'     => $safari["date"],
+					    'testimonial'          => $safari["testimonial"],
+					)
+				)
+			);
+	
+	}
+*/
+	
+	die;
+}
+//add_filter( 'wp', 'programmatically_create_post' );
+

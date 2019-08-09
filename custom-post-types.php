@@ -8,6 +8,7 @@ add_action( 'init', 'custom_post_type_safari', 0 );
 add_action( 'init', 'custom_post_type_agent', 0 );
 add_action( 'init', 'custom_post_type_special_safaris', 0 );
 add_action( 'init', 'custom_post_type_special_uploads', 0 );
+add_action( 'init', 'custom_post_type_testimonial', 0 );
 
 // ====== Itinerary
 function custom_post_type_itinerary() {
@@ -215,4 +216,46 @@ function custom_post_type_special_uploads() {
         'capability_type'     => 'page'
     );
     register_post_type( 'special_uploads', $args );
+}
+
+
+// ====== Testimonials
+function custom_post_type_testimonial() {
+	
+    $labels = array(
+        'name'                => _x( 'Testimonials', 'Post Type General Name',  'letaka' ),
+        'singular_name'       => _x( 'Testimonial',   'Post Type Singular Name', 'letaka' ),
+        'menu_name'           => __( 'Testimonials',        'letaka' ),
+        'parent_item_colon'   => __( 'Parent Testimonial',   'letaka' ),
+        'all_items'           => __( 'All Testimonials',    'letaka' ),
+        'view_item'           => __( 'View Testimonial',     'letaka' ),
+        'add_new_item'        => __( 'Add New Testimonial',  'letaka' ),
+        'add_new'             => __( 'Add Testimonial',      'letaka' ),
+        'edit_item'           => __( 'Edit Testimonial',     'letaka' ),
+        'update_item'         => __( 'Update Testimonial',   'letaka' ),
+        'search_items'        => __( 'Search Testimonials', 'letaka' ),
+        'not_found'           => __( 'Not Found',          'letaka' ),
+        'not_found_in_trash'  => __( 'Not found in Trash', 'letaka' )
+    );
+    
+    $args = array(
+        'label'               => __( 'testimonial', 'letaka' ),
+        'description'         => __( 'testimonial', 'letaka' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title' ),
+        'menu_icon'			  => 'dashicons-admin-comments',
+        'hierarchical'        => true,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 110,
+        'can_export'          => true,
+        'has_archive'         => false,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page'
+    );
+    register_post_type( 'testimonial', $args );
 }

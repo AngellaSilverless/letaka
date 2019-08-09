@@ -42,6 +42,13 @@ add_action( 'manage_special_safaris_posts_custom_column' , 'fh_custom_special_sa
 add_filter( 'manage_edit-special_safaris_sortable_columns', 'fh_sortable_special_safaris_column' );
 
 /*
+* Add custom column to Itineraries
+*/
+add_filter( 'manage_testimonial_posts_columns', 'fh_add_columns_testimonial' );
+add_action( 'manage_testimonial_posts_custom_column' , 'fh_custom_testimonial_column', 10, 2 );
+add_filter( 'manage_edit-testimonial_sortable_columns', 'fh_sortable_testimonial_column' );
+
+/*
 * Assign filter to custom column
 */
 add_action( 'restrict_manage_posts', 'fh_add_filter_column' );
@@ -647,5 +654,33 @@ function fh_sortable_special_safaris_column( $columns ) {
     $columns['date-to'] = 'date-to';
     $columns['availability'] = 'availability';
  
+    return $columns;
+}
+
+function fh_add_columns_testimonial($columns) {
+    
+    $columns = array(
+		'cb'               => '&lt;input type="checkbox" />',
+		'title'            => __( 'Title' ),
+		'location'         => __( 'Location' ),
+		'date-added'       => __( 'Date' )
+	);
+
+    return $columns;
+}
+
+function fh_custom_testimonial_column( $column, $post_id ) {
+	
+	if($column == "location") {
+		echo get_field("attribution_location", $post_id);
+	} else if($column == "date-added") {
+		$date_added = new DateTime(get_field("attribution_date", $post_id));
+		echo $date_added->format("d M Y");
+	}
+}
+
+function fh_sortable_testimonial_column( $columns ) {
+    $columns['location'] = 'cost';
+    $columns['date-added'] = 'special_cost';
     return $columns;
 }

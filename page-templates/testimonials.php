@@ -42,7 +42,12 @@ get_header();?>
 		    
 			$testimonials_per_page = 10;
 			
-			$testimonials = get_field("testimonial", "options");
+			$testimonials = get_posts(array(
+				'numberposts' => -1,
+				'post_type'   => 'testimonial'
+			));
+			
+			$i = 0;
 			
 			$total = count( $testimonials );
 			
@@ -52,7 +57,7 @@ get_header();?>
 			
 			$max = ( $min + $testimonials_per_page ) - 1;
 		    
-		    if(have_rows("testimonial", "options")): while(have_rows("testimonial", "options")): the_row(); $row++;
+		    foreach($testimonials as $testimonial): $row++;
 			    
 				if($row < $min) { continue; }
 				
@@ -64,17 +69,22 @@ get_header();?>
 							
 					<div class="wrapper-testimonial__content">		
 							
-					<div class="justify mb1"><?php the_sub_field("testimonial"); ?></div>
+					<div class="justify mb1"><?php echo get_field("testimonial", $testimonial->ID); ?></div>
 					
-					<h3 class="heading heading__md heading__primary-color mb0"><?php the_sub_field("attribution_name"); ?></h3>
+					<h3 class="heading heading__md heading__primary-color mb0"><?php echo $testimonial->post_title; ?></h3>
 					
-					<p><?php the_sub_field("attribution_details"); ?></p>	
+					<p><?php
+						$attr = array();
+						array_push($attr, get_field("attribution_location", $testimonial->ID));
+						array_push($attr, get_field("attribution_date", $testimonial->ID));
+						echo implode(", ", $attr);
+					?></p>	
 					
 					</div>
 										
 				</div>
 					
-			<?php endwhile; ?>
+			<?php endforeach; ?>
 			</div>
 			<div class="pagination"><?php 
 							
@@ -95,8 +105,6 @@ get_header();?>
 		        ) );
 			        
 			?></div>
-			
-			<?php endif; ?>
 			
 		    </div>
 	    
