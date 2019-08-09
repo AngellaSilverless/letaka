@@ -25,26 +25,21 @@ add_action( 'admin_enqueue_scripts', 'fh_load_admin_scripts' );
 * Add custom column to Itinerary page - Get Safari
 */
 add_filter( 'manage_itinerary_posts_columns', 'fh_add_columns_itinerary' );
-
-/*
-* Add data to custom column in Itinerary page - Get Safari
-*/
 add_action( 'manage_itinerary_posts_custom_column' , 'fh_custom_itinerary_column', 10, 2 );
 
 /*
 * Add custom column to Safari page
 */
 add_filter( 'manage_safari_posts_columns', 'fh_add_columns_safari' );
-
-/*
-* Add data to custom column in Safari page
-*/
 add_action( 'manage_safari_posts_custom_column' , 'fh_custom_safari_column', 10, 2 );
+add_filter( 'manage_edit-safari_sortable_columns', 'fh_sortable_safari_column' );
 
 /*
-* Make custom column sortable in Safari page
+* Add custom column to Special Safaris page
 */
-add_filter( 'manage_edit-safari_sortable_columns', 'fh_sortable_safari_column' );
+add_filter( 'manage_special_safaris_posts_columns', 'fh_add_columns_special_safaris' );
+add_action( 'manage_special_safaris_posts_custom_column' , 'fh_custom_special_safaris_column', 10, 2 );
+add_filter( 'manage_edit-special_safaris_sortable_columns', 'fh_sortable_special_safaris_column' );
 
 /*
 * Assign filter to custom column
@@ -65,10 +60,6 @@ add_action( 'manage_posts_columns', 'fh_manage_columns' );
 * Add data to custom column in Agents
 */
 add_action( 'manage_agents_posts_custom_column' , 'fh_custom_agent_column', 10, 2 );
-
-/*
-* Add custom column to Agents page
-*/
 add_filter( 'manage_agents_posts_columns', 'fh_add_columns_agent' );
 
 /*
@@ -608,4 +599,53 @@ function orderby_pages_callback($orderby_statement, $wp_query) {
 	} else {
 		return $orderby_statement;
 	}
+}
+
+function fh_add_columns_special_safaris($columns) {
+    
+    $columns = array(
+		'cb'               => '&lt;input type="checkbox" />',
+		'title'            => __( 'Title' ),
+		'cost'             => __( 'Cost' ),
+		'special_cost'     => __( 'Special Cost' ),
+		'itinerary'        => __( 'Itinerary' ),
+		'date-from'        => __( 'Start Date' ),
+		'date-to'          => __( 'End Date' ),
+		'availability'     => __( 'Availability' )
+	);
+
+    return $columns;
+}
+
+function fh_custom_special_safaris_column( $column, $post_id ) {
+	
+	$original_post = get_post_meta($post_id, "safari_reference", true);
+	
+	if($column == "itinerary") {
+		$parent = wp_get_post_parent_id( $original_post );
+        echo "<a href=". get_edit_post_link( $parent ) .">" . get_the_title( $parent ) . "</a>";
+	} else if($column == "date-from") {
+		$date_from = new DateTime(get_field("date_from", $original_post));
+		echo $date_from->format("d M Y");
+	} else if($column == "date-to") {
+		$date_to = new DateTime(get_field("date_to", $original_post));
+		echo $date_to->format("d M Y");
+	} else if($column == "cost") {
+		echo number_format(get_field("cost", $original_post));
+	} else if($column == "special_cost") {
+		echo number_format(get_field("special_offer_price", $post_id));
+	} else if($column == "availability") {
+		echo get_field("availability", $original_post);
+	}
+}
+
+function fh_sortable_special_safaris_column( $columns ) {
+    $columns['cost'] = 'cost';
+    $columns['special_cost'] = 'special_cost';
+    $columns['itinerary'] = 'itinerary';
+    $columns['date-from'] = 'date-from';
+    $columns['date-to'] = 'date-to';
+    $columns['availability'] = 'availability';
+ 
+    return $columns;
 }

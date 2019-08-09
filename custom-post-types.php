@@ -6,6 +6,8 @@
 add_action( 'init', 'custom_post_type_itinerary', 0 );
 add_action( 'init', 'custom_post_type_safari', 0 );
 add_action( 'init', 'custom_post_type_agent', 0 );
+add_action( 'init', 'custom_post_type_special_safaris', 0 );
+add_action( 'init', 'custom_post_type_special_uploads', 0 );
 
 // ====== Itinerary
 function custom_post_type_itinerary() {
@@ -131,4 +133,86 @@ function custom_post_type_agent() {
         'capability_type'     => 'page'
     );
     register_post_type( 'agents', $args );
+}
+
+// ====== Specials
+function custom_post_type_special_safaris() {
+	
+    $labels = array(
+        'name'                => _x( 'Special Safaris', 'Post Type General Name',  'letaka' ),
+        'singular_name'       => _x( 'Special Safari',  'Post Type Singular Name', 'letaka' ),
+        'menu_name'           => __( 'Special Safaris',        'letaka' ),
+        'parent_item_colon'   => __( 'Parent Safari',          'letaka' ),
+        'all_items'           => __( 'All Special Safaris',    'letaka' ),
+        'view_item'           => __( 'View Special Safaris',   'letaka' ),
+        'add_new_item'        => __( 'Add New Special Safari', 'letaka' ),
+        'add_new'             => __( 'Add Special Safari',     'letaka' ),
+        'edit_item'           => __( 'Edit Special Safari',    'letaka' ),
+        'update_item'         => __( 'Update Special Safari',  'letaka' ),
+        'search_items'        => __( 'Search Special Safaris', 'letaka' ),
+        'not_found'           => __( 'Not Found',     'letaka' ),
+        'not_found_in_trash'  => __( 'Not found in Trash', 'letaka' )
+    );
+    
+    $args = array(
+        'label'               => __( 'special_safaris', 'letaka' ),
+        'description'         => __( 'special_safaris', 'letaka' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title' ),
+        'menu_icon'			  => 'dashicons-businessman',
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => false,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 110,
+        'can_export'          => true,
+        'has_archive'         => false,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page'
+    );
+    register_post_type( 'special_safaris', $args );
+}
+
+// ====== Specials
+function custom_post_type_special_uploads() {
+	
+    $labels = array(
+        'name'                => _x( 'Special Uploads', 'Post Type General Name',  'letaka' ),
+        'singular_name'       => _x( 'Special Upload',  'Post Type Singular Name', 'letaka' ),
+        'menu_name'           => __( 'Special Uploads',        'letaka' ),
+        'parent_item_colon'   => __( 'Parent Upload',          'letaka' ),
+        'all_items'           => __( 'All Special Uploads',    'letaka' ),
+        'view_item'           => __( 'View Special Uploads',   'letaka' ),
+        'add_new_item'        => __( 'Add New Special Upload', 'letaka' ),
+        'add_new'             => __( 'Add Special Upload',     'letaka' ),
+        'edit_item'           => __( 'Edit Special Upload',    'letaka' ),
+        'update_item'         => __( 'Update Special Upload',  'letaka' ),
+        'search_items'        => __( 'Search Special Uploads', 'letaka' ),
+        'not_found'           => __( 'Not Found',     'letaka' ),
+        'not_found_in_trash'  => __( 'Not found in Trash', 'letaka' )
+    );
+    
+    $args = array(
+        'label'               => __( 'special_uploads', 'letaka' ),
+        'description'         => __( 'special_uploads', 'letaka' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title' ),
+        'menu_icon'			  => 'dashicons-businessman',
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => false,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 110,
+        'can_export'          => true,
+        'has_archive'         => false,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page'
+    );
+    register_post_type( 'special_uploads', $args );
 }

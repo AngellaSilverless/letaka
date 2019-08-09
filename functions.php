@@ -136,6 +136,22 @@ function my_custom_fonts() {
 	padding-left: 1.5em !important;
 }
 
+.custom_region_fields {
+	display: none;
+}
+
+#custom_current_price input {
+	pointer-events:none;
+	background: #f8f8f8;
+	border-color: rgba(222,222,222,.75);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.04);
+	color: rgba(51,51,51,.5);
+}
+
+#titlediv #title:disabled {
+	background: #eaeaea;
+}
+
 </style>';
 }
 
@@ -206,78 +222,148 @@ function fix_svg() {
 }
 add_action( 'admin_head', 'fix_svg' );
 
-/**= Set WooCommerce Theme Support =**/
+/**= Add javascript to admin page =**/
 
-add_action( 'after_setup_theme', function() {
-	add_theme_support( 'woocommerce' );
-	add_theme_support( 'post-thumbnails' );
-} );
+add_action( 'admin_enqueue_scripts', 'enqueue_script_admin' );
 
-/**= WooCommerce - Custom Quantity Fields =**/
+function enqueue_script_admin($hook) {
+	global $typenow, $current_screen;
+	
+	// Control display of country fields and region fields in Destinations page (ADMIN)
+	
+	if(($hook == "edit-tags.php" || $hook == "term.php") && $typenow == "itinerary" && $current_screen->taxonomy == "destinations") {
+	
+	?>
+	
+	<script>
+		
+		window.onload = function() {
+			var destination_parent = document.getElementById("parent");
+			if(destination_parent.options[destination_parent.selectedIndex].value == -1) {
+				document.getElementsByClassName("custom_country_fields")[0].style.display = "table-row";
+				document.getElementsByClassName("custom_region_fields")[0].style.display = "none";
+			} else {
+				document.getElementsByClassName("custom_country_fields")[0].style.display = "none";
+				document.getElementsByClassName("custom_region_fields")[0].style.display = "table-row";
+			}
+			
+			destination_parent.addEventListener('change', function() {
+				if(destination_parent.options[destination_parent.selectedIndex].value == -1) {
+					document.getElementsByClassName("custom_country_fields")[0].style.display = "table-row";
+					document.getElementsByClassName("custom_region_fields")[0].style.display = "none";
+				} else {
+					document.getElementsByClassName("custom_country_fields")[0].style.display = "none";
+					document.getElementsByClassName("custom_region_fields")[0].style.display = "table-row";
+				}
+			}, false);
+		}
+		
+	</script>
+	
+	<?php
+		
+	}
 
-add_action( 'wp_footer' , 'custom_quantity_fields_script' );
-function custom_quantity_fields_script(){
-    ?>
-    <script type='text/javascript'>
-    jQuery( function( $ ) {
-        if ( ! String.prototype.getDecimals ) {
-            String.prototype.getDecimals = function() {
-                var num = this,
-                    match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-                if ( ! match ) {
-                    return 0;
-                }
-                return Math.max( 0, ( match[1] ? match[1].length : 0 ) - ( match[2] ? +match[2] : 0 ) );
-            }
-        }
-        // Quantity "plus" and "minus" buttons
-        $( document.body ).on( 'click', '.plus, .minus', function() {
-            var $qty        = $( this ).closest( '.quantity' ).find( '.qty'),
-                currentVal  = parseFloat( $qty.val() ),
-                max         = parseFloat( $qty.attr( 'max' ) ),
-                min         = parseFloat( $qty.attr( 'min' ) ),
-                step        = $qty.attr( 'step' );
-
-            // Format values
-            if ( ! currentVal || currentVal === '' || currentVal === 'NaN' ) currentVal = 0;
-            if ( max === '' || max === 'NaN' ) max = '';
-            if ( min === '' || min === 'NaN' ) min = 0;
-            if ( step === 'any' || step === '' || step === undefined || parseFloat( step ) === 'NaN' ) step = 1;
-
-            // Change the value
-            if ( $( this ).is( '.plus' ) ) {
-                if ( max && ( currentVal >= max ) ) {
-                    $qty.val( max );
-                } else {
-                    $qty.val( ( currentVal + parseFloat( step )).toFixed( step.getDecimals() ) );
-                }
-            } else {
-                if ( min && ( currentVal <= min ) ) {
-                    $qty.val( min );
-                } else if ( currentVal > 0 ) {
-                    $qty.val( ( currentVal - parseFloat( step )).toFixed( step.getDecimals() ) );
-                }
-            }
-
-            // Trigger change event
-            $qty.trigger( 'change' );
-        });
-    });
-    </script>
-    <?php
 }
+
+/**= Change Title and Cost of Special Safari =**/
+
+add_action('acf/input/admin_head', 'change_special_safari_title');
+
+function change_special_safari_title() {
+	global $typenow; 
+		
+	if($typenow == "special_safaris") { ?>
+
+	<script type="text/javascript">
+		
+	jQuery(function($){
+		
+		var currentPrice = $("#custom_current_price input");
+		var titleLabel   = $("#title-prompt-text");
+		var titleInput   = $("#title");
+		
+		currentPrice[0].disabled = true;
+		titleInput[0].disabled   = true;
+
+		titleLabel.text("Choose a safari reference");
+		
+		$("#safari_reference select").on("change", function() {
+			var post_id = this.value;
+			
+			$.ajax({
+				type : "POST",
+				dataType : "JSON",
+				url : "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+				data : {
+					action: "safari_current_price",
+					postID: post_id
+				},
+				success: function(response) {
+					if(response && response.success) {
+						titleInput.val(response.success.post_title);
+						titleLabel.text("");
+						currentPrice.val(response.success.cost);
+					}
+				}
+			});
+		});
+	});
+	
+	</script>
+
+	<?php
+	
+	}
+
+}
+
+/**= AJAX calls for Special Safaris =**/
+
+add_action( 'wp_ajax_safari_current_price', 'safari_current_price' );
+add_action( 'wp_ajax_nopriv_safari_current_price', 'safari_current_price' );
+
+function safari_current_price() {
+	$id = $_REQUEST["postID"];
+	$result = array();
+	
+	if($id) {
+		$title = get_the_title($id);
+		$cost  = get_post_meta($id, "cost", true);
+		
+		$result = array("success" => array(
+			"post_title" => $title . " (Special)",
+			"cost"       => $cost
+		));
+		
+	}
+	
+	echo json_encode($result);
+	die();
+}
+
 
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
-/**= WooCommerce - Custom Customer Message in Checkout =**/
+/**= Change title before  =**/
 
-function md_custom_woocommerce_checkout_fields( $fields ) 
-{
-    $fields['order']['order_comments']['placeholder'] = 'Pop any info you need us to know in here, please';
+add_filter( 'wp_insert_post_data' , 'filter_post_data' , '99', 2 );
 
-    return $fields;
+function filter_post_data( $data , $postarr ) {
+	if($data["post_type"] != "special_safaris") {
+		return $data;
+	}
+	
+	if($data["post_status"] == "trash" || $data["post_status"] == "auto-draft" || !$postarr["acf"]) {
+		return $data;
+	}
+	
+	$title = get_the_title($postarr["acf"]["field_5d498707fa518"]);
+	$data["post_title"] = $title . " (Special)";
+	$data['post_name'] = sanitize_title($data["post_title"]);
+    return $data;
 }
-add_filter( 'woocommerce_checkout_fields', 'md_custom_woocommerce_checkout_fields' );
+
 
 /**= Social Sharing Buttons =**/
 
@@ -417,6 +503,7 @@ function reorder_admin_menu( $__return_true ) {
 		'edit.php?post_type=itinerary',  // Itineraries
 		'edit.php?post_type=safari',     // Safaries
 		'edit.php?post_type=agents',     // Agent
+		'edit.php?post_type=special_safaris',                  // Specials
 		'separator1',                    // --Space--
 		'edit.php',                      // Posts
 		'edit.php?post_type=page',       // Pages 
@@ -459,3 +546,12 @@ function wpse_hide_cat_descr() { ?>
 
 add_action( 'admin_head-term.php', 'wpse_hide_cat_descr' );
 add_action( 'admin_head-edit-tags.php', 'wpse_hide_cat_descr' );
+
+/* Add menu item to group specials for Agent Login */
+
+add_action( 'admin_menu', 'register_my_custom_menu_page' );
+function register_my_custom_menu_page() {
+	add_menu_page( 'Specials', 'Specials', 'manage_options', 'edit.php?post_type=special_safaris', '', 'dashicons-awards', 90 );
+	add_submenu_page('edit.php?post_type=special_safaris', 'Safaris', 'Safaris', 'manage_options', 'edit.php?post_type=special_safaris', '' );
+	add_submenu_page('edit.php?post_type=special_safaris', 'Uploads', 'Uploads', 'manage_options', 'edit.php?post_type=special_uploads', '' );
+}
