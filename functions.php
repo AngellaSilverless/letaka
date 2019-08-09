@@ -148,7 +148,7 @@ function my_custom_fonts() {
 	color: rgba(51,51,51,.5);
 }
 
-#titlediv #title:disabled {
+#titlediv #title:read-only {
 	background: #eaeaea;
 }
 
@@ -283,8 +283,8 @@ function change_special_safari_title() {
 		var titleLabel   = $("#title-prompt-text");
 		var titleInput   = $("#title");
 		
-		currentPrice[0].disabled = true;
-		titleInput[0].disabled   = true;
+		currentPrice[0].readOnly = true;
+		titleInput[0].readOnly   = true;
 
 		titleLabel.text("Choose a safari reference");
 		
