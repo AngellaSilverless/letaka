@@ -547,3 +547,14 @@ function register_my_custom_menu_page() {
 	add_submenu_page('edit.php?post_type=special_safaris', 'Safaris', 'Safaris', 'manage_options', 'edit.php?post_type=special_safaris', '' );
 	add_submenu_page('edit.php?post_type=special_safaris', 'Uploads', 'Uploads', 'manage_options', 'edit.php?post_type=special_uploads', '' );
 }
+
+/* Add new User Role */
+
+add_role('agent_access', __('Agent Access'), array(
+	'read'              => false,
+	'create_posts'      => false,
+	'edit_posts'        => false,
+	'edit_others_posts' => false,
+	'publish_posts'     => false,
+	'manage_categories' => false,
+));

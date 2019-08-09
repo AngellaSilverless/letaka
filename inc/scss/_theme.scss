@@ -791,6 +791,35 @@
 			}
 		}
 	}
+	
+	&.special-tours {
+		
+		.wrapper-tour .price {
+			padding: 0.7em 1em;
+		}
+		
+		.date, .availability {
+			display: flex;
+			align-items: center;
+		}
+		
+		.price-old {
+			color: $brand-red;
+			display: inline-block;
+			position: relative;
+			font-size: 0.9em;
+			margin-left: 2.2em;
+			
+			&:before {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 1px;
+				top: calc(50% - 1px);
+				background: $brand-red;
+			}
+		}
+	}
 }
 
 .nr_nights {
@@ -1179,7 +1208,7 @@ p.role {
 	
 }
 
-.travel-info {
+.travel-info, .agent-specials {
 	
 	p {
 		font-size: 1em;
@@ -1189,11 +1218,9 @@ p.role {
 		display: flex;
 		align-items: center;
 		line-height: unset;
-		padding-right: 2em;
 		
 		i {
 			font-size: 1.5em;
-			padding-right: 0.5em;
 			color: $brand-secondary;
 		}
 	}
