@@ -350,6 +350,10 @@ while( have_posts() ) {
     		        <?php
 	    		        
 	    		        $guides = get_the_terms($post->ID, "guide");
+	    		        
+	    		        if(!$guides) {
+		    		        $guides = get_the_terms($parent->ID, "guide");
+	    		        }
 						
 						if($guides): foreach($guides as $guide): ?>
 				

@@ -81,7 +81,7 @@ function guide_cpt_taxonomy() {
 		'menu_name' 		=> __( 'Guides'         )
 	); 	
 	
-	register_taxonomy( 'guide', array( 'safari' ), array(
+	register_taxonomy( 'guide', array( 'safari', 'itinerary' ), array(
 		'hierarchical' 		=> true,
 		'labels' 			=> $labels,
 		'show_ui' 			=> true,
