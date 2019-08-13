@@ -161,6 +161,13 @@ function my_custom_fonts() {
 </style>';
 }
 
+/**= Add theme support for post thumbnails =**/
+
+function mytheme_post_thumbnails() {
+    add_theme_support( 'post-thumbnails' );
+}
+add_action( 'after_setup_theme', 'mytheme_post_thumbnails' );
+
 /**
  * ACF Options Pages.
  */
