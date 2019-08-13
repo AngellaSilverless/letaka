@@ -2116,11 +2116,14 @@ body .home-gallery {
 
 .parent-map {
     
+    .parent {
+	    fill: #C9C9C9;
+    }
 }
 
 .child-map {
     
-    polygon#parent {
+    .parent {
         fill:transparent;
         stroke:$brand-dark-grey;
         stroke-width:2px;

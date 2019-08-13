@@ -159,10 +159,11 @@ $safaris = get_posts(array(
             <div class="row">
                 
                 <div class="col-12 col-sm-4">
-                    <?php $childMap = get_sub_field('map', $child_term);?>
+	                
                     <div class="child-map">
                         <?php if($parentMap) echo file_get_contents($parentMap); ?>   
-                    </div>                        
+                    </div>              
+                              
                 </div>
 
                 <div class="col-12 col-sm-8">
@@ -207,11 +208,18 @@ $safaris = get_posts(array(
 	                
 					<div class="region-safari-wrapper">
 						
+						<?php
+						
+						$start_date = new DateTime(get_field("date_from", $safari));
+						$end_date   = new DateTime(get_field("date_to", $safari));
+							
+						?>
+						
 						<p class="title"><span><?php echo get_the_title($safari->post_parent); ?></span> - <?php
-							echo get_field("date_from", $safari) . " - " . get_field("date_to", $safari);
+							echo $start_date->format("d M Y") . " - " . $end_date->format("d M Y");
 						?></p>
 						<p class="nights"><i class="fas fa-moon"></i> <?php
-							$nights = get_field("number_of_nights", $safari->post_parent);
+							$nights = get_field("overview", $safari->post_parent)["number_of_nights"];
 							echo $nights == 1 ? $nights . " night" : $nights . " nights";
 						?></p>
 						<p class="spaces"><i class="fas fa-users"></i> <?php
