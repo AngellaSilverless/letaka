@@ -614,16 +614,24 @@ function agent_login_verify() {
 		
 		if(sizeof($error) > 0) {
 			wp_send_json_error($error);
+			die();
 		}
 		
 		$username = $_REQUEST["username"];
 		$password = $_REQUEST["password"];
 		
-		$user = wp_authenticate($username, $password);
+		$agent_user = wp_authenticate($username, $password);
 		
-		if(is_wp_error($user)) {
+		if(!in_array('agent_access', (array)$agent_user->roles)) {
 			$error["all"] = "Incorrect username or password.";
 			wp_send_json_error($error);
+			die();
+		}
+		
+		if(is_wp_error($agent_user)) {
+			$error["all"] = "Incorrect username or password.";
+			wp_send_json_error($error);
+			die();
 			
 		} else {
 			session_start();
@@ -632,6 +640,7 @@ function agent_login_verify() {
 			$url = get_permalink(get_page_by_path("specials"));
 			$success["url"] = $url;
 			wp_send_json_success($success);
+			die();
 		}
 	}
 	die();
