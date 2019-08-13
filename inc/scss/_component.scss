@@ -227,7 +227,7 @@ a.next-section {
 	}
 }
 
-.contact-directly-form {
+.contact-directly-form, #agent-login-form {
 	
 	span input, span textarea {
 		width: 100%;
@@ -244,6 +244,10 @@ a.next-section {
 		padding: 0.5em;
 		margin: 0.5em 0;
 		color: white;
+	}
+	
+	#agent-submit {
+		margin-bottom: 1em;
 	}
 }
 

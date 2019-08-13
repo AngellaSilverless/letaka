@@ -23,6 +23,12 @@ function letaka_scripts() {
 	
 	wp_enqueue_script( 'mapbox-gl-geocoder', get_template_directory_uri() . '/inc/js/mapbox-gl-geocoder.min.js', array(), true );
 	
+	wp_localize_script('letaka-core-js', 'ajax_object', array(
+		
+		'ajax_url' => admin_url( 'admin-ajax.php' )
+		
+	));
+	
 }
 
 add_action( 'wp_enqueue_scripts', 'letaka_scripts' );
@@ -356,7 +362,6 @@ function filter_post_data( $data , $postarr ) {
     return $data;
 }
 
-
 /**= Social Sharing Buttons =**/
 
 function letaka_social_sharing_buttons($content) {
@@ -558,3 +563,91 @@ add_role('agent_access', __('Agent Access'), array(
 	'publish_posts'     => false,
 	'manage_categories' => false,
 ));
+
+/* Restrict page access to Agent Login users */
+
+add_action( 'wp', 'restrict_agent_access' );
+
+function restrict_agent_access() {
+	global $pagename;
+	
+	if($pagename == "specials") {
+		session_start();
+		
+		if(!($_SESSION && $_SESSION["agent-logged"] == true)) {
+			session_destroy();
+			$url = get_permalink(get_page_by_path("agents-login"));
+			wp_redirect($url);
+			exit;
+		}
+	}
+	
+	if($pagename == "agents-login") {
+		session_start();
+		
+		if($_SESSION && $_SESSION["agent-logged"] == true) {
+			$url = get_permalink(get_page_by_path("specials"));
+			wp_redirect($url);
+			exit;
+		}
+	}
+}
+
+/**= AJAX calls for Agent Login =**/
+
+add_action( 'wp_ajax_agent_login_verify', 'agent_login_verify' );
+add_action( 'wp_ajax_nopriv_agent_login_verify', 'agent_login_verify' );
+
+function agent_login_verify() {
+	if($_REQUEST) {
+		
+		$error = array();
+		$success = array();
+		
+		if(!(isset($_REQUEST["username"]) && $_REQUEST["username"])) {
+			$error["username"] = "The field is required.";
+		}
+		
+		if(!(isset($_REQUEST["password"]) && $_REQUEST["password"])) {
+			$error["password"] = "The field is required.";
+		}
+		
+		if(sizeof($error) > 0) {
+			wp_send_json_error($error);
+		}
+		
+		$username = $_REQUEST["username"];
+		$password = $_REQUEST["password"];
+		
+		$user = wp_authenticate($username, $password);
+		
+		if(is_wp_error($user)) {
+			$error["all"] = "Incorrect username or password.";
+			wp_send_json_error($error);
+			
+		} else {
+			session_start();
+			$_SESSION["agent-logged"] = true;
+			
+			$url = get_permalink(get_page_by_path("specials"));
+			$success["url"] = $url;
+			wp_send_json_success($success);
+		}
+	}
+	die();
+}
+
+/**= AJAX calls for Agent Logout =**/
+
+add_action( 'wp_ajax_agent_logout', 'agent_logout' );
+add_action( 'wp_ajax_nopriv_agent_logout', 'agent_logout' );
+
+function agent_logout() {
+	session_start();
+	session_destroy();
+	$url = get_permalink(get_page_by_path("agents-login"));
+	$success["url"] = $url;
+	wp_send_json_success($success);
+	die();
+}
+

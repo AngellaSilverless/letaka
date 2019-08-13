@@ -74,6 +74,10 @@ get_header();?>
 		    </div>
 		    
 		    <div class="col-12 col-lg-8 col-xl-9 order-content order-content-form">
+			    
+			    <div id="agent-logout">
+				    <button>Logout</button>
+			    </div>
 	        
 	        	<div class="results">
 			        
@@ -164,19 +168,22 @@ get_header();?>
 					
 					foreach($styles as $style)
 						$classes .= " " . $style->slug;
+					
+					$cost = $wpdb->get_var("
+						SELECT pm2.meta_value as special_offer_price
+						FROM   {$wpdb->prefix}posts p
 						
-					$cost = $wpdb->get_var(
-						"SELECT meta_value
-						FROM {$wpdb->prefix}posts p
-						JOIN {$wpdb->prefix}postmeta pm ON p.ID = pm.post_id
-						WHERE post_parent = {$ID}
-						  AND post_type = 'safari'
-						  AND meta_key = 'cost'
-						  AND post_status = 'publish'
-						  AND ID IN ({$safari_IDS})
-						ORDER BY CAST(meta_value AS unsigned)
-						LIMIT 1"
-					);
+						JOIN {$wpdb->prefix}postmeta pm  ON p.ID  = pm.post_id  AND pm.meta_key  = 'safari_reference'
+						JOIN {$wpdb->prefix}postmeta pm2 ON p.ID  = pm2.post_id AND pm2.meta_key = 'special_offer_price'
+						JOIN {$wpdb->prefix}posts    p2  ON p2.ID = pm.meta_value
+						
+						WHERE p.post_type    = 'special_safaris'
+						AND   p.post_status  = 'publish'
+						AND   p2.post_parent = {$ID}
+						
+						ORDER  BY CAST(special_offer_price AS UNSIGNED) 
+						LIMIT  1
+					");
 				    
 				    ?>
 			        

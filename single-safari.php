@@ -119,26 +119,26 @@ while( have_posts() ) {
 
                             <p class="location"><?php 
 	              
-				$terms = get_the_terms($parent->ID, 'destinations');
-				
-				$destinations = array();
-				
-				foreach( $terms as $term )
-					if($term->parent != 0)
-						array_push($destinations, $term->name);
-						
-				echo implode($destinations, " - ");
-			
-			?></p>
+								$terms = get_the_terms($parent->ID, 'destinations');
+								
+								$destinations = array();
+								
+								foreach( $terms as $term )
+									if($term->parent != 0)
+										array_push($destinations, $term->name);
+										
+								echo implode($destinations, " - ");
+							
+							?></p>
                 
                             <p class="date mb0"><?php
 	            
-	            $date_from = new DateTime(get_field("date_from"));
-				$date_to   = new DateTime(get_field("date_to"));
-						
-	            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
-		            
-	        ?></p>
+					            $date_from = new DateTime(get_field("date_from"));
+								$date_to   = new DateTime(get_field("date_to"));
+										
+					            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
+						            
+					        ?></p>
     
                             <div class="safari-meta mb2">
                                 
@@ -163,6 +163,16 @@ while( have_posts() ) {
 						$menu_items = wp_get_nav_menu_items($menu_countries);
 			        
 						foreach($menu_items as $menu_item): ?>
+						
+						<?php if($menu_item->post_name == "accommodation"): ?>
+						
+						<div class="item">
+					    	
+					    	<a href="#guides">Guides<i class="fas fa-chevron-right state"></i></a>
+						    
+				    	</div>
+						
+						<?php endif; ?>
 			        
 						<div class="item">
 					    	
@@ -329,6 +339,80 @@ while( have_posts() ) {
 		    			
 		    		</div>
 		    	
+				</div>
+				
+				<div class="wrapper-section mb5">
+    
+    		        <h3  id="guides" class="heading heading__lg heading__section mt1">Guides</h3>
+    		        
+    		        <div class="safari-guides our-guides">
+	    		        
+    		        <?php
+	    		        
+	    		        $guides = get_the_terms($post->ID, "guide");
+						
+						if($guides): foreach($guides as $guide): ?>
+				
+						<div class="wrapper-guides">
+									
+							<div class="guide heading heading__sm">
+								
+								<?php 
+									
+								$image = get_field('image', $guide->taxonomy . '_' . $guide->term_id);
+								
+								?>
+								
+								<div class="img mr1" style="background:url(<?php echo $image["sizes"]["thumbnail"]; ?>);"></div><?php
+									
+								echo $guide->name;
+								
+								?><i class="fas fa-chevron-right"></i>
+								
+							</div>
+							
+							<div class="info" style="display:none;">
+								
+								<div class="row">
+		    						
+		    						<div class="col-12 col-xl-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
+		    						
+		    						<div class="col-12 col-xl-8 pl2">
+		        						
+		        					<?php the_field('description', $guide->taxonomy . '_' . $guide->term_id);?>	
+		
+		    						</div>
+		    						
+		    						<div class="col-12 pl0 pr0 pt1">    						
+		    						
+		    						<?php 
+									$images = get_field('gallery', $guide->taxonomy . '_' . $guide->term_id);						
+									if( $images ): ?>
+		    						
+		    						<div class="gallery">
+								
+									<?php foreach( $images as $image ): ?>
+									
+									<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+									
+									<?php endforeach; ?>
+								
+								</div>
+		
+								<?php endif; ?>
+								
+								</div><!--col-->
+								
+							</div><!--r-->
+							
+		                    </div>
+						
+						</div>
+						
+						<?php endforeach; endif; ?>
+    		        
+    		        </div>
+    		         
 				</div>
 				
 				<div class="wrapper-section mb5">
