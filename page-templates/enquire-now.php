@@ -30,28 +30,72 @@ get_header();?>
 				    	
 				    	<div class="title">Our Details</div>
 				    	
-				    		<?php
+			    		<?php
+				    	
+				    	$telephone = get_field("main_telephone", "options");
+				    	$email     = get_field("main_email", "options");
+				    	
+				    	?>
+				    
+				    	<div class="item"><a class="contact" href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></div>
+				    	
+				    	<div class="item"><a class="contact" href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
+				    	
+				    	<div class="item">
 					    	
-					    	$telephone = get_field("main_telephone", "options");
-					    	$email     = get_field("main_email", "options");
+					    	<div class="socials"><?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
+
+	                        	<a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
+	    
+							<?php endwhile; endif; ?>
+	                        
+				    		</div>
+				    		
+				    	</div>
+				    	
+			    	</div>
+			    	
+			    	<div class="operations mb2">
+				    	
+				    	<div class="title">Botswana Operations</div>
+				    	
+				    	<div class="item-standard"><?php the_field("botswana_operations", "options"); ?></div>
+				    	
+			    	</div>
+			    	
+			    	<div class="representatives mb2">
+				    	
+				    	<div class="title">Representatives</div>
 					    	
-					    	?>
-					    
-					    	<div class="item">Tel: <a class="contact" href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></div>
-					    	
-					    	<div class="item">Email: <a class="contact" href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></div>
-					    	
-					    	<div class="item">
+					    	<?php foreach(get_field("representatives", "options") as $representative): ?>
 						    	
-						    	<div class="socials">Social: <?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
-    
-		                        	<a href="<?php the_sub_field('page_link'); ?>"><i class="fab fa-<?php the_sub_field('name'); ?>"></i></a>
-		    
-								<?php endwhile; endif; ?>
-		                        
-					    		</div>
-					    		
-					    	</div>
+						    	<div class="item-wrapper">
+							    	
+							    	<div class="item"><?php echo $representative["title"]; ?></div>
+							    	
+							    	<div class="item-expand">
+								    	
+								    	<div class="item-standard">
+									    	
+									    	<?php foreach($representative["info"] as $rep): ?>
+									    	
+									    	<div class="wrapper-expand">
+									    	
+										    	<div><?php echo $rep["name"]; ?></div>
+										    	<div><?php echo $rep["email"]; ?></div>
+										    	<div><?php echo $rep["telephone"]; ?></div>
+										    
+									    	</div>
+									    	
+									    	<?php endforeach; ?>
+									    	
+								    	</div>
+								    
+							    	</div>
+							    
+						    	</div>
+					    	
+					    	<?php endforeach; ?>
 				    	
 			    	</div>
 			    	

@@ -325,6 +325,11 @@ $('#agent-logout').click(function() {
 		$(this).find("a").click();
 		return false;
 	});
+	
+	$(".representatives .item").click(function() {
+		$(this).parents(".item-wrapper").find(".item-expand").slideToggle();
+		$(this).parents(".item-wrapper").siblings().find(".item-expand").slideUp();
+	});
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 
