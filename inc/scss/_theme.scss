@@ -1376,6 +1376,7 @@ p.role {
 	
 	.description {
 		text-align: justify;
+		line-height: 1.6;
 	}
 	
 	.action-buttons {
@@ -1397,9 +1398,27 @@ p.role {
 		}
 	}
 	
-	.content a {
-		display: block;
+	.content {
+		
+		a {
+			display: block;
+		}
+		
+		span {
+			font-size: 0.85em;
+			letter-spacing: 1px;
+		}
+		
+		h3 {
+			font-size: 1.8em;
+		}
 	}
+}
+
+.smaller-text {
+	text-transform: none;
+	font-weight: 100;
+	font-size: 0.9em;
 }
 
 .filter {
