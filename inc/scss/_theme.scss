@@ -1310,6 +1310,16 @@ p.role {
 			}
 		}
 	}
+	
+	.main a {
+		color: $brand-secondary;
+		transition: color 0.3s ease-in-out;
+		font-weight: normal;
+		
+		&:hover {
+			color: lighten($brand-secondary, 10%);
+		}
+	}
 }
 
 .search-page {
