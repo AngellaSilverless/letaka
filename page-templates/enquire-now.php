@@ -81,9 +81,17 @@ get_header();?>
 									    	
 									    	<div class="wrapper-expand">
 									    	
-										    	<div><?php echo $rep["name"]; ?></div>
-										    	<div><?php echo $rep["email"]; ?></div>
-										    	<div><?php echo $rep["telephone"]; ?></div>
+									    		<?php if($rep["name"]): ?>
+									    		<div><?php echo $rep["name"]; ?></div>
+									    		<?php endif; ?>
+									    		
+									    		<?php if($rep["email"]): ?>
+									    		<div><a href="mailto:<?php echo $rep["email"]; ?>"><?php echo $rep["email"]; ?></a></div>
+									    		<?php endif; ?>
+									    		
+									    		<?php if($rep["telephone"]): ?>
+									    		<div><a href="tel:<?php echo $rep["telephone"]; ?>"><?php echo $rep["telephone"]; ?></a></div>
+									    		<?php endif; ?>
 										    
 									    	</div>
 									    	
