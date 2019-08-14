@@ -1,9 +1,15 @@
 <?php
-	
+
 $image = wp_get_attachment_image_src(get_post_thumbnail_id(), "large");
 
 if(!$image) {
-	$image = get_field("standard_images", "options")["news"]["sizes"]["large"];
+	$image = get_field("hero_background_image");
+	
+	if(!$image) {
+		$image = get_field("standard_images", "options")["news"]["sizes"]["large"];
+	} else {
+		$image = $image["url"];
+	}
 } else {
 	$image = $image[0];
 }

@@ -136,7 +136,7 @@ function custom_post_type_agent() {
     register_post_type( 'agents', $args );
 }
 
-// ====== Specials
+// ====== Special Safaris
 function custom_post_type_special_safaris() {
 	
     $labels = array(
@@ -170,14 +170,14 @@ function custom_post_type_special_safaris() {
         'menu_position'       => 110,
         'can_export'          => true,
         'has_archive'         => false,
-        'exclude_from_search' => false,
+        'exclude_from_search' => true,
         'publicly_queryable'  => true,
         'capability_type'     => 'page'
     );
     register_post_type( 'special_safaris', $args );
 }
 
-// ====== Specials
+// ====== Special Uploads
 function custom_post_type_special_uploads() {
 	
     $labels = array(
@@ -211,7 +211,7 @@ function custom_post_type_special_uploads() {
         'menu_position'       => 110,
         'can_export'          => true,
         'has_archive'         => false,
-        'exclude_from_search' => false,
+        'exclude_from_search' => true,
         'publicly_queryable'  => true,
         'capability_type'     => 'page'
     );
