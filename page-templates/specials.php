@@ -45,7 +45,7 @@ get_header();?>
 					    
 					    	<div class="item">
 						    	
-						    	<a class="pdf-wrapper" href="<?php echo $file["url"]; ?>" target="_blank">
+						    	<a class="pdf-wrapper" href="<?php echo get_field("pdf_file", $download)["url"]; ?>" target="_blank">
 							    	
 							    	<i class="fas fa-file-pdf"></i>
 							    	
