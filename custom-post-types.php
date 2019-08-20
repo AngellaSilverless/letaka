@@ -33,7 +33,7 @@ function custom_post_type_itinerary() {
         'label'               => __( 'itinerary', 'letaka' ),
         'description'         => __( 'itinerary', 'letaka' ),
         'labels'              => $labels,
-        'supports'            => array( 'title', 'taxonomies' ),
+        'supports'            => array( 'title', 'taxonomies', 'page-attributes' ),
         'taxonomies'          => array( 'itinerary' ),
         'menu_icon'			  => 'dashicons-location',
         'hierarchical'        => true,
