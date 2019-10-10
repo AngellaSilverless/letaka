@@ -27,19 +27,23 @@ while( have_posts() ) {
 
             <h1 class="heading heading__xl heading__light slide-down"><?php echo $post->post_title;?></h1>
 
-            <h2 id="hero-content" class="heading heading__sm heading__light heading__alt-font heading__caps mb2 slide-down"><?php 
-	              
-				$terms = get_the_terms($post->ID, 'destinations');
-				
+            <!--<h2 id="hero-content" class="heading heading__sm heading__light heading__alt-font heading__caps mb2 slide-down">
+                
+                <?php $terms = get_the_terms($post->ID, 'destinations');
 				$destinations = array();
-				
 				foreach( $terms as $term )
 					if($term->parent != 0)
-						array_push($destinations, $term->name);
-						
-				echo implode($destinations, " - ");
-			
-			?> | <span class="nr_nights"><i class="fas fa-moon"></i> <?php echo get_field("overview")["number_of_nights"]; ?> nights</span></h2>
+					array_push($destinations, $term->name);
+				echo implode($destinations, " - ");?> -->
+				<h2 id="hero-content" class=" destinations heading heading__sm heading__light heading__alt-font heading__caps mb1 slide-down">
+    				<? if( have_rows('overview') ): while( have_rows('overview') ): the_row();
+                        if( have_rows('destinations') ): while( have_rows('destinations') ): the_row(); ?>      
+    
+        		                <span><?php the_sub_field('destination');?><i class="fas fa-chevron-right"></i></span>
+    
+                    <?php endwhile; endif; endwhile; endif; ?>			
+				</h2>
+				    <p class="night-count"><i class="fas fa-moon"></i> <?php echo get_field("overview")["number_of_nights"]; ?> nights</p>
             
             <div class="hero__safari-buttons mt2">
                 

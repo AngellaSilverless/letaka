@@ -744,6 +744,22 @@
 	}
 }
 
+.destinations span {
+    font-size: 0.75em;
+    white-space: nowrap;
+    i {
+        padding: 0 0.5em;
+        color: #808080;
+    }
+    &:last-of-type i {
+        display: none;
+    }
+}
+
+.night-count {
+    color: white;
+}
+
 .tours {
 			
 	.wrapper-tour {

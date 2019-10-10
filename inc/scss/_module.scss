@@ -60,6 +60,7 @@
         
         img {
 	        width: 20%;
+	        display: none;
         }
         
         .video-icon {
@@ -88,8 +89,8 @@
     }
     
     &__copy {
-	    font-size: 1.3em;
-		width: 70%;
+        font-size: 1.1em;
+        width: 80%;
 		display: inline-block;
     }
 }

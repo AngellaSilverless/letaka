@@ -401,9 +401,7 @@ $('#agent-logout').click(function() {
 				"max-value": parseInt($(this).attr("max-price"))
 			};
 		}).toArray();
-		
-		
-		
+
 		// Search Text
 		
 		var search = $(".your-search .search-block").map(function() {
@@ -599,8 +597,9 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 		center:     [config.center_long, config.center_lat],
 		zoom:       config.zoom_level, 
 		scrollZoom: config.zoom_level
+		
 	});
-	
+		
 	var geojson = {
 		type: 'FeatureCollection',
 		features: points
@@ -680,7 +679,7 @@ function loadMapAnimation() {
 		},
 		'paint': {
 			'line-color': '#ffffff',
-			'line-width': 3,
+			'line-width': 2,
 			'line-dasharray': [2, 2],
 		}
     });
@@ -688,12 +687,15 @@ function loadMapAnimation() {
     var lineCoordinates = [];
 	var speedFactor = 100;
 	
-	for(var startPoint = 0; startPoint < lengthPoints; startPoint++) {
+	for(
+	var startPoint = 0; 
+	startPoint < lengthPoints; 
+	startPoint++) {
 		
 		var endPoint = startPoint + 1;
 		
 		if(startPoint == (lengthPoints - 1)) {
-			endPoint = 0;
+			endPoint = 1;
 		}
 		
 		var diffX = points[endPoint].geometry.coordinates[0] - points[startPoint].geometry.coordinates[0];
@@ -741,7 +743,7 @@ function loadMapAnimation() {
 				
 				requestAnimationFrame(animateLine);
 	        } else {
-		        animationCounter = 0;
+		        animationCounter = 1;
 		        pointCounter++;
 		        requestAnimationFrame(animateLine);
 	        }
