@@ -258,7 +258,7 @@ get_header();?>
 				    $itineraries = get_posts(array(
 			        	'post_type'      => 'itinerary',
 			        	'posts_per_page' => -1,
-						'orderby'        => 'title',
+						'orderby'        => 'menu_order',
 						'order'          => 'ASC'
 					));
 				        
@@ -354,9 +354,14 @@ get_header();?>
 							    
 							    <div class="see-tours">
 								    
-								    <div>See Tours</div>
+								    <a class="view-itinerary" href="<?php echo get_permalink($ID); ?>">View Itinerary</a>
 								    
-								    <i class="fas fa-chevron-down"></i>
+								    <div class="expand-tours">
+									    
+									    <div>See Tours</div>
+									    
+									    <i class="fas fa-chevron-down"></i>
+								    </div>
 								    
 								</div>
 							    

@@ -120,7 +120,7 @@ get_header();?>
 								
 								</div>
 								
-								<div>
+								<div class="agent-details">
 									
 									<?php
 									
@@ -137,7 +137,7 @@ get_header();?>
 									
 								</div>
 								
-								<div>
+								<div class="agent-details">
 									
 									<?php
 									

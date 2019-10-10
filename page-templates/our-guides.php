@@ -36,7 +36,10 @@ get_header();?>
 	        
 			    <?php
 				
-				$guides = get_terms("guide");
+				$guides = get_terms(array(
+					'taxonomy' => 'guide',
+					'hide_empty' => false,
+				));
 				
 				foreach($guides as $guide): ?>
 				

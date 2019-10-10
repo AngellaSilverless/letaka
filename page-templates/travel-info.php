@@ -30,6 +30,8 @@ get_header();?>
 				    	
 				    	<div class="title">Downloads</div>
 				    	
+				    	<div class="wrapper-items">
+				    	
 				    	<?php
 					    	
 					    $downloads = get_field("downloads");
@@ -49,6 +51,8 @@ get_header();?>
 					    	</div>
 					    
 					    <?php endforeach; ?>
+					    
+				    	</div>
 				    	
 			    	</div>
 			    	

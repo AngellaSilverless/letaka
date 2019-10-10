@@ -1,7 +1,7 @@
 <?php
 /**
-    Single Safari Custom Post Type
-    
+ * Single Safari Custom Post Type
+ *
  * @package letaka
  */
 get_header();?>
@@ -22,9 +22,11 @@ while( have_posts() ) {
 <div class="hero <?php the_field( 'hero_height', $parent); ?>" style="background-image: url(<?php echo $heroImage['url']; ?>);">
 
     <div class="container">
+	    
+	    <?php $number_nights = get_field("overview", $parent)["number_of_nights"]; ?>
     
         <div class="row">
-            <div class="col-9 offset-3">
+            <div class="col-12 col-sm-9 offset-0 offset-sm-3">
             <div class="hero__content">
 
             <h1 class="heading heading__xl heading__light slide-down"><?php echo $parent->post_title;?></h1>
@@ -54,7 +56,7 @@ while( have_posts() ) {
     
             <div class="hero__safari-meta mb2">
                 
-                <p><i class="fas fa-moon"></i> 3 Nights</p>
+                <p><i class="fas fa-moon"></i> <?php echo $number_nights; ?> Nights</p>
                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
                 <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
             
@@ -105,7 +107,7 @@ while( have_posts() ) {
             
             <div class="col-12 col-lg-4 col-xl-3 sticky-mobile">
 
-			    <div class="sidebar sticky toggle-item">
+			    <div class="sidebar sidebar-safari sticky toggle-item">
 				    
 				    <div class="title">Safari Details</div>
 				    
@@ -117,30 +119,30 @@ while( have_posts() ) {
 
                             <p class="location"><?php 
 	              
-				$terms = get_the_terms($parent->ID, 'destinations');
-				
-				$destinations = array();
-				
-				foreach( $terms as $term )
-					if($term->parent != 0)
-						array_push($destinations, $term->name);
-						
-				echo implode($destinations, " - ");
-			
-			?></p>
+								$terms = get_the_terms($parent->ID, 'destinations');
+								
+								$destinations = array();
+								
+								foreach( $terms as $term )
+									if($term->parent != 0)
+										array_push($destinations, $term->name);
+										
+								echo implode($destinations, " - ");
+							
+							?></p>
                 
                             <p class="date mb0"><?php
 	            
-	            $date_from = new DateTime(get_field("date_from"));
-				$date_to   = new DateTime(get_field("date_to"));
-						
-	            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
-		            
-	        ?></p>
+					            $date_from = new DateTime(get_field("date_from"));
+								$date_to   = new DateTime(get_field("date_to"));
+										
+					            echo $date_from->format("d F Y") . " - " . $date_to->format("d F Y");
+						            
+					        ?></p>
     
                             <div class="safari-meta mb2">
                                 
-                                <p><i class="fas fa-moon"></i> 3 Nights</p>
+                                <p><i class="fas fa-moon"></i> <?php echo $number_nights; ?> Nights</p>
                                 <p><i class="fas fa-users"></i> <?php the_field('availability');?> Places Remaining</p>
                                 <p><i class="fas fa-credit-card"></i> From <?php echo "$" . number_format(get_field('cost'));?></p>
                             
@@ -150,7 +152,7 @@ while( have_posts() ) {
 
 				    </div>
 				    			    	
-			    	<div class="menu mb1">
+			    	<div class="menu menu-details mb1">
 			    	
 				    	<?php 
 						
@@ -161,6 +163,16 @@ while( have_posts() ) {
 						$menu_items = wp_get_nav_menu_items($menu_countries);
 			        
 						foreach($menu_items as $menu_item): ?>
+						
+						<?php if($menu_item->post_name == "accommodation"): ?>
+						
+						<div class="item">
+					    	
+					    	<a href="#guides">Guides<i class="fas fa-chevron-right state"></i></a>
+						    
+				    	</div>
+						
+						<?php endif; ?>
 			        
 						<div class="item">
 					    	
@@ -172,7 +184,7 @@ while( have_posts() ) {
 				    
 			    	</div>
 			    	
-			    	<a href="" class="button button__green button__fullwidth">Enquire Now</a>
+			    	<a href="<?php echo home_url() . "/enquire-now"; ?>" class="button button__green button__fullwidth">Enquire Now</a>
 			    	
 			    </div>
 			    
@@ -189,8 +201,7 @@ while( have_posts() ) {
 		            <p><?php the_field('hero_copy', $parent);?></p>
 		            
 		            <? if( have_rows('overview', $parent) ): 
-		                while( have_rows('overview', $parent) ): the_row();   
-		                $featuresImage = get_sub_field('features_image', $parent);?>      
+		                while( have_rows('overview', $parent) ): the_row(); ?>      
 		            
 		            <div class="safari-features">
 		                
@@ -332,6 +343,84 @@ while( have_posts() ) {
 				
 				<div class="wrapper-section mb5">
     
+    		        <h3  id="guides" class="heading heading__lg heading__section mt1">Guides</h3>
+    		        
+    		        <div class="safari-guides our-guides">
+	    		        
+    		        <?php
+	    		        
+	    		        $guides = get_the_terms($post->ID, "guide");
+	    		        
+	    		        if(!$guides) {
+		    		        $guides = get_the_terms($parent->ID, "guide");
+	    		        }
+						
+						if($guides): foreach($guides as $guide): ?>
+				
+						<div class="wrapper-guides">
+									
+							<div class="guide heading heading__sm">
+								
+								<?php 
+									
+								$image = get_field('image', $guide->taxonomy . '_' . $guide->term_id);
+								
+								?>
+								
+								<div class="img mr1" style="background:url(<?php echo $image["sizes"]["thumbnail"]; ?>);"></div><?php
+									
+								echo $guide->name;
+								
+								?><i class="fas fa-chevron-right"></i>
+								
+							</div>
+							
+							<div class="info" style="display:none;">
+								
+								<div class="row">
+		    						
+		    						<div class="col-12 col-xl-4 img" style="background:url(<?php echo $image["url"]; ?>);"></div>
+		    						
+		    						<div class="col-12 col-xl-8 pl2">
+		        						
+		        					<?php the_field('description', $guide->taxonomy . '_' . $guide->term_id);?>	
+		
+		    						</div>
+		    						
+		    						<div class="col-12 pl0 pr0 pt1">    						
+		    						
+		    						<?php 
+									$images = get_field('gallery', $guide->taxonomy . '_' . $guide->term_id);						
+									if( $images ): ?>
+		    						
+		    						<div class="gallery">
+								
+									<?php foreach( $images as $image ): ?>
+									
+									<a href="<?php echo $image['url']; ?>" class="lightbox-gallery"  alt="<?php echo $image['alt']; ?>" style="background-image: url(<?php echo $image['url']; ?>);"></a>
+									
+									<?php endforeach; ?>
+								
+								</div>
+		
+								<?php endif; ?>
+								
+								</div><!--col-->
+								
+							</div><!--r-->
+							
+		                    </div>
+						
+						</div>
+						
+						<?php endforeach; endif; ?>
+    		        
+    		        </div>
+    		         
+				</div>
+				
+				<div class="wrapper-section mb5">
+    
     		        <h3  id="accom" class="heading heading__lg heading__section mt1">Safari Accommodation</h3>
     		        
     		        <div class="safari-accommodation">
@@ -374,6 +463,40 @@ while( have_posts() ) {
     		         <?php endwhile; endif;?><!--accommodation loop-->   
     		         
 				</div>
+				
+				
+				<div class="wrapper-section mb5">    
+    		
+    		        <h3 id="extensions" class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
+    		
+    		        <? if( have_rows('extensions_&_activities', $parent) ): 
+    		            while( have_rows('extensions_&_activities', $parent) ): the_row();?>      
+    		
+    		        <div class="extensions mb3">
+    		
+    		            <? if( have_rows('items', $parent) ): 
+    		            while( have_rows('items', $parent) ): the_row();?>                
+    		
+			    		<div class="row">
+			    		 
+			    		<div class="col-12 col-sm-4">
+			    		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
+			    		</div>
+			    		
+			    		<div class="col-12 col-sm-8">
+			    		    <p><?php the_sub_field('copy');?></p> 
+			    		</div> 
+			    		    
+			    		</div><!--r-->
+    		                        
+    		            <?php endwhile; endif;?>
+    		
+    		        </div><!--extensions-->
+    		
+    		         <?php endwhile; endif;?><!--extensions loop-->      
+    		        
+    		    </div>
+				
 
 				<div  id="detail" class="wrapper-section mb5">
     
@@ -415,7 +538,7 @@ while( have_posts() ) {
 		    
                     </div>
 		    
-		    <div class="safari-payment list">
+					<div class="safari-payment list">
 		                
 		                <h2 class="heading heading__md mb1">Easy Payment Options</h2>
 		    
@@ -428,40 +551,6 @@ while( have_posts() ) {
 		    
 				</div>
 		    
-		           
-
-				
-				<div class="wrapper-section">    
-    		
-    		        <h3 id="extensions" class="heading heading__lg heading__section mt1">Extend Your Safari</h3>
-    		
-    		        <? if( have_rows('extensions_&_activities', $parent) ): 
-    		            while( have_rows('extensions_&_activities', $parent) ): the_row();?>      
-    		
-    		        <div class="extensions mb3">
-    		
-    		            <? if( have_rows('items', $parent) ): 
-    		            while( have_rows('items', $parent) ): the_row();?>                
-    		
-			    		<div class="row">
-			    		 
-			    		<div class="col-12 col-sm-4">
-			    		    <h2 class="heading heading__sm"><?php the_sub_field('heading');?></h2> 
-			    		</div>
-			    		
-			    		<div class="col-12 col-sm-8">
-			    		    <p><?php the_sub_field('copy');?></p> 
-			    		</div> 
-			    		    
-			    		</div><!--r-->
-    		                        
-    		            <?php endwhile; endif;?>
-    		
-    		        </div><!--extensions-->
-    		
-    		         <?php endwhile; endif;?><!--extensions loop-->      
-    		        
-    		    </div>
     		    
     		</div><!--r-->
     		

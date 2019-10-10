@@ -11,7 +11,7 @@ while (have_posts()) : the_post(); ?>
 <!-- ******************* Hero Content ******************* -->
 
 <div class="content has-hero">
-	
+
 <?php 
 
 $heroImage = wp_get_attachment_image_src(get_post_thumbnail_id(), "full");
@@ -26,23 +26,54 @@ if(!$heroImage) {
 
 <div class="hero h50" style="background-image: url(<?php echo $heroImage; ?>);">
 
-	<div class="container">
+<div class="container">
 
-		<div class="row">
-			
-			<div class="hero__content">
+    <div class="row">
+        
+        	<div class="col-12 col-sm-9 offset-0 offset-sm-3">
+                
+				<div class="hero__content">
 		
-				<h1 class="heading heading__xl heading__light center slide-up"><?php the_title() ;?></h1>
-				
-				<div class="heading heading__sm heading__light center slow-fade hero__copy mt1"><?php the_date( 'd F Y' );?></div>
-	       
-	        </div>
-	    
-		</div>
-	
-	</div>
+					<h1 class="heading heading__xl heading__light slide-up"><?php the_title() ;?></h1>
 		
+					<div class="heading heading__sm heading__light heading__alt-font heading__caps mt1 slide-up">
+						
+						<span><?php echo get_the_category()[0]->name . " | "; ?></span>
+					
+						<span class="smaller-text"><?php the_date( 'd F Y' );?></span>
+						
+					</div>
+			   
+			    </div>
+			    
+            </div>    
+        
+    </div>
+
+</div>
+
+<div class="separator-wrapper">
+
+    <div class="container">
+    
+    <div class="row">
+        
+        <div class="col-3">
+            <div class="separator-device left"></div>            
+        </div>
+
+        <div class="col-9">
+            <div class="separator-device right"></div>            
+        </div>
+        
+    </div>
+            
+</div>
+
+</div>
+
 </div><!--hero-->
+
 
 <!-- ******************* Hero Content END ******************* -->
 

@@ -16,6 +16,10 @@
         display: inline-block;
         border-top: 1px dashed hsl(0, 0%, 100%);
         
+        &.no-line {
+	        border-top: none;
+        }
+        
         p {
             display: inline-block;
             margin-right: 2em;
@@ -694,65 +698,134 @@
 					letter-spacing: 0.05em;
 					font-weight: 700;
 					color: $brand-primary;
-					cursor: pointer;
-					
-					i {
-						font-size: 2em;
-						margin-top: 0.5em;
-					}
-				}
-			}
-		}
-		
-		.tours {
-			
-			.wrapper-tour {
-				display: grid;
-				grid-template-columns: 1% 39% 21.75% 21.75% 16.5%;
-				background: $brand-mid-grey;
-				margin-top: 0.3em;
-				font-weight: 400;
-				
-				.bar, .book {
-					background: $brand-green;
 				}
 				
-				.date, .availability, .price, .book {
-					padding: 1em;
-					border-left: 0.1em solid hsl(0, 0%, 96%);
-				}
-				
-				.book {
+				.view-itinerary, .expand-tours {
+					width: 100%;
+					height: 50%;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					text-transform: uppercase;
-					font-weight: bold;
-					color: white;
+					text-align: center;
 					cursor: pointer;
+					transition: background 0.5s ease-in-out;
+					
+					&:hover {
+						color: $brand-primary;
+						background: rgba(61, 26, 25, 0.28);
+					}
 				}
 				
-				i {
-					padding-right: 0.5em;
-					font-size: 1.2em;
+				.view-itinerary {
+					position: relative;
+					padding: 1em;
+					line-height: 2;
+					
+					&:before {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						width: 70%;
+						background: $brand-primary;
+						height: 2px;
+					}
 				}
 				
-				&.full {
-					.bar, .book {
-						background: grey;
-					}
+				.expand-tours {
+					flex-direction: column;
 					
-					.book {
-						cursor: default;
-					}
-					
-					.availability span {
-						color: $brand-red;
+					i {
+						font-size: 1.5em;
+						margin-top: 0.2em;
 					}
 				}
 			}
 		}
 	}
+}
+
+.tours {
+			
+	.wrapper-tour {
+		display: grid;
+		grid-template-columns: 1% 39% 21.75% 21.75% 16.5%;
+		background: $brand-mid-grey;
+		margin-top: 0.3em;
+		font-weight: 400;
+		
+		.bar, .book {
+			background: $brand-green;
+		}
+		
+		.date, .availability, .price, .book {
+			padding: 1em;
+			border-left: 0.1em solid hsl(0, 0%, 96%);
+		}
+		
+		.book {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: white;
+			cursor: pointer;
+		}
+		
+		i {
+			padding-right: 0.5em;
+			font-size: 1.2em;
+		}
+		
+		&.full {
+			.bar, .book {
+				background: grey;
+			}
+			
+			.book {
+				cursor: default;
+			}
+			
+			.availability span {
+				color: $brand-red;
+			}
+		}
+	}
+	
+	&.special-tours {
+		
+		.wrapper-tour .price {
+			padding: 0.7em 1em;
+		}
+		
+		.date, .availability {
+			display: flex;
+			align-items: center;
+		}
+		
+		.price-old {
+			color: $brand-red;
+			display: inline-block;
+			position: relative;
+			font-size: 0.9em;
+			margin-left: 2.2em;
+			
+			&:before {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 1px;
+				top: calc(50% - 1px);
+				background: $brand-red;
+			}
+		}
+	}
+}
+
+.nr_nights {
+	text-transform: none;
+	font-weight: 100;
+	font-size: 0.9em;
 }
 
 .find-agent {
@@ -968,12 +1041,52 @@ p.role {
 		}
 		
 		i {
-            position: absolute;
-            right: 1em;
+			float: right;
+		}
+		
+		a {
+			display: block;
+		}
+	}
+	
+	.item-standard {
+		display: block;
+		font-size: 1em;
+		background: #e0e0e0;
+		padding: 0.7em 1em;
+		color: #3d1a1a;
+		font-weight: 400;
+		letter-spacing: 0.02em;
+		margin: 0;
+		-webkit-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+	
+	.operations p {
+		font-size: 0.9em;
+		margin-bottom: 1em;
+	}
+	
+	.representatives {
+		font-size: 0.9em;
+		
+		.item-expand {
+			display: none;
+		}
+		
+		.wrapper-expand {
+			line-height: 2;
+			font-weight: lighter;
+			
+			&:not(:first-of-type) {
+				margin-top: 1em;
+			}
 		}
 	}
 	
 	.our-details {
+		font-size: 0.9em;
 		
 		a {
 			text-transform: none;
@@ -1132,7 +1245,7 @@ p.role {
 	
 }
 
-.travel-info {
+.travel-info, .agent-specials {
 	
 	p {
 		font-size: 1em;
@@ -1142,11 +1255,9 @@ p.role {
 		display: flex;
 		align-items: center;
 		line-height: unset;
-		padding-right: 2em;
 		
 		i {
 			font-size: 1.5em;
-			padding-right: 0.5em;
 			color: $brand-secondary;
 		}
 	}
@@ -1236,6 +1347,16 @@ p.role {
 			}
 		}
 	}
+	
+	.main a {
+		color: $brand-secondary;
+		transition: color 0.3s ease-in-out;
+		font-weight: normal;
+		
+		&:hover {
+			color: lighten($brand-secondary, 10%);
+		}
+	}
 }
 
 .search-page {
@@ -1292,6 +1413,7 @@ p.role {
 	
 	.description {
 		text-align: justify;
+		line-height: 1.6;
 	}
 	
 	.action-buttons {
@@ -1312,6 +1434,28 @@ p.role {
 			width: 100%;
 		}
 	}
+	
+	.content {
+		
+		a {
+			display: block;
+		}
+		
+		span {
+			font-size: 0.85em;
+			letter-spacing: 1px;
+		}
+		
+		h3 {
+			font-size: 1.8em;
+		}
+	}
+}
+
+.smaller-text {
+	text-transform: none;
+	font-weight: 100;
+	font-size: 0.9em;
 }
 
 .filter {
@@ -1555,7 +1699,7 @@ p.role {
 			max-height: 9.7em;
 		}
 		
-		input[type=submit], input[type=button] {
+		input[type=submit], input[type=button], .submit {
 			font-weight: normal;
 			background: $brand-green;
 			color: white;
@@ -1724,6 +1868,27 @@ body .home-gallery {
 	}
 }
 
+#agent-logout {
+	text-align: right;
+	
+	button {
+		position: relative;
+		display: inline-block;
+		text-transform: uppercase;
+		background: #c9c9c9;
+		color: white;
+		padding: 1em;
+		margin-bottom: 1em;
+		font-size: 1em;
+		cursor: pointer;
+		font-weight: 400;
+		line-height: 1em;
+		letter-spacing: 0.05em;
+		border: none;
+		outline: none;
+	}
+}
+
 /*===========FOOTER==========*/
 
 .pre-socket {
@@ -1844,12 +2009,17 @@ body .home-gallery {
 }
 
 .input-wrapper {
+	position: relative;
     transition: all 0.5s ease;
     margin-bottom: 0.5em;
     
     &.active {
         margin-top:2em;
     }
+}
+
+.extra-fields .input-wrapper.active {
+	margin-top: 2.5em;
 }
 
 .form label {
@@ -1861,7 +2031,7 @@ body .home-gallery {
 }
 
 .form .active label {
-    transform: translateY(-2em) scale(0.8);
+    transform: translateY(-80%) scale(0.8);
 
 }
 
@@ -2016,11 +2186,14 @@ body .home-gallery {
 
 .parent-map {
     
+    .parent {
+	    fill: #C9C9C9;
+    }
 }
 
 .child-map {
     
-    polygon#parent {
+    .parent {
         fill:transparent;
         stroke:$brand-dark-grey;
         stroke-width:2px;
@@ -2128,6 +2301,11 @@ body .home-gallery {
 }
 
 /*===========PAGE SPECIFIC==========*/
+
+.hero.h50 {
+	height: unset;
+	min-height: calc(50vh + 115px);
+}
 
 
 /*===========VENDOR ADJUSTMENTS==========*/

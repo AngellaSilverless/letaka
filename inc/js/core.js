@@ -78,6 +78,91 @@ jQuery(document).ready(function( $ ) {
 	        $(".file-name").text(name);
         });
     });
+    
+/* Submit Agent Login */
+
+$('#agent-login-form').submit(function(e) {
+	e.preventDefault();
+	
+	var username = $("#login-username").val();
+	var password = $("#login-password").val();
+	
+	if(!username || username.match(/^ *$/) != null || !password) {
+		if(!username || username.match(/^ *$/) != null) {
+			$(".wpcf7-not-valid-tip.error-username").text("The field is required.").css("display", "block");
+		} else {
+			$(".wpcf7-not-valid-tip.error-username").text("").css("display", "none");
+		}
+		
+		if(!password) {
+			$(".wpcf7-not-valid-tip.error-password").text("The field is required.").css("display", "block");
+		} else {
+			$(".wpcf7-not-valid-tip.error-password").text("").css("display", "none");
+		}
+		
+		$(".wpcf7-response-output.error-all").text("One or more fields have an error. Please check and try again.").slideDown();
+		return false;
+	} 
+		
+	$.ajax({
+		type : "POST",
+		dataType : "JSON",
+		url : ajax_object.ajax_url,
+		data : {
+			action: "agent_login_verify",
+			username: username,
+			password: password
+		},
+		success: function(response) {
+			if(response.success) {
+				$(".wpcf7-not-valid-tip.error-username").text("").css("display", "none");
+				$(".wpcf7-not-valid-tip.error-password").text("").css("display", "none");
+				$(".wpcf7-response-output.error-all").slideUp().text("");
+				window.location.href = response.data.url;
+			} else if(response.data) {	
+				var err = response.data;
+				
+				if(err.username) {
+					$(".wpcf7-not-valid-tip.error-username").text(err.username).css("display", "block");
+				} else {
+					$(".wpcf7-not-valid-tip.error-username").text("").css("display", "none");
+				}
+				
+				if(err.password) {
+					$(".wpcf7-not-valid-tip.error-password").text(err.password).css("display", "block");
+				} else {
+					$(".wpcf7-not-valid-tip.error-password").text("").css("display", "none");
+				}
+				
+				if(err.username || err.password) {
+					$(".wpcf7-response-output.error-all").text("One or more fields have an error. Please check and try again.").slideDown();
+				} else if(err.all) {
+					$(".wpcf7-response-output.error-all").text(err.all).slideDown();
+				} else {
+					$(".wpcf7-response-output.error-all").slideUp().text("");
+				}
+			}
+		}
+	});
+});
+
+/* Agent Logout */
+
+$('#agent-logout').click(function() {
+	$.ajax({
+		type : "POST",
+		dataType : "JSON",
+		url : ajax_object.ajax_url,
+		data : {
+			action: "agent_logout"
+		},
+		success: function(response) {
+			if(response.success) {
+				window.location.href = response.data.url;
+			}
+		}
+	});
+});
 
 /* CLASS AND FOCUS ON CLICK */
 
@@ -125,7 +210,7 @@ jQuery(document).ready(function( $ ) {
 		$(this).find("i").toggleClass("closed");
     });
     
-    $(".see-tours").click(function() {
+    $(".expand-tours").click(function() {
 	    $(this).parents(".wrapper-itinerary").find(".tours").slideToggle();
     });
     
@@ -216,25 +301,35 @@ jQuery(document).ready(function( $ ) {
 	    $(this).find("a")[0].click();
     });
 
-$('.input-wrapper input').focusin(function(){
-  $(this).closest('.input-wrapper').addClass('active');
-});
-
-$('.input-wrapper input').blur(function(){
-  if(!$(this).val().length > 0) {  
-    $(this).closest('.input-wrapper').removeClass('active');
-  }
-});
-
-$('.input-wrapper textarea').focusin(function(){
-  $(this).closest('.input-wrapper').addClass('active');
-});
-
-$('.input-wrapper textarea').blur(function(){
-  if(!$(this).val().length > 0) {  
-    $(this).closest('.input-wrapper').removeClass('active');
-  }
-});
+	$('.input-wrapper input').focusin(function(){
+		$(this).closest('.input-wrapper').addClass('active');
+	});
+	
+	$('.input-wrapper input').blur(function(){
+		if(!$(this).val().length > 0) {  
+			$(this).closest('.input-wrapper').removeClass('active');
+	}
+	});
+	
+	$('.input-wrapper textarea').focusin(function(){
+		$(this).closest('.input-wrapper').addClass('active');
+	});
+	
+	$('.input-wrapper textarea').blur(function(){
+		if(!$(this).val().length > 0) {  
+			$(this).closest('.input-wrapper').removeClass('active');
+		}
+	});
+	
+	$(".menu-details .item").click(function() {
+		$(this).find("a").click();
+		return false;
+	});
+	
+	$(".representatives .item").click(function() {
+		$(this).parents(".item-wrapper").find(".item-expand").slideToggle();
+		$(this).parents(".item-wrapper").siblings().find(".item-expand").slideUp();
+	});
 
 /* GLOBAL OWL CAROUSEL SETTINGS */
 

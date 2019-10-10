@@ -8,10 +8,13 @@ get_header();?>
 
 <!-- ******************* Hero Content ******************* -->
 
+<?php $category = $_GET['category_name']; ?>
+
 <div class="content has-hero">
 
 <?php if( get_field('hero_background_image') ): 
 
+	set_query_var("category_name", $category);
     get_template_part('template-parts/hero');?>
 
 <?php endif;?>
@@ -41,8 +44,6 @@ get_header();?>
 				    <div class="col-12">
 		        
 				        <?php
-					    
-					    $category = $_GET['category_name'];
 					    
 						$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 						
