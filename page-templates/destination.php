@@ -63,7 +63,7 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
         
         <div class="row">
             
-            <div class="col-8 col-sm-4 margin-auto img-country">
+            <div class="col-8 col-sm-4 img-country">
                 <?php $parentMap = get_sub_field('map', $parent_term);?>
                 <div class="parent-map">
                     <?php if($parentMap) echo file_get_contents($parentMap); ?>   
