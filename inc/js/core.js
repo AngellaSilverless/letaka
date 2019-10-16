@@ -695,7 +695,7 @@ function loadMapAnimation() {
 		var endPoint = startPoint + 1;
 		
 		if(startPoint == (lengthPoints - 1)) {
-			endPoint = 1;
+			endPoint = startPoint;
 		}
 		
 		var diffX = points[endPoint].geometry.coordinates[0] - points[startPoint].geometry.coordinates[0];
