@@ -331,11 +331,22 @@ get_header();?>
 					    <div class="itinerary-header">
 						    
 						    <div class="info">
-							    
-						        <div class="location mb1"><?php echo $destination_visible; ?></div>
-						        
-						        <div class="title heading heading__md heading__light mb2"><?php echo get_the_title($ID); ?></div>
-						        
+							    	<div class="title heading heading__md heading__light mb1">
+    							    	<a href="<?php echo get_permalink($ID); ?>">
+        							    	    <?php echo get_the_title($ID); ?>
+    							    	</a>
+    				            </div>
+						        <div class="location mb1">
+    						        <? if( have_rows('overview', $ID) ): while( have_rows('overview', $ID) ): the_row();
+                                    if( have_rows('destinations', $ID) ): while( have_rows('destinations', $ID) ): the_row(); ?>      
+    
+                                    <span>
+                                        <?php the_sub_field('destination', $ID);?>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+    
+                                    <?php endwhile; endif; endwhile; endif; ?></div>
+
 						        <div class="details">
 							        
 							        <div class="duration"><i class="fas fa-moon"></i><?php echo get_field("overview", $ID)["number_of_nights"]; ?></div>

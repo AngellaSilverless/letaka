@@ -638,9 +638,26 @@
 				color: white;
 				padding: 1em 2em;
 				text-transform: uppercase;
-				
+				.title a {
+    				color: white;
+				}
 				.location {
 					font-size: 0.8em;
+					
+					span {
+    					font-size: 0.85em;
+    					white-space: nowrap;
+    					i{
+                            font-size: 0.5em;
+                            vertical-align: middle;
+                            padding: 0 0.5em;
+    					}
+    					
+    					&:last-of-type i {
+        					display: none;
+    					}
+					}
+					
 				}
 				
 				.title {
