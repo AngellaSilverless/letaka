@@ -118,6 +118,10 @@ body {
     font-size: 0.9em;
 }
 
+.container {
+    max-width: 100%;
+}
+
 /*---HEADER---*/
 
 nav {
@@ -236,9 +240,9 @@ nav {
 	}
 }
 
-.hero__home .hero__content {
+/*.hero__home .hero__content {
 	grid-template-rows: 45% 55%;
-}
+}*/
 
 .hero.h50 {
 	height: unset;
@@ -476,7 +480,7 @@ body .gallery a:nth-of-type(n) {
 /*---GLOBALS---*/
 
 body {
-  font-size: 0.7em;
+  font-size: 0.85em;
 }
 
 /*---HEADER---*/
@@ -644,6 +648,50 @@ body .gallery.region {
 	display: block;
 }
 
+.wrapper-selectors .heading span {
+    display: none;
+}
+
+.wrapper-section div:last-of-type {
+    padding-bottom: 0;
+}
+
+.why-letaka .wrapper-actions .action .img {
+    min-height: 25em;
+}
+
+.wrapper-news .action-buttons .button {
+    padding-bottom: 1em;
+}
+
+p a {
+    border-bottom: 3px solid #3d1a19;
+}
+
+.find-safari .results .wrapper-itinerary .itinerary-header .info .title {
+    margin-bottom: 0;
+}
+
+.find-safari .results .itinerary-header .info .location span {
+    font-size: 1em;
+    }
+
+.find-safari .results .wrapper-itinerary .itinerary-header .details {
+    text-align: left;
+}    
+.find-safari .results .itinerary-header .img .see-tours {
+    width: 100%;
+    }
+.single .wrapper-section .heading__section {
+    top: 4em;    
+}
+.sticky.sidebar .button__green {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
 /*---FOOTER---*/
 
 .footer {
@@ -680,7 +728,7 @@ body .gallery.region {
 /*---GLOBALS---*/
 
 body {
-  font-size: 0.7em;
+  font-size: 0.85em;
 }
 
 /*---HEADER---*/
@@ -694,7 +742,7 @@ body {
 		}
 		
 		.hero__copy {
-			font-size: 1.2em;
+			display: none;
 		}
 	}
 }
@@ -710,11 +758,38 @@ body {
 }
 
 .season__month {
-    width: 1.6em;
-    height: 1.6em;
-    line-height: 1.6em;
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em;
+    font-size: 1em;
+}
+.season-key>div {
+    display: block;
+    margin-bottom: 0.5em;
+}
+.our-safaris .wrapper-actions .wrapper {
+    height: auto;
+    }
+
+.why-letaka .wrapper-actions .action .img {
+    min-height: 0;
 }
 
+.hero__copy {
+    font-size: 1em;
+    }
+.hero__safari-buttons a {
+    padding: 0.5em 1em;
+}
+
+body .gallery.region {
+    grid-template-columns: 1fr;
+}
+body .gallery.region a:nth-of-type(n) {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0.5em;
+}
 /*---CONTENT---*/
 
 /*---FOOTER---*/

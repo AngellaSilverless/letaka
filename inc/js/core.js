@@ -241,7 +241,7 @@ $('#agent-logout').click(function() {
 			}, 300);
 			
 			self.next().slideToggle();
-	    }, 500);
+	    }, 300);
     });
     
     $(".wrapper-questions .question").click(function() {
@@ -264,7 +264,7 @@ $('#agent-logout').click(function() {
     $(".menu-toggle").click(function() {
 	    $(".menu-body").slideToggle();
 	    $(this).toggleClass("opened");
-	    $(".brand").toggleClass("big");
+	    //$(".brand").toggleClass("big");
     });
     
     $(".toggle__question").click(function() {

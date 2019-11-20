@@ -44,7 +44,7 @@
 				            <div class="content">
 					            
 				                <p><?php the_field('main_telephone', 'options');?></p>
-				                <p><?php the_field('main_email', 'options');?></p>
+				                <p><a href="mailto:<?php the_field('main_email', 'options');?>"><?php the_field('main_email', 'options');?></a></p>
 				                
 				                <?php if( have_rows('social_links', 'option') ): while( have_rows('social_links', 'option') ): the_row(); ?>
 		    

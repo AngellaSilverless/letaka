@@ -91,7 +91,7 @@ get_header();?>
     									<?php echo file_get_contents($whyIcon['url']); ?>
 									</div>
 									
-									<div class="heading heading__primary-color heading__xs heading__alt-font heading__caps center arrow"><?php echo $action["label"]; ?></div>
+									<div class="heading heading__primary-color heading__xs heading__alt-font heading__caps center arrow"><span><?php echo $action["label"]; ?></span></div>
 									
 								</div>
 							

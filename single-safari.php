@@ -116,7 +116,7 @@ while( have_posts() ) {
 				    
 				    <div class="safari-summary">
 
-    				    <div id="hero-content" class="hero__content">
+    				    <div id="hero-content" class="hero__content mb1">
 
                             <p class="safari-title mb0"><?php echo $parent->post_title;?></p>
 
