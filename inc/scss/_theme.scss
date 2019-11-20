@@ -2247,6 +2247,7 @@ body .home-gallery {
     .st1,
     .st2 {
         fill:#9b9b9b;
+        stroke:none;
     } 
     
     .st1.active,
@@ -2254,6 +2255,7 @@ body .home-gallery {
         fill:$brand-green;
         stroke:$brand-green;
         stroke-width:20px;
+        display: block;
     }
 }
 
