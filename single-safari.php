@@ -267,7 +267,7 @@ while( have_posts() ) {
                                     <p class="font400 heading__caps">Activities</p>
                                     	<?php while( have_rows('activities', $parent) ): the_row(); ?>
                                         	<div class="item">
-                                                <img src="<?php the_sub_field('icon');?>"/>
+                                                <img src="<?php the_sub_field('icon');?>" alt="<?php echo get_field("logo", "options")["alt"]; ?>"/>
                                                 <?php the_sub_field('activity');?>
                                         	</div>
                                     	<?php endwhile; endif; ?>        

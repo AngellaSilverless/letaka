@@ -61,7 +61,7 @@
 				        
 										<a href="<?php echo home_url(); ?>" alt="<?php wp_title(''); ?>" title="<?php wp_title(''); ?>">
 										
-											<img src="<?php echo get_field("logo", "options")["url"]; ?>">
+											<img src="<?php echo get_field("logo", "options")["url"]; ?>" alt="<?php echo get_field("logo", "options")["alt"]; ?>">
 										
 										</a>
 									
