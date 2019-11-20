@@ -4528,11 +4528,11 @@ body .home-gallery {
   stroke-width: 2px; }
 
 /* line 2240, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
-.child-map .st1 {
+.child-map .st2 {
   fill: #9b9b9b; }
 
 /* line 2244, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
-.child-map .st1.active {
+.child-map .st2.active {
   fill: #769d48;
   stroke: #769d48;
   stroke-width: 20px; }
