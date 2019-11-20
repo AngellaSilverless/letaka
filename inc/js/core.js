@@ -641,7 +641,7 @@ if($("#map-itinerary").length > 0 && JSON.parse($("#map-itinerary").attr("points
 		if($("#map-itinerary").isOnScreen()) {
 			$("#map-itinerary").addClass("active");
 			loadMapAnimation();
-		}
+		}		
 	});
 
 }
