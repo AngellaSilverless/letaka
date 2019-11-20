@@ -2225,22 +2225,28 @@ body .home-gallery {
 .parent-map {
     
     .parent {
-	    fill: #C9C9C9;
+        fill:transparent;
+        stroke:$brand-dark-grey;
+        stroke-width:2px;    
     }
 }
 
 .child-map {
-    
+        fill:transparent;
+        stroke:$brand-dark-grey;
+        stroke-width:2px;    
     .parent {
         fill:transparent;
         stroke:$brand-dark-grey;
         stroke-width:2px;
     }
     
+    .st1,
     .st2 {
         fill:#9b9b9b;
     } 
     
+    .st1.active,
     .st2.active {
         fill:$brand-green;
         stroke:$brand-green;
