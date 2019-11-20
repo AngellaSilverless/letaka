@@ -33,6 +33,13 @@ function letaka_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'letaka_scripts' );
 
+function add_async_attribute($tag, $handle) {
+    if ( 'my-js-handle' !== $handle )
+        return $tag;
+    return str_replace( ' src', ' async="async" src', $tag );
+}
+add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+
 /**= Add Menus =**/
 
 function sl_custom_menu() {
