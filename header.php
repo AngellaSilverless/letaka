@@ -1,11 +1,7 @@
-<?php
-/**
+<?php /**
  * Header
- *
  * @package letaka
- */
-
-?>
+ */?>
 <!doctype html>
 <?php
 	$url = explode('/',$_SERVER['REQUEST_URI']);
@@ -16,8 +12,8 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="description" content=" ">
-<meta name="keywords" content=" ">
+<meta name="description" content="Letaka Safaris is a citizen-owned safari company that has been operating in Botswana since October 2000. The founding directors, known locally as the Letaka Brothers, have over 40 years of combined guiding experience and started guiding safaris in Botswana in the mid-90’s. Mobile tented safaris in Botswana are, without a doubt, the best way to experience one of Africa’s last unspoilt wilderness areas, so pack your bags and book that flight... it's Safari Time!">
+<meta name="keywords" content="Originally all our safaris were owner-guided but the company has now grown to employ some of Botswana’s most highly experienced mobile safari guides. The focus of our company has always been on the quality of our guides, hence our close association with African Guiding Academy (previously called Okavango Guiding School), a training facility which we created to elevate the standard of guiding in Botswana. Many of Botswana’s top guides pass through AGA’s doors at one time or another and we are proud to continue this initiative to create a guiding fraternity that will stand head and shoulders above other African destinations.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <title>Letaka Safaris | <?php wp_title('|', true, 'right'); ?></title>
