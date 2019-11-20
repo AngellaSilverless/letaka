@@ -4523,38 +4523,42 @@ body .home-gallery {
   stroke: #4d4d4d;
   stroke-width: 2px; }
 
-/* line 2234, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+/* line 2232, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+.parent-map .st1 {
+  display: block; }
+
+/* line 2237, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .child-map {
   fill: transparent;
   stroke: #4d4d4d;
   stroke-width: 2px; }
-  /* line 2238, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2241, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .child-map .parent {
     fill: transparent;
     stroke: #4d4d4d;
     stroke-width: 2px; }
-  /* line 2245, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2248, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .child-map .st1,
   .child-map .st2 {
     fill: #9b9b9b; }
-  /* line 2250, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2253, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .child-map .st1.active,
   .child-map .st2.active {
     fill: #769d48;
     stroke: #769d48;
     stroke-width: 20px; }
 
-/* line 2259, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+/* line 2262, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .season-key {
   margin-top: 2em; }
-  /* line 2261, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2264, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key > div {
     position: relative;
     display: inline-block;
     padding-left: 1.5em;
     margin-right: 1.5em;
     line-height: 1em; }
-  /* line 2269, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2272, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key > div:before {
     content: '';
     position: absolute;
@@ -4563,32 +4567,32 @@ body .home-gallery {
     height: 1em;
     border-radius: 50%;
     background: red; }
-  /* line 2279, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2282, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key p {
     line-height: 2em;
     margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 400; }
-  /* line 2287, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2290, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .high:before {
     background: #769d48; }
-  /* line 2290, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2293, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .good:before {
     background: #87c8cf; }
-  /* line 2293, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2296, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .low:before {
     background: #3d1a1a; }
 
-/* line 2298, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+/* line 2301, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .toggle.country {
   margin-bottom: 1px; }
-  /* line 2301, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2304, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .toggle.country .toggle__question {
     position: relative;
     padding: 0.5em 1em;
     background: #c9c9c9;
     transition: all 0.5s ease; }
-    /* line 2307, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+    /* line 2310, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
     .toggle.country .toggle__question:before {
       content: '';
       position: absolute;
@@ -4597,30 +4601,30 @@ body .home-gallery {
       width: 5px;
       height: 100%;
       background: #769d48; }
-    /* line 2317, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+    /* line 2320, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
     .toggle.country .toggle__question i {
       transform: rotate(0deg);
       color: #50514d; }
-  /* line 2324, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2327, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .toggle.country .toggle__question p {
     margin-bottom: 0;
     font-weight: 400; }
-  /* line 2329, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2332, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .toggle.country .toggle__answer {
     background: #c9c9c9;
     padding: 1em; }
 
-/* line 2338, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+/* line 2341, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .toggle.country.active .toggle__question {
   background: #636363;
   color: white; }
-  /* line 2342, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+  /* line 2345, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .toggle.country.active .toggle__question i {
     transform: rotate(90deg);
     color: white; }
 
 /*===========PAGE SPECIFIC==========*/
-/* line 2351, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
+/* line 2354, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .hero.h50 {
   height: unset;
   min-height: calc(50vh + 115px); }
