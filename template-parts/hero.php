@@ -18,17 +18,12 @@
 			<div class="col-12 col-sm-8 offset-0 offset-sm-2">
 				
                 <div class="hero__content">
-			
+
+					<!--<img class="slide-down img-logo" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">-->
+
 					<div>
-				
-						<img class="slide-down img-logo" src="<?php echo get_template_directory_uri() . "/inc/img/letaka-logo.svg"; ?>">
-						
+					
 						<h1 class="heading heading__xl heading__light"><?php the_field( 'hero_heading' );?></h1>
-					
-					</div>
-			
-					<div>
-					
 						<div class="video-icon mt1 mb1 slow-fade"><i class="play-video fas fa-caret-square-right"></i></div>
 						
 						<div class="heading__light slow-fade hero__copy font300 mb2"><?php the_field( 'hero_copy' );?></div>

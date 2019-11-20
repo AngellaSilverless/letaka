@@ -39,7 +39,9 @@ get_header();?>
 					
 						<div class="wrapper">
 							
-							<div class="background-image" style="background: url(<?php echo $backgroundImage["url"]; ?>);"></div>
+							<a href="<?php echo $action["button_target"]; ?>">
+    							<div class="background-image" style="background: url(<?php echo $backgroundImage["url"]; ?>);"></div>
+    				        </a>
 							
 							<div class="circle">
     							<?php echo file_get_contents($safariIcon['url']); ?>

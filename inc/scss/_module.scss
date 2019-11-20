@@ -33,8 +33,9 @@
 	    
 	    .hero__content {
 			display: grid;
-			grid-template-rows: 50% 50%;
+			grid-template-rows: 1fr;
 			align-items: flex-end;
+			padding-bottom: 2em;
 			text-align: center;
 			
 			> div:nth-of-type(2) {

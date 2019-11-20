@@ -463,7 +463,7 @@
             
     		&:hover .circle {
                 border-radius: 50%;
-                box-shadow: 0 0 0px 15px #ffffff1c, 0 0 0px 10px #ffffff38, 0 0 0px 5px #ffffff38;
+                box-shadow: 0 0 0px 15px hsla(0, 0%, 100%, 0.1), 0 0 0px 10px hsla(0, 0%, 100%, 0.2), 0 0 0px 5px hsla(0, 0%, 100%, 0.2);
     		}
     		
     		&:hover .background-image {
@@ -1831,7 +1831,7 @@ p.role {
 }
 
 .selector:hover .circle-red {
-        box-shadow: 0 0 0px 15px #8f20002e, 0 0 0px 10px #8f20002e, 0 0 0px 5px #8f20002e;
+        box-shadow: 0 0 0px 15px hsla(13, 100%, 28%, 0.2), 0 0 0px 10px hsla(13, 100%, 28%, 0.2), 0 0 0px 5px hsla(13, 100%, 28%, 0.2);
 }
 
 body .home-gallery {
@@ -2072,6 +2072,11 @@ body .home-gallery {
     background: hsl(0, 0%, 88%);
     padding-bottom: 1em;
     margin-bottom: 3em;
+    .st0 {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 2px;
+    }
 }
 
 .country-wrapper {
@@ -2233,11 +2238,13 @@ body .home-gallery {
     }
     
     .st1 {
-        fill:transparent;
-    }
+        fill:#9b9b9b;
+    } 
     
     .st1.active {
         fill:$brand-green;
+        stroke:$brand-green;
+        stroke-width:20px;
     }
 }
 
