@@ -2206,7 +2206,7 @@ body .home-gallery {
     line-height: 2em;
         
         &.high {
-            background: $brand-green;
+            background: $brand-primary;
             color: hsl(0, 0%, 100%);
         }
         &.good {
@@ -2214,7 +2214,7 @@ body .home-gallery {
             color: hsl(0, 0%, 100%);
         }        
         &.low {
-          background: $brand-primary;
+          background: $brand-green;
           color: hsl(0, 0%, 100%);
         }        
     }

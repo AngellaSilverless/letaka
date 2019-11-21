@@ -86,9 +86,9 @@ while( have_rows('country_fields', $parent_term) ): the_row();?>
                 </div>
     
                 <div class="season-key">
-                    <div class="high">High</div>
+                    <div class="low">Green</div>       
                     <div class="good">Shoulder</div>
-                    <div class="low">Green</div>        
+                     <div class="high">High</div>
                 </div>
 
             </div>
