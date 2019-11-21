@@ -2252,8 +2252,10 @@ body .home-gallery {
     .st2.active {
         fill:$brand-green;
         stroke:$brand-green;
-        stroke-width:20px;
         display: block;
+    }
+    circle {
+        stroke-width:20px;
     }
 }
 
