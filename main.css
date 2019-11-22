@@ -4577,13 +4577,13 @@ body .home-gallery {
     font-weight: 400; }
   /* line 2292, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .high:before {
-    background: #769d48; }
+    background: #3d1a1a; }
   /* line 2295, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .good:before {
     background: #87c8cf; }
   /* line 2298, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
   .season-key .low:before {
-    background: #3d1a1a; }
+    background: #769d48; }
 
 /* line 2303, /Volumes/Macintosh HD/Users/ash/Local Sites/letaka/app/public/wp-content/themes/letaka/inc/scss/_theme.scss */
 .toggle.country {

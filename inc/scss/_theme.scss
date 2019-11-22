@@ -9,7 +9,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-
+ 
 .hero {
     
     &__safari-meta {
@@ -2290,13 +2290,13 @@ body .home-gallery {
     }
     
     .high:before {
-        background: $brand-green;
+        background: $brand-primary;
     }
     .good:before {
         background: hsl(186, 43%, 67%);
     }
     .low:before {
-      background: $brand-primary;
+      background: $brand-green;
     }    
 }
 
