@@ -2005,11 +2005,16 @@ body .home-gallery {
   position: relative;
 }
 
-.form .captcha {
+.form .captcha,
+.form-newsletter .captcha {
   grid-column: 2;
   input {
     width: auto !important;
   }
+}
+
+.contact-directly-form .captcha {
+  margin-bottom: 1em;
 }
 
 .input-wrapper {
