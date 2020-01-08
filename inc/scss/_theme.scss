@@ -2005,12 +2005,10 @@ body .home-gallery {
   position: relative;
 }
 
-.form {
-  .captcha {
-    grid-column: 2;
-    input {
-      width: auto;
-    }
+.form .captcha {
+  grid-column: 2;
+  input {
+    width: auto !important;
   }
 }
 
