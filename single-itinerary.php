@@ -371,7 +371,7 @@ while( have_posts() ) {
 
 		                    <div class="safari-includes list">
 
-		                        <h2 class="heading heading__md">Included in Your Safari</h2>
+		                        <h2 class="heading heading__md">This safari includes</h2>
 
                                 <?php if( have_rows('details') ):
                                                         while( have_rows('details') ): the_row();?>
@@ -384,7 +384,7 @@ while( have_posts() ) {
 
 		                    <div class="safari-excludes list">
 
-		                         <h2 class="heading heading__md">Excluded In This Safari</h2>
+		                         <h2 class="heading heading__md">This safari excludes</h2>
 
                                 <?php if( have_rows('details') ):
                                                         while( have_rows('details') ): the_row();?>
